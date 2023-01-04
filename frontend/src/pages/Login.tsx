@@ -1,4 +1,4 @@
-import '../styles/login.css'
+import './styles/login.css'
 
 function Login() {
     return (
@@ -18,7 +18,7 @@ function Login() {
                 </div>
                 <div className="field-btn">
                     <button type="submit">Entrar</button>
-                    <a href="">Crie uma conta</a>
+                    <a href="google.com">Crie uma conta</a>
                 </div>
             </form>
         </div>

@@ -1,0 +1,48 @@
+@media (max-width: 1000px) {
+    .login-form {
+        height: 50%;
+        max-height: 100%;
+        width: 90%;
+        max-width: 100%;
+    }
+
+}
+
+@media (max-width: 600px) {
+    .login-form {
+        height: 50%;
+        max-height: 100%;
+        width: 90%;
+        max-width: 100%;
+    }
+
+    .field label,
+    .field-btn {
+        font-size: 1.2rem;
+    }
+
+    .field input,
+    .field-btn a {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 320px) {
+    .login-form {
+        height: 50%;
+        max-height: 100%;
+        width: 90%;
+        max-width: 100%;
+    }
+
+    .field label,
+    .field-btn button {
+        font-size: 1.2rem;
+    }
+
+    .field input,
+    .field-btn a {
+        font-size: 1rem;
+    }
+
+}
