@@ -40,6 +40,8 @@
 .field-btn{
   width: 100%;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .field-btn button{
@@ -69,6 +71,12 @@
   font-size: 1.2rem;
   color: #232526;
   transition: 0.5s;
+}
+
+.field-btn span{
+  margin-top: 2%;
+  font-size: 0.8rem;
+  font-weight: 300;
 }
 
 .field-btn a:hover {
