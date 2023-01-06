@@ -2,7 +2,7 @@
 function NovaConta() {
     return (
         <div className="container-form">
-            <form action="" method="post" className='login-form'>
+            <form action="/login" method="POST" className='login-form'>
                 <div className="field">
                     <label htmlFor="name">Nome:</label>
                     <input type="text" name="name" id="name" autoComplete="off" placeholder='Seu nome' />

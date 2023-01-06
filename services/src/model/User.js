@@ -1,8 +1,4 @@
 import mongoose from 'mongoose'
-
-const timeElapsed = Date.now();
-const today = new Date(timeElapsed);
-
 const Schema = mongoose.Schema
 
 const user = new Schema({
@@ -18,11 +14,10 @@ const user = new Schema({
         type: String,
         required: true
     },
-    date: {
-        type: Date,
-        default: today.toLocaleDateString()
+    createAt: {
+        type: String,
+        default: new Date().toLocaleDateString()
     }
-
 })
 
 const ModelUser = mongoose.model('users', user)
