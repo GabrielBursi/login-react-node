@@ -24,7 +24,7 @@ function login(req, res){
             email,
             password
         }).save()
-        .then(() => res.status(200).res.json({message: 'Usuario salvo com sucesso!'}))
+        .then(() => res.status(200).json({message: 'Usuario salvo com sucesso!'}))
         
     } catch (error) {
         res.status(404).json(error)

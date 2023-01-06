@@ -1,8 +1,14 @@
+import React from "react";
 
 function NovaConta() {
+
+    function handleSubmit(e: React.FormEvent){
+        e.preventDefault()
+    }
+
     return (
         <div className="container-form">
-            <form action="/login" method="POST" className='login-form'>
+            <form action="#" className='login-form' onSubmit={handleSubmit}>
                 <div className="field">
                     <label htmlFor="name">Nome:</label>
                     <input type="text" name="name" id="name" autoComplete="off" placeholder='Seu nome' />
