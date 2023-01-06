@@ -5,6 +5,7 @@ dotenv.config()
 
 import './database/db.js'
 import routerUser from './routes/apiUSer.js'
+import routerApi from './routes/api.js'
 
 const app = express()
 
@@ -14,5 +15,6 @@ app.use(cors())
 app.get('/', (req, res) => {res.send('Hello back end!')})
 
 app.use('/',routerUser)
+app.use('/', routerApi)
 
 app.listen(process.env.PORT)
