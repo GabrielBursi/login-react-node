@@ -8,7 +8,7 @@ function login(req, res){
         email,
         password
     }).save()
-        .then(() => console.log('Pronto'))
+        .then(() => res.send('Pronto'))
         .catch(erro => res.send(erro))
 }
 
