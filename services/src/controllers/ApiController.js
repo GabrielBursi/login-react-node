@@ -13,7 +13,7 @@ function index(req, res){
 function login(req, res){
     const {name, email, password} = req.body
 
-    if (!name ||!email ||!password || email.trim()) {
+    if (!name ||!email ||!password ) {
         res.status(400).json({error: 'Informações inválidas'})
         return
     }

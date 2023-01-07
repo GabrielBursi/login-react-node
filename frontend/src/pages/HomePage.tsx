@@ -1,20 +1,29 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { ApiError } from "../api/ApiError";
+import { getAll } from "../api/ApiServices";
+import ApiType from "../types/ApiType";
 
 function HomePage() {
 
+    const [users, setUsers] = useState<ApiType[]>([]);
+
     useEffect(() => {
-        getApi()
+        getAll().then(users => {
+            if(users instanceof ApiError){
+                alert(users.message)
+            }else{
+                setUsers(users);
+            }
+        })
     }, []);
 
-    async function getApi(){
-        const api = await fetch('http://localhost:3333/api')
-        const res = await api.json()
-        console.log(res.users);
-    }
-
     return (
-        <div>
-            <h1>Home</h1>
+        <div className="container">
+            <h1>uri da API: http://localhost:3333/users</h1>
+            <span>Apenas usuarios cadastrados conseguem acessar essa página</span>
+            <div className="user-data">
+
+            </div>
         </div>
     );
 }

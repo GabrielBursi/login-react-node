@@ -12,7 +12,7 @@ async function getAll(): Promise<ApiType[] | ApiError>{
     }
 }
 
-async function createUser(newUser: Omit<ApiType, 'id'>): Promise<ApiType | ApiError>{
+async function createUser(newUser: Omit<ApiType, '_id'>): Promise<ApiType | ApiError>{
     try {
         const {data} = await Api.post('/login', newUser)
         return data
@@ -21,7 +21,7 @@ async function createUser(newUser: Omit<ApiType, 'id'>): Promise<ApiType | ApiEr
     }
 }
 
-async function editUser(id: string, editedUser: Omit<ApiType, 'id'>): Promise<ApiType | ApiError>{
+async function editUser(id: string, editedUser: Omit<ApiType, '_id'>): Promise<ApiType | ApiError>{
     try {
         const { data } = await Api.put(`/users/${id}`, editedUser)
         return data
