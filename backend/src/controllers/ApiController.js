@@ -13,38 +13,45 @@ function index(req, res){
     }
 }
 
+
+
 function login(req, res){
     const {name, email, password} = req.body
 
     if (!name ||!email ||!password ) {
-        res.status(400).json({error: 'Informações inválidas'})
-        return
+        return res.status(400).json({error: 'Informações inválidas'})
     }
 
-    try {
-        const newUser = new ModelUser({
-            name,
-            email,
-            password
-        })
+    ModelUser.findOne({email}).then((user) => {
+        if (user) {
+            return res.json({error: "Email ja existe"})
+        }else{
+            try {
+                const newUser = new ModelUser({
+                    name,
+                    email,
+                    password
+                })
 
-        bcrypt.genSalt(saltRounds, (err, salt) => {
-            bcrypt.hash(newUser.password, salt, (err, hash) => {
-                if(err){
-                    res.status(5400).json({message:err})
-                }else{
-                    newUser.password = hash
+                bcrypt.genSalt(saltRounds, (err, salt) => {
+                    bcrypt.hash(newUser.password, salt, (err, hash) => {
+                        if(err){
+                            res.status(5400).json({message:err})
+                        }else{
+                            newUser.password = hash
 
-                    newUser.save().then(() => {
-                        res.status(200).json({message: 'Usuario cadastrado!'})
+                            newUser.save().then(() => {
+                                res.status(200).json({message: 'Usuario cadastrado!'})
+                            })
+                        }
                     })
-                }
-            })
-        })
-        
-    } catch (error) {
-        res.status(404).json(error)
-    }
+                })
+                
+            } catch (error) {
+                res.status(404).json(error)
+            }
+        }
+    })
 }
 
 function deleteUser(req, res){
