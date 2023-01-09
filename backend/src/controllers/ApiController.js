@@ -1,5 +1,8 @@
 import ModelUser from '../model/User.js'
 
+import bcrypt from 'bcrypt'
+const saltRounds = 5;
+
 function index(req, res){
     try {
         ModelUser.find().sort({createAt: 'desc'}).then(users => {
@@ -19,12 +22,25 @@ function login(req, res){
     }
 
     try {
-        new ModelUser({
+        const newUser = new ModelUser({
             name,
             email,
             password
-        }).save()
-        .then(() => res.status(200).json({message: 'Usuario salvo com sucesso!'}))
+        })
+
+        bcrypt.genSalt(saltRounds, (err, salt) => {
+            bcrypt.hash(newUser.password, salt, (err, hash) => {
+                if(err){
+                    res.status(5400).json({message:err})
+                }else{
+                    newUser.password = hash
+
+                    newUser.save().then(() => {
+                        res.status(200).json({message: 'Usuario cadastrado!'})
+                    })
+                }
+            })
+        })
         
     } catch (error) {
         res.status(404).json(error)

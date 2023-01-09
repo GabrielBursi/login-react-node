@@ -10,16 +10,18 @@ function HomePage() {
     const [users, setUsers] = useState<ApiType[]>([]);
 
     useEffect(() => {
-        getAll().then(users => {
-            if(users instanceof ApiError){
-                alert(users.message)
+        getAll().then(data => {
+            if(data instanceof ApiError){
+                alert(data.message)
+                console.log(data);
             }else{
-                setUsers(users);
+                setUsers(data);
             }
         })
     }, []);
 
     return (
+        
         <div className="container home">
             <div className="api-text">
                 <h1>uri da API: <a href="http://localhost:3333/users" target="_blank" rel="noreferrer">http://localhost:3333/users</a></h1>
@@ -28,14 +30,9 @@ function HomePage() {
             <div className="user-container">
                 <span>Todos usuarios cadastrados no banco de dados MongoDB:</span>
                 <code className="user-data">
-                    {users.map((user) => {
-                        return (
-                            <span key={user._id}>
-                                Nome: {user.name} Email: {user.email} Senha: {user.password}
-                            </span>
-                        )
-                    })}
+                    
                 </code>
+                
             </div>
         </div>
     );
