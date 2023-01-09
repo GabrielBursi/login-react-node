@@ -12,6 +12,15 @@ async function getAll(): Promise<ApiType[] | ApiError>{
     }
 }
 
+async function login(user: Pick<ApiType, 'email'| 'password'> | ApiError) {
+    try {
+        const {data} = await Api.post('/login', user)
+        return data
+    } catch (error: any) {
+        return new ApiError(error.message)
+    }
+}
+
 async function createUser(newUser: Omit<ApiType, '_id'>): Promise<ApiType | ApiError>{
     try {
         const {data} = await Api.post('/login', newUser)
@@ -41,6 +50,7 @@ async function deleteUser(id: string): Promise<string | ApiError>{
 
 export {
     getAll,
+    login,
     createUser,
     editUser,
     deleteUser

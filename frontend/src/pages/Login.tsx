@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { login } from '../api/ApiServices';
 
 import './styles/login.css'
 
@@ -7,11 +8,17 @@ function Login() {
 
     const [email, setEmail] = useState<string>();
     const [senha, setSenha] = useState<string>();
+    const [validate, setValidate] = useState<boolean>(false);
 
     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
 
-        console.log('Submit!', { email, senha });
+        const user = {
+            email,
+            password: senha
+        }
+
+        login(user).then(data => console.log(data))
     }
 
     return (

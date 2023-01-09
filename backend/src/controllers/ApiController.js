@@ -3,7 +3,7 @@ import ModelUser from '../model/User.js'
 import bcrypt from 'bcrypt'
 const saltRounds = 5;
 
-function index(req, res){
+function getAll(req, res){
     try {
         ModelUser.find().sort({createAt: 'desc'}).then(users => {
             res.status(200).json({users})
@@ -13,45 +13,62 @@ function index(req, res){
     }
 }
 
-
-
 function login(req, res){
+    const {email, password} = req.body
+
+    if (!email || !password) {
+        return res.status(400).json({error: 'Informações inválidas'})
+    }
+
+    try {
+        ModelUser.findOne({email}).then(user => {
+            if(user) res.json({validate: true})
+            else{
+                res.json({erro: 'Email ou senha incorretas!'})
+            }
+        })
+    } catch (error) {
+        res.status(404).json(error)
+    }
+
+}
+
+function createUser(req, res){
     const {name, email, password} = req.body
 
     if (!name ||!email ||!password ) {
         return res.status(400).json({error: 'Informações inválidas'})
     }
 
-    ModelUser.findOne({email}).then((user) => {
-        if (user) {
-            return res.json({error: "Email ja existe"})
-        }else{
-            try {
+    try{
+        ModelUser.findOne({email}).then((user) => {
+            if (user) {
+                return res.json({error: "Email ja existe"})
+            }else{
                 const newUser = new ModelUser({
                     name,
                     email,
                     password
                 })
-
+    
                 bcrypt.genSalt(saltRounds, (err, salt) => {
                     bcrypt.hash(newUser.password, salt, (err, hash) => {
                         if(err){
                             res.status(5400).json({message:err})
                         }else{
                             newUser.password = hash
-
+    
                             newUser.save().then(() => {
                                 res.status(200).json({message: 'Usuario cadastrado!'})
                             })
                         }
                     })
                 })
-                
-            } catch (error) {
-                res.status(404).json(error)
             }
-        }
-    })
+        })
+    } catch (error) {
+        res.status(404).json(error)
+    }
 }
 
 function deleteUser(req, res){
@@ -77,8 +94,9 @@ function editUser(req, res){
 }
 
 export  {
-    index,
-    login,
+    getAll,
+    createUser,
     deleteUser,
-    editUser
+    editUser,
+    login
 }
