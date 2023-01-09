@@ -1,9 +1,8 @@
 import { ApiError } from './ApiError';
 import { Api } from './ApiConfig';
-import ApiType from '../types/ApiType';
+import {ApiType, Data} from '../types/ApiType';
 
-
-async function getAll(): Promise<ApiType[] | ApiError>{
+async function getAll(): Promise<Data | ApiError>{
     try {
         const {data} = await Api.get('/users')
         return data;
@@ -21,7 +20,7 @@ async function login(user: Pick<ApiType, 'email'| 'password'> | ApiError) {
     }
 }
 
-async function createUser(newUser: Omit<ApiType, '_id'>): Promise<ApiType | ApiError>{
+async function createUser(newUser: Pick<ApiType, 'name' | 'email' | 'password'>): Promise<ApiType | ApiError>{
     try {
         const {data} = await Api.post('/login', newUser)
         return data
