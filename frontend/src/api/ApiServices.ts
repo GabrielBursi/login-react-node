@@ -1,6 +1,6 @@
 import { ApiError } from './ApiError';
 import { Api } from './ApiConfig';
-import {ApiType, Data} from '../types/ApiType';
+import {ApiType, Data} from '../types/Types';
 
 async function getAll(): Promise<Data | ApiError>{
     try {

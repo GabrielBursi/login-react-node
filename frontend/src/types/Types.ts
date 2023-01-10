@@ -8,3 +8,7 @@ export type ApiType = {
 export type Data = {
     users: ApiType[]
 }
+
+export type Children = {
+    children: JSX.Element 
+}

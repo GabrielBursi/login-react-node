@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { login } from '../api/ApiServices';
+import { ValidateContext } from '../context/ValidateContext';
 
 import './styles/login.css'
 
@@ -11,9 +12,10 @@ type DataLogin = {
 
 function Login() {
 
+    const {validate, setValidate} = useContext(ValidateContext)
+
     const [email, setEmail] = useState<string>();
     const [password, setPassword] = useState<string>();
-    const [validate, setValidate] = useState<boolean>(false);
     const [erro, setErro] = useState<string>();
 
     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -70,8 +72,9 @@ function Login() {
                 </div>
                 <div className="field-btn">
                     <button type="submit">Entrar</button>
-                    <Link to="/criar">Crie uma conta</Link>
-                    <span>Apenas usuários cadastrados podem acessar.</span>
+                    <span>Não tem conta ?</span>
+                    <Link to="/criar">Crie uma conta agora</Link>
+                    <span>Apenas usuários cadastrados podem acessar a página.</span>
                 </div>
             </form>
         </div>

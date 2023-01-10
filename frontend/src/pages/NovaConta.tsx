@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { Link } from "react-router-dom";
 import { createUser } from "../api/ApiServices";
 
 function NovaConta() {
@@ -68,6 +69,8 @@ function NovaConta() {
                 </div>
                 <div className="field-btn">
                     <button type="submit">Criar nova conta</button>
+                    <span>Já tem conta?</span>
+                    <Link to='/login'>Faça login</Link>
                 </div>
             </form>
         </div>

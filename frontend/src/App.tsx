@@ -8,12 +8,12 @@ import Header from './components/Header';
 
 function App() {
   return (
-    <BrowserRouter>
-        <Header/>
-        <main className='main'>
-          <RoutesApp/>
-        </main>
-    </BrowserRouter>
+      <BrowserRouter>
+          <Header/>
+          <main className='main'>
+            <RoutesApp/>
+          </main>
+      </BrowserRouter>
   );
 }
 

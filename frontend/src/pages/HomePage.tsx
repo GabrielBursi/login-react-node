@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ApiError } from "../api/ApiError";
 import { getAll } from "../api/ApiServices";
-import {ApiType} from "../types/ApiType";
+import {ApiType} from "../types/Types";
 
 import './styles/home.css'
 
