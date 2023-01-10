@@ -39,7 +39,7 @@ function createUser(req, res){
     const {name, email, password} = req.body
 
     if (!name ||!email ||!password ) {
-        return res.status(400).json({error: 'Informações inválidas'})
+        return res.json({error: 'Informações inválidas'})
     }
 
     try{
@@ -56,12 +56,12 @@ function createUser(req, res){
                 bcrypt.genSalt(saltRounds, (err, salt) => {
                     bcrypt.hash(newUser.password, salt, (err, hash) => {
                         if(err){
-                            res.status(5400).json({message:err})
+                            return res.json({message:`problema com o hash${err}`})
                         }else{
                             newUser.password = hash
     
                             newUser.save().then(() => {
-                                res.status(200).json({message: 'Usuario cadastrado!'})
+                                res.status(200).json({validate: true})
                             })
                         }
                     })

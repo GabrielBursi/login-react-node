@@ -1,12 +1,18 @@
-import React, {useState} from "react";
-import { Link } from "react-router-dom";
+import React, {useContext, useState} from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { createUser } from "../api/ApiServices";
+import { ValidateContext } from "../context/ValidateContext";
+import { DataLogin } from "../types/Types";
 
 function NovaConta() {
 
     const [name, setName] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+
+    const { setValidate, setErro, erro } = useContext(ValidateContext)
+
+    const navigate = useNavigate()
 
     function handleSubmit(e: React.FormEvent){
         e.preventDefault()
@@ -17,19 +23,24 @@ function NovaConta() {
             password,
         }
 
-        if (
-            !name || 
-            !email || 
-            !password
-        ){
-            return
-        }
-        
-        createUser(newUser)
+        createUser(newUser).then((data: DataLogin)=> {
+            const { error, validate } = data
+            if (error) {
+                setErro(error)
+                setValidate(false)
+            } else {
+                setValidate(validate)
+                setErro('')
+                navigate('/')
+            }
+        })
     }
 
     return (
         <div className="container">
+            <div className="alert-error">
+                {erro && <span>{erro}</span>}
+            </div>
             <form action="#" className='login-form' onSubmit={handleSubmit}>
                 <div className="field">
                     <label htmlFor="name">Nome:</label>

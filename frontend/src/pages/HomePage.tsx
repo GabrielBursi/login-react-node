@@ -3,7 +3,7 @@ import { ApiError } from "../api/ApiError";
 import { getAll } from "../api/ApiServices";
 import {ApiType} from "../types/Types";
 
-import './styles/home.css'
+import '../styles/home.css'
 
 function HomePage() {
 

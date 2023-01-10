@@ -1,22 +1,20 @@
 import { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../api/ApiServices';
 import { ValidateContext } from '../context/ValidateContext';
 
-import './styles/login.css'
+import '../styles/login.css'
 
-type DataLogin = {
-    error: string,
-    validate: boolean
-}
+import { DataLogin } from '../types/Types';
 
 function Login() {
 
-    const {validate, setValidate} = useContext(ValidateContext)
+    const { setValidate, setErro, erro } = useContext(ValidateContext)
 
     const [email, setEmail] = useState<string>();
     const [password, setPassword] = useState<string>();
-    const [erro, setErro] = useState<string>();
+
+    const navigate = useNavigate()
 
     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
@@ -34,11 +32,9 @@ function Login() {
             }else{
                 setValidate(validate)
                 setErro('')
+                navigate('/')
             }
         })
-
-        console.log(erro, validate);
-        
     }
 
     return (

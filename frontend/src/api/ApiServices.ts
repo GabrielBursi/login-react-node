@@ -11,7 +11,7 @@ async function getAll(): Promise<Data | ApiError>{
     }
 }
 
-async function login(user: Pick<ApiType, 'email'| 'password'> | ApiError) {
+async function login(user: Pick<ApiType, 'email'| 'password'>) {
     try {
         const {data} = await Api.post('/login', user)
         return data
@@ -20,16 +20,16 @@ async function login(user: Pick<ApiType, 'email'| 'password'> | ApiError) {
     }
 }
 
-async function createUser(newUser: Pick<ApiType, 'name' | 'email' | 'password'>): Promise<ApiType | ApiError>{
+async function createUser(newUser: Pick<ApiType, 'name' | 'email' | 'password'>){
     try {
-        const {data} = await Api.post('/login', newUser)
+        const {data} = await Api.post('/create', newUser)
         return data
     } catch (error: any) {
         return new ApiError(error.message)
     }
 }
 
-async function editUser(id: string, editedUser: Omit<ApiType, '_id'>): Promise<ApiType | ApiError>{
+async function editUser(id: string, editedUser: Omit<ApiType, '_id'>){
     try {
         const { data } = await Api.put(`/users/${id}`, editedUser)
         return data

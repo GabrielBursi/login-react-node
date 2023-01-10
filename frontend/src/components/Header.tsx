@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { ValidateContext } from '../context/ValidateContext';
 
 
-import './styles/header.css'
+import '../styles/header.css'
 
 function Header() {
 
