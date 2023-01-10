@@ -1,8 +1,8 @@
 import React, {useContext, useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { ApiError } from "../api/ApiError";
 import { createUser } from "../api/ApiServices";
 import { ValidateContext } from "../context/ValidateContext";
-import { DataLogin } from "../types/Types";
 
 function NovaConta() {
 
@@ -23,7 +23,11 @@ function NovaConta() {
             password,
         }
 
-        createUser(newUser).then((data: DataLogin)=> {
+        createUser(newUser).then((data)=> {
+            if(data instanceof ApiError){
+                return
+            }
+
             const { error, validate } = data
             if (error) {
                 setErro(error)

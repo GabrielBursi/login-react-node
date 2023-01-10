@@ -9,7 +9,7 @@ function getAll(req, res){
             res.status(200).json({users})
         })
     } catch (error) {
-        res.status(404).json(error)
+        res.status(404).json({error : 'Nao foi possível acessar ao MongoDB: ' + error})
     }
 }
 
@@ -30,7 +30,7 @@ function login(req, res){
             }
         })
     } catch (error) {
-        res.status(404).json(error)
+        res.status(404).json({ error: 'Nao possível acessar ao MongoDB: ' + error })
     }
 
 }
@@ -45,7 +45,7 @@ function createUser(req, res){
     try{
         ModelUser.findOne({email}).then((user) => {
             if (user) {
-                return res.json({error: "Email ja existe"})
+                return res.json({error: "Esse email ja existe."})
             }else{
                 const newUser = new ModelUser({
                     name,
@@ -56,7 +56,7 @@ function createUser(req, res){
                 bcrypt.genSalt(saltRounds, (err, salt) => {
                     bcrypt.hash(newUser.password, salt, (err, hash) => {
                         if(err){
-                            return res.json({message:`problema com o hash${err}`})
+                            return res.json({error:`problema com o hash${err}`})
                         }else{
                             newUser.password = hash
     
@@ -69,7 +69,7 @@ function createUser(req, res){
             }
         })
     } catch (error) {
-        res.status(404).json(error)
+        res.status(404).json({ error: 'Nao possível acessar ao MongoDB: ' + error })
     }
 }
 
@@ -80,9 +80,9 @@ function deleteUser(req, res){
     try {
         ModelUser.findByIdAndDelete(id)
             .then(() => res.status(200).json({message: 'Usuario excluído com sucesso!'}))
-            .catch(err => res.json({error : "Id invalido!"}))
+            .catch(error => res.json({error : "Id invalido! " + error}))
     } catch (error) {
-        res.status(404).json(error)
+        res.status(404).json({ error: 'Nao possível acessar ao MongoDB: ' + error })
     }
 }
 
@@ -90,10 +90,16 @@ function editUser(req, res){
     const id = req.params.id
     const {email, password} = req.body
     
+    if(!email || !password) {
+        return res.json({error: "Informações invalidas"})
+    }
+
     try {
-        ModelUser.findByIdAndUpdate(id, {email, password}).then(() => res.status(200).json({message: 'Usuario editado com sucesso!'}))
+        ModelUser.findByIdAndUpdate(id, {email, password})
+            .then(() => res.status(200).json({message: 'Usuario editado com sucesso!'}))
+            .catch(error => res.json({error: "id invalido " + error}))
     } catch (error) {
-        res.status(404).json(error)
+        res.status(404).json({ error: 'Nao possível acessar ao MongoDB: ' + error })
     }
 }
 

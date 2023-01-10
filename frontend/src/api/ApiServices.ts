@@ -1,8 +1,8 @@
 import { ApiError } from './ApiError';
 import { Api } from './ApiConfig';
-import {ApiType, Data} from '../types/Types';
+import {ApiType, Response, Users} from '../types/Types';
 
-async function getAll(): Promise<Data | ApiError>{
+async function getAll(): Promise<Users | ApiError>{
     try {
         const {data} = await Api.get('/users')
         return data;
@@ -11,7 +11,7 @@ async function getAll(): Promise<Data | ApiError>{
     }
 }
 
-async function login(user: Pick<ApiType, 'email'| 'password'>) {
+async function login(user: Pick<ApiType, 'email'| 'password'>): Promise<Response | ApiError> {
     try {
         const {data} = await Api.post('/login', user)
         return data
@@ -20,7 +20,7 @@ async function login(user: Pick<ApiType, 'email'| 'password'>) {
     }
 }
 
-async function createUser(newUser: Pick<ApiType, 'name' | 'email' | 'password'>){
+async function createUser(newUser: Pick<ApiType, 'name' | 'email' | 'password'>): Promise<Response | ApiError> {
     try {
         const {data} = await Api.post('/create', newUser)
         return data

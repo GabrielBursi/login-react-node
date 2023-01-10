@@ -1,11 +1,11 @@
 import { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { ApiError } from '../api/ApiError';
 import { login } from '../api/ApiServices';
 import { ValidateContext } from '../context/ValidateContext';
 
 import '../styles/login.css'
 
-import { DataLogin } from '../types/Types';
 
 function Login() {
 
@@ -24,7 +24,11 @@ function Login() {
             password
         }
 
-        login(user).then((data: DataLogin)=> {
+        login(user).then((data)=> {
+            if(data instanceof ApiError){
+                return
+            }
+            
             const {error, validate} = data
             if(error){
                 setErro(error)
