@@ -22,7 +22,7 @@
 .field input {
   width: 100%;
   font-size: 1.4rem;
-  margin-bottom: 5%;
+  margin-bottom: 4%;
   padding: 4%;
   border-radius: 10px;
   border: 0.5px solid #232526;
@@ -51,6 +51,7 @@
   color: white;
   box-shadow: 0 0 20px #eee;
   display: block;
+  cursor: pointer;
   }
 .field-btn button:hover {
   background-position: right center;
@@ -75,3 +76,11 @@
   color: #414345;
 }
 
+.alert-error {
+  display: block;
+  width: 40%;
+  height: 5%;
+  line-height: 46.55px;
+  font-size: 1rem;
+  color: red;
+}

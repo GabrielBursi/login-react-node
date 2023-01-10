@@ -28,7 +28,7 @@ function NovaConta() {
     }
 
     return (
-        <div className="container-form">
+        <div className="container">
             <form action="#" className='login-form' onSubmit={handleSubmit}>
                 <div className="field">
                     <label htmlFor="name">Nome:</label>

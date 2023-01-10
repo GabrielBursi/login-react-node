@@ -33,7 +33,7 @@ function HomePage() {
                         <div key={user._id} className='user-data'>
                             <p>Usuario: {index + 1}</p>
                             <p>"Nome": <span>"{user.name}",</span></p>
-                            <p>"Email": <span>"{user.name}",</span></p>
+                            <p>"Email": <span>"{user.email}",</span></p>
                             <p>"Senha": <span>"{user.password}",</span></p>
                             <p>"Data de criação da conta": <span>"{user.createAt}"</span></p>
                         </div>

@@ -4,25 +4,46 @@ import { login } from '../api/ApiServices';
 
 import './styles/login.css'
 
+type DataLogin = {
+    error: string,
+    validate: boolean
+}
+
 function Login() {
 
     const [email, setEmail] = useState<string>();
-    const [senha, setSenha] = useState<string>();
+    const [password, setPassword] = useState<string>();
     const [validate, setValidate] = useState<boolean>(false);
+    const [erro, setErro] = useState<string>();
 
     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
 
         const user = {
             email,
-            password: senha
+            password
         }
 
-        login(user).then(data => console.log(data))
+        login(user).then((data: DataLogin)=> {
+            const {error, validate} = data
+            if(error){
+                setErro(error)
+                setValidate(false)
+            }else{
+                setValidate(validate)
+                setErro('')
+            }
+        })
+
+        console.log(erro, validate);
+        
     }
 
     return (
         <div className="container">
+            <div className="alert-error">
+                {erro && <span>{erro}</span>}
+            </div>
             <form action="" method="post" className='login-form' onSubmit={handleSubmit}>
                 <div className="field">
                     <label htmlFor="email">Email:</label>
@@ -44,7 +65,7 @@ function Login() {
                         id="password" 
                         autoComplete="off" 
                         placeholder='Digite sua senha'
-                        onChange={(e) => setSenha(e.target.value)}
+                        onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
                 <div className="field-btn">

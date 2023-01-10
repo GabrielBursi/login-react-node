@@ -17,14 +17,16 @@ function login(req, res){
     const {email, password} = req.body
 
     if (!email || !password) {
-        return res.status(400).json({error: 'Informações inválidas'})
+        return res.json({error: 'Informações inválidas'})
     }
 
     try {
         ModelUser.findOne({email}).then(user => {
-            if(user) res.json({validate: true})
+            if(user) {
+                res.json({ validate: true })
+            }
             else{
-                res.json({erro: 'Email ou senha incorretas!'})
+                res.json({error: 'Email ou senha incorretas!'})
             }
         })
     } catch (error) {
@@ -76,7 +78,9 @@ function deleteUser(req, res){
     const id = req.params.id
 
     try {
-        ModelUser.findByIdAndDelete(id).then(() => res.status(200).json({message: 'Usuario excluído com sucesso!'}))
+        ModelUser.findByIdAndDelete(id)
+            .then(() => res.status(200).json({message: 'Usuario excluído com sucesso!'}))
+            .catch(err => res.json({error : "Id invalido!"}))
     } catch (error) {
         res.status(404).json(error)
     }
