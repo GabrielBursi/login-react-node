@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ApiError } from '../api/ApiError';
 import { login } from '../api/ApiServices';
+import Button from '../components/Button';
 import { ValidateContext } from '../context/ValidateContext';
 
 import '../styles/login.css'
@@ -71,7 +72,7 @@ function Login() {
                     />
                 </div>
                 <div className="field-btn">
-                    <button type="submit">Entrar</button>
+                    <Button text='entrar'/>
                     <span>Não tem conta ?</span>
                     <Link to="/criar">Crie uma conta agora</Link>
                     <span>Apenas usuários cadastrados podem acessar a página.</span>

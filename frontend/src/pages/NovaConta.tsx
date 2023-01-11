@@ -2,6 +2,7 @@ import React, {useContext, useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ApiError } from "../api/ApiError";
 import { createUser } from "../api/ApiServices";
+import Button from "../components/Button";
 import { ValidateContext } from "../context/ValidateContext";
 
 function NovaConta() {
@@ -83,7 +84,7 @@ function NovaConta() {
                     />
                 </div>
                 <div className="field-btn">
-                    <button type="submit">Criar nova conta</button>
+                    <Button text='Criar conta'/>
                     <span>Já tem conta?</span>
                     <Link to='/login'>Faça login</Link>
                 </div>
