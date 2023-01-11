@@ -6,7 +6,7 @@ import HomePage from './pages/HomePage';
 import Login from './pages/Login';
 import NovaConta from './pages/NovaConta';
 import Sobre from './pages/Sobre';
-import { Children } from './types/Types';
+import { Children, ChildrenRoute } from './types/Types';
 
 function RoutesApp() {
     return (
@@ -20,7 +20,7 @@ function RoutesApp() {
     );
 }
 
-function Private({ children }: Children) {
+function Private({ children }: ChildrenRoute) {
 
     const { validate } = useContext(ValidateContext);
 

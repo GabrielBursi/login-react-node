@@ -1,21 +1,14 @@
-import React, {useContext, useState} from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, {useContext} from "react";
 import { ApiError } from "../api/ApiError";
 import { createUser } from "../api/ApiServices";
-import Button from "../components/Button";
+import Form from "../components/Form";
 import { ValidateContext } from "../context/ValidateContext";
 
 function NovaConta() {
 
-    const [name, setName] = useState<string>('');
-    const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
+    const { setValidate, setErro, erro, name, setName, email, setEmail, password, setPassword, navigate } = useContext(ValidateContext)
 
-    const { setValidate, setErro, erro } = useContext(ValidateContext)
-
-    const navigate = useNavigate()
-
-    function handleSubmit(e: React.FormEvent){
+    function handleSubmitNovaConta(e: React.FormEvent<HTMLFormElement>){
         e.preventDefault()
 
         const newUser = {
@@ -42,54 +35,17 @@ function NovaConta() {
     }
 
     return (
-        <div className="container">
-            <div className="alert-error">
-                {erro && <span>{erro}</span>}
-            </div>
-            <form action="#" className='login-form' onSubmit={handleSubmit}>
-                <div className="field">
-                    <label htmlFor="name">Nome:</label>
-                    <input 
-                        type="text" 
-                        name="name" 
-                        id="name" 
-                        autoComplete="off" 
-                        placeholder='Seu nome' 
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                </div>
-                <div className="field">
-                    <label htmlFor="email">Email:</label>
-                    <input 
-                        type="email" 
-                        name="email" 
-                        id="email"
-                        autoComplete="off" 
-                        placeholder='Seu melhor email' 
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </div>
-                <div className="field">
-                    <label htmlFor="password">Senha:</label>
-                    <input 
-                        type="password" 
-                        name="password" 
-                        id="password" 
-                        autoComplete="off" 
-                        placeholder='Digite sua senha' 
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </div>
-                <div className="field-btn">
-                    <Button text='Criar conta'/>
-                    <span>Já tem conta?</span>
-                    <Link to='/login'>Faça login</Link>
-                </div>
-            </form>
-        </div>
+        <Form
+            erro={erro}
+            email={email}
+            name={name}
+            setName={setName}
+            setEmail={setEmail}
+            password={password}
+            setPassword={setPassword}
+            handleSubmitNovaConta={handleSubmitNovaConta}
+            haveAccount={false}
+        />
     );
 }
 
