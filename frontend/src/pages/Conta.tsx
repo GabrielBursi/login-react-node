@@ -1,5 +1,5 @@
 
-import '../styles/minhaConta.css'
+import '../app.css'
 
 function Conta() {
 

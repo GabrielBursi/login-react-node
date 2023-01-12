@@ -1,7 +1,6 @@
 import { BrowserRouter } from 'react-router-dom';
 
-import './styles/app.css'
-import './styles/responsividade.css'
+import './app.css'
 
 import RoutesApp from "./Routes";
 import Header from './components/Header';

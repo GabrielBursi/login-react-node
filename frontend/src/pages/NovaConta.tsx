@@ -4,7 +4,7 @@ import { createUser } from "../api/ApiServices";
 import Form from "../components/Form";
 import { ValidateContext } from "../context/ValidateContext";
 
-import '../styles/login.css'
+import '../app.css'
 
 function NovaConta() {
 
