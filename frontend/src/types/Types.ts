@@ -15,8 +15,14 @@ export type Users = {
 export type Response = {
     error: string,
     validate: boolean,
-    passwordHash: string
+    password: string,
+    email: string,
+    _id: string,
+    createAt: string,
+    name: string
 }
+
+export type LocalStorage = Omit<Response, 'error'| 'validate'>
 
 export type Children = {
     children: JSX.Element[]

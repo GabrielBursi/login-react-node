@@ -15,7 +15,7 @@ function RoutesApp() {
             <Route path='/login' element={<Login />} />
             <Route path='/sobre' element={<Sobre />} />
             <Route path='/criar' element={<NovaConta />} />
-            <Route path='/conta' element={<Private><Conta /></Private>} />
+            <Route path='/conta/:id' element={<Private><Conta /></Private>} />
         </Routes>
     );
 }

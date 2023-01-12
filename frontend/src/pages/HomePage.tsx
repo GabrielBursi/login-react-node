@@ -17,7 +17,7 @@ function HomePage() {
                 setUsers(data.users);
             }
         })
-    }, []);
+    }, [users]);
     
     return (
         <div className="container">
@@ -29,7 +29,7 @@ function HomePage() {
                 <div className="user-container">
                     <h2>Todos usuarios cadastrados no banco de dados MongoDB:</h2>
                     <div className="user-data-container">
-                        {users.map((user, index) => (
+                        {users.length > 0 ? users.map((user, index) => (
                             <div key={user._id} className='user-data'>
                                 <p>Usuario: {index + 1}</p>
                                 <p>"Nome": <span>"{user.name}",</span></p>
@@ -37,7 +37,7 @@ function HomePage() {
                                 <p>"Senha": <span>"{user.password}",</span></p>
                                 <p>"Data de criação da conta": <span>"{user.createAt}"</span></p>
                             </div>
-                        ))}
+                        )) : <h1>Nenhum Usuario cadastrado :(</h1>}
                     </div>
                 </div>
             </div>

@@ -23,7 +23,8 @@ function login(req, res){
     try {
         ModelUser.findOne({email}).then(user => {
             if(user) {
-                res.json({ validate: true, passwordHash: user.password })
+                
+                res.json({ validate: true, ...user._doc})
             }
             else{
                 res.json({error: 'Email ou senha incorretas!'})
@@ -61,7 +62,7 @@ function createUser(req, res){
                             newUser.password = hash
     
                             newUser.save().then(() => {
-                                res.status(200).json({validate: true, passwordHash: newUser.password})
+                                res.status(200).json({ validate: true, ...newUser._doc })
                             })
                         }
                     })

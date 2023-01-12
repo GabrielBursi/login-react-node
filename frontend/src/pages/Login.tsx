@@ -23,7 +23,7 @@ function Login() {
                 return
             }
             
-            const {error, validate, passwordHash} = data
+            const { error, validate, name, password, _id, createAt } = data
             if(error){
                 setErro(error)
                 setValidate(false)
@@ -32,8 +32,16 @@ function Login() {
                 setErro('')
                 navigate('/')
 
-                user.password = passwordHash
-                localStorage.setItem("login", JSON.stringify(user));
+                const userLocalStorage = {
+                    name,
+                    email,
+                    password,
+                    _id,
+                    createAt
+                }
+                localStorage.setItem("login", JSON.stringify(userLocalStorage));
+                setEmail('')
+                setPassword('')
             }
 
         })
