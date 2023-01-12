@@ -4,6 +4,8 @@ import { createUser } from "../api/ApiServices";
 import Form from "../components/Form";
 import { ValidateContext } from "../context/ValidateContext";
 
+import '../styles/login.css'
+
 function NovaConta() {
 
     const { setValidate, setErro, erro, name, setName, email, setEmail, password, setPassword, navigate } = useContext(ValidateContext)
@@ -42,17 +44,19 @@ function NovaConta() {
     }
 
     return (
-        <Form
-            erro={erro}
-            email={email}
-            name={name}
-            setName={setName}
-            setEmail={setEmail}
-            password={password}
-            setPassword={setPassword}
-            handleSubmitNovaConta={handleSubmitNovaConta}
-            haveAccount={false}
-        />
+        <div className="container">
+            <Form
+                erro={erro}
+                email={email}
+                name={name}
+                setName={setName}
+                setEmail={setEmail}
+                password={password}
+                setPassword={setPassword}
+                handleSubmitNovaConta={handleSubmitNovaConta}
+                haveAccount={false}
+            />
+        </div>
     );
 }
 

@@ -32,7 +32,7 @@ function Form({
     }, []);
 
     return (
-        <div className="container">
+        <>
             <div className="alert-error">
                 {erro && <span>{erro}</span>}
             </div>
@@ -84,7 +84,7 @@ function Form({
                     />
                 </div>
             </form>
-        </div>
+        </>
     );
 }
 

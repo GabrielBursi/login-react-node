@@ -6,7 +6,6 @@ import { ValidateContext } from '../context/ValidateContext';
 
 import '../styles/login.css'
 
-
 function Login() {
 
     const { setValidate, setErro, erro, email, setEmail, password, setPassword, navigate, setName } = useContext(ValidateContext)
@@ -41,16 +40,18 @@ function Login() {
     }
 
     return (
-        <Form 
-            setName={setName}
-            erro={erro} 
-            email={email} 
-            setEmail={setEmail} 
-            password={password} 
-            setPassword={setPassword} 
-            handleSubmitLogin={handleSubmitLogin} 
-            haveAccount={true}
-        />
+        <div className="container">
+            <Form 
+                setName={setName}
+                erro={erro} 
+                email={email} 
+                setEmail={setEmail} 
+                password={password} 
+                setPassword={setPassword} 
+                handleSubmitLogin={handleSubmitLogin} 
+                haveAccount={true}
+            />
+        </div>
     );
 }
 
