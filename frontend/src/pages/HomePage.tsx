@@ -12,7 +12,7 @@ function HomePage() {
     useEffect(() => {
         getAll().then(data => {
             if(data instanceof ApiError){
-                alert(data.message)
+                alert(data.message) //!pagina de erro aqui
             }else{
                 setUsers(data.users);
             }

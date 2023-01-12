@@ -1,4 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
+import { deleteUserById } from '../api/ApiServices';
 
 import '../app.css'
 import {ValidateContext} from '../context/ValidateContext';
@@ -24,6 +25,15 @@ function Conta() {
         setValidate(false)
     }
 
+    function deleteUser(){
+        deleteUserById(userLocalStorage!._id).then((res) =>{
+            console.log(res);
+            logout()
+        }).catch(err => {
+            console.log(err);
+        })
+    }
+
     return (
         <div className="container">
             <div className="minha-conta">
@@ -41,7 +51,7 @@ function Conta() {
                         <button type="button">Editar Email</button>
                         <button type="button">Editar Senha</button>
                         <button type="button" onClick={logout}>Sair</button>
-                        <button type="button">Excluir Conta</button>
+                        <button type="button" onClick={deleteUser}>Excluir Conta</button>
                     </div>
                 </section>
             </div>

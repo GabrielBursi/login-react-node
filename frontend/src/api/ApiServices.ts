@@ -29,7 +29,7 @@ async function createUser(newUser: Pick<ApiType, 'name' | 'email' | 'password'>)
     }
 }
 
-async function editUser(id: string, editedUser: Omit<ApiType, '_id'>){
+async function editUserById(id: string, editedUser: Omit<ApiType, '_id'>){
     try {
         const { data } = await Api.put(`/users/${id}`, editedUser)
         return data
@@ -38,7 +38,7 @@ async function editUser(id: string, editedUser: Omit<ApiType, '_id'>){
     }
 }   
 
-async function deleteUser(id: string): Promise<string | ApiError>{
+async function deleteUserById(id: string): Promise<string | ApiError>{
     try {
         await Api.delete(`/users/${id}`)
         return 'usuario excluido'
@@ -51,6 +51,6 @@ export {
     getAll,
     login,
     createUser,
-    editUser,
-    deleteUser
+    editUserById,
+    deleteUserById
 }
