@@ -1,3 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ValidateContext } from '../context/ValidateContext';
 import { FormProps } from "../types/Types";
 import Button from "./Button";
 import FooterForm from "./FooterForm";
@@ -14,6 +18,18 @@ function Form({
     handleSubmitNovaConta, 
     haveAccount 
 }: FormProps) {
+
+    const {setValidate} = useContext(ValidateContext)
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        const login = localStorage.getItem("login");
+        if(login){
+            setValidate(true)
+            navigate('/')
+        }
+    }, []);
 
     return (
         <div className="container">

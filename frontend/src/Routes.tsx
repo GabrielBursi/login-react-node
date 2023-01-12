@@ -6,7 +6,7 @@ import HomePage from './pages/HomePage';
 import Login from './pages/Login';
 import NovaConta from './pages/NovaConta';
 import Sobre from './pages/Sobre';
-import { Children, ChildrenRoute } from './types/Types';
+import { ChildrenRoute } from './types/Types';
 
 function RoutesApp() {
     return (

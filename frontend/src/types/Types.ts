@@ -14,7 +14,8 @@ export type Users = {
 
 export type Response = {
     error: string,
-    validate: boolean
+    validate: boolean,
+    passwordHash: string
 }
 
 export type Children = {

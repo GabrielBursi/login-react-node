@@ -22,7 +22,7 @@ function NovaConta() {
                 return
             }
 
-            const { error, validate } = data
+            const { error, validate, passwordHash } = data
             if (error) {
                 setErro(error)
                 setValidate(false)
@@ -30,7 +30,14 @@ function NovaConta() {
                 setValidate(validate)
                 setErro('')
                 navigate('/')
+
+                newUser.password = passwordHash
+                const {email, password} = newUser
+                const userLocalStorage = { email, password }
+    
+                localStorage.setItem("login", JSON.stringify(userLocalStorage));
             }
+
         })
     }
 
