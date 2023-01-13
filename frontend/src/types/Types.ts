@@ -48,9 +48,11 @@ export type TLoginContext = {
 }
 
 export type TModalContext = {
-    showModal: boolean,
-    setShowModal: React.Dispatch<React.SetStateAction<boolean>>,
+    showModal: ModalOptions ,
+    setShowModal: React.Dispatch<React.SetStateAction<ModalOptions>>,
 }
+
+export type ModalOptions = 'editar' | 'sair' | 'apagar' | undefined
 
 export type FormProps = {
     erro: string | undefined,

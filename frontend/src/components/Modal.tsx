@@ -1,13 +1,36 @@
+import { useContext } from "react";
+import { ModalContext } from "../context";
 
-function Modal() {
+type ModalProps = {
+    question: string, 
+    info: string, 
+    btnText: string,
+    action: () => void,
+    edit?: boolean,
+}
+
+function Modal({question, info, btnText, action, edit}: ModalProps) {
+
+    const { setShowModal } = useContext(ModalContext)
+
     return (
         <div className="modal">
-            <h2>Tem certeza que deseja excluir sua conta?</h2>
+            <div className="header-modal">
+                <h2>{question}</h2>
+                <span onClick={() => setShowModal(undefined)}>X</span>
+            </div>
             <hr></hr>
-            <span>Isso fará com que você precise criar outra conta para conseguir acessar a página da API.</span>
-            <div className="actions">
-                <button type="button">Excluir conta</button>
-                <button type="button">Cancelar</button>
+            <div className="body-modal">
+                <span>{info}</span>
+                {edit && 
+                    <div>
+                        <h1>teste</h1>
+                    </div>
+                }
+                <div className="actions">
+                    <button type="button" onClick={action}>{btnText}</button>
+                    <button type="button" onClick={() => setShowModal(undefined)}>Cancelar</button>
+                </div>
             </div>
         </div>
     );

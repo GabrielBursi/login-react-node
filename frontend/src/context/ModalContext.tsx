@@ -1,11 +1,11 @@
 import { createContext, useState } from "react";
-import { Children, TModalContext } from "../types/Types";
+import { Children, TModalContext, ModalOptions } from "../types/Types";
 
 export const ModalContext = createContext({} as TModalContext)
 
 function ModalContextProvider({ children }: Children) {
 
-    const [showModal, setShowModal] = useState<boolean>(false);
+    const [showModal, setShowModal] = useState<ModalOptions>();
 
     return (
         <ModalContext.Provider value={
