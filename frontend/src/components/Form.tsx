@@ -1,10 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { ValidateContext } from '../context/ValidateContext';
+
 import { FormProps } from "../types/Types";
-import Button from "./Button";
-import FooterForm from "./FooterForm";
+
+import {Button, FooterForm} from './'
 
 function Form({ 
     erro, 

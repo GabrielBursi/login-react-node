@@ -1,7 +1,9 @@
 import { useContext } from 'react';
-import { ApiError } from '../api/ApiError';
-import { login } from '../api/ApiServices';
-import Form from '../components/Form';
+
+import { ApiError, login } from '../api';
+
+import {Form} from '../components';
+
 import { ValidateContext } from '../context/ValidateContext';
 
 import '../app.css'
@@ -26,7 +28,7 @@ function Login() {
             const { error, validate, name, password, _id, createAt } = data
             if(error){
                 setErro(error)
-                setValidate(false)
+                setValidate(!validate)
             }else{
                 setValidate(validate)
                 setErro('')

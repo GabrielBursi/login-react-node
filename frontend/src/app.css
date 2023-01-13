@@ -269,7 +269,7 @@ header ul li a {
     height: 40%;
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
     align-items: center;
 }
 
@@ -280,6 +280,7 @@ header ul li a {
     border-radius: 10px;
     background-image: linear-gradient(to right, #232526 0%, #414345 51%, #232526 100%);
     padding: 15px 15px;
+    margin-left: 2%;
     text-align: center;
     text-transform: uppercase;
     transition: .4s;
@@ -296,7 +297,7 @@ header ul li a {
     text-decoration: none;
 }
 
-.actions button:nth-child(5):hover {
+.actions button:nth-child(3):hover {
     background-image: linear-gradient(to right, #232526 0%, #fa000088 51%, #fa0000 100%);
     background-color: #fa0000;
     background-position: right center;

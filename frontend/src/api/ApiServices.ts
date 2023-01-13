@@ -1,5 +1,4 @@
-import { ApiError } from './ApiError';
-import { Api } from './ApiConfig';
+import {ApiError, Api} from './'
 import {ApiType, Response, Users} from '../types/Types';
 
 async function getAll(): Promise<Users | ApiError>{
@@ -47,6 +46,7 @@ async function deleteUserById(id: string): Promise<string | ApiError>{
     }
 }
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export {
     getAll,
     login,

@@ -1,7 +1,9 @@
 import React, {useContext} from "react";
-import { ApiError } from "../api/ApiError";
-import { createUser } from "../api/ApiServices";
-import Form from "../components/Form";
+
+import { ApiError, createUser } from "../api/";
+
+import {Form} from "../components";
+
 import { ValidateContext } from "../context/ValidateContext";
 
 import '../app.css'
@@ -27,13 +29,13 @@ function NovaConta() {
             const { error, validate, password, _id, createAt } = data
             if (error) {
                 setErro(error)
-                setValidate(false)
+                setValidate(!validate)
             } else {
                 setValidate(validate)
                 setErro('')
                 navigate('/')
 
-                const userLocalStorage = { 
+                const userLocalStorage = {
                     name, 
                     email, 
                     password, 

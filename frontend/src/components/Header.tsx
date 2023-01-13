@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { ValidateContext } from '../context/ValidateContext';
 
-
 import '../app.css'
 import { LocalStorage } from '../types/Types';
 
