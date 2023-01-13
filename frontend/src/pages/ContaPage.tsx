@@ -1,4 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
+import { MdDelete, MdEdit, MdLogout } from 'react-icons/md'
 
 import { deleteUserById } from '../api';
 import { Modal } from '../components';
@@ -42,7 +43,7 @@ function Conta() {
 
     const questionLogout = 'Tem certeza que deseja sair da sua conta?'
     const infoLogout = 'Isso fará com que você tenha que fazer login novamente para acessar a página.'
-    const btnLogout = 'Sair'
+    const btnLogout = 'Sair da conta'
 
     const questionDelete = 'Tem certeza que deseja excluir sua conta?'
     const infoDelete = 'Isso fará com que você tenha que criar outra conta para acessar a página.'
@@ -61,9 +62,9 @@ function Conta() {
                         <p>Conta criada em: <span>{userLocalStorage?.createAt}</span></p>
                     </div>
                     <div className="actions">
-                        <button type="button" onClick={()=> { setShowModal('editar')} }>Editar</button>
-                        <button type="button" onClick={() => { setShowModal('sair') }}>Sair</button>
-                        <button type="button" onClick={() => { setShowModal('apagar') }}>Apagar Conta</button>
+                        <button type="button" onClick={() => { setShowModal('editar') }}>Editar<MdEdit /></button>
+                        <button type="button" onClick={() => { setShowModal('sair') }}>Sair<MdLogout /></button>
+                        <button type="button" onClick={() => { setShowModal('apagar') }}>Apagar Conta<MdDelete/> </button>
                     </div>
                 </section>
             </div>
