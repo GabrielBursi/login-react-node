@@ -2,7 +2,7 @@
 import { useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { ValidateContext } from '../context/ValidateContext';
+import { ValidateContext } from '../context/';
 
 import { FormProps } from "../types/Types";
 
@@ -21,9 +21,9 @@ function Form({
     haveAccount 
 }: FormProps) {
 
-    const {setValidate} = useContext(ValidateContext)
-
     const navigate = useNavigate()
+
+    const { setValidate } = useContext(ValidateContext)
 
     useEffect(() => {
         const login = localStorage.getItem("login");

@@ -3,8 +3,6 @@ import { ApiError, getAll } from "../api";
 
 import {ApiType} from "../types/Types";
 
-import '../app.css'
-
 function HomePage() {
 
     const [users, setUsers] = useState<ApiType[]>([]);

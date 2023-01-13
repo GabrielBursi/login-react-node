@@ -1,9 +1,8 @@
 import { useEffect, useState, useContext } from 'react';
-import '../app.css'
 
 import { deleteUserById } from '../api';
 
-import {ValidateContext} from '../context/ValidateContext';
+import { ValidateContext } from '../context';
 
 import { LocalStorage } from '../types/Types';
 
@@ -49,7 +48,7 @@ function Conta() {
                         <p>Conta criada em: <span>{userLocalStorage?.createAt}</span></p>
                     </div>
                     <div className="actions">
-                        <button type="button">Editar</button>
+                        <button type="button" onClick={()=> {}}>Editar</button>
                         <button type="button" onClick={logout}>Sair</button>
                         <button type="button" onClick={deleteUser}>Excluir Conta</button>
                     </div>

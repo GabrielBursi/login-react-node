@@ -1,16 +1,18 @@
 import React, {useContext} from "react";
+import { useNavigate } from "react-router-dom";
 
 import { ApiError, createUser } from "../api/";
 
 import {Form} from "../components";
 
-import { ValidateContext } from "../context/ValidateContext";
-
-import '../app.css'
+import { LoginContext, ValidateContext } from '../context';
 
 function NovaConta() {
 
-    const { setValidate, setErro, erro, name, setName, email, setEmail, password, setPassword, navigate } = useContext(ValidateContext)
+    const { setValidate } = useContext(ValidateContext)
+    const { setErro, erro, email, setEmail, password, setPassword, name, setName } = useContext(LoginContext)
+
+    const navigate = useNavigate()
 
     function handleSubmitNovaConta(e: React.FormEvent<HTMLFormElement>){
         e.preventDefault()

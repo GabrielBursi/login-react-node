@@ -1,5 +1,3 @@
-import { RelativeRoutingType, To } from "react-router-dom"
-
 export type ApiType = {
     _id?: string,
     name?: string,
@@ -25,16 +23,20 @@ export type Response = {
 export type LocalStorage = Omit<Response, 'error'| 'validate'>
 
 export type Children = {
-    children: JSX.Element[]
+    children: JSX.Element | JSX.Element[]
 }
 
 export type ChildrenRoute = {
     children: JSX.Element
 }
 
-export type Context = {
+export type TValidateContext = {
     validate: boolean,
     setValidate: React.Dispatch<React.SetStateAction<boolean>>,
+    
+}
+
+export type TLoginContext = {
     erro: string | undefined,
     setErro: React.Dispatch<React.SetStateAction<string | undefined>>,
     name: string,
@@ -43,19 +45,11 @@ export type Context = {
     setEmail: React.Dispatch<React.SetStateAction<string>>,
     password: string,
     setPassword: React.Dispatch<React.SetStateAction<string>>,
-    navigate: NavigateFunction
 }
 
-type NavigateFunction = {
-    (
-        to: To,
-        options?: {
-            replace?: boolean;
-            state?: any;
-            relative?: RelativeRoutingType;
-        }
-    ): void;
-    (delta: number): void;
+export type TModalContext = {
+    showModal: boolean,
+    setShowModal: React.Dispatch<React.SetStateAction<boolean>>,
 }
 
 export type FormProps = {
@@ -70,4 +64,3 @@ export type FormProps = {
     handleSubmitNovaConta?: (e: React.FormEvent<HTMLFormElement>) => void,
     haveAccount: boolean
 }
-

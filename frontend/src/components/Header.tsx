@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
-import { ValidateContext } from '../context/ValidateContext';
+import { Link } from 'react-router-dom';
 
-import '../app.css'
+import { ValidateContext } from '../context';
+
 import { LocalStorage } from '../types/Types';
 
 function Header() {

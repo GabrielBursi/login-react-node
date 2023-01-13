@@ -1,6 +1,4 @@
 
-import '../app.css'
-
 function Sobre() {
     return (
         <div>

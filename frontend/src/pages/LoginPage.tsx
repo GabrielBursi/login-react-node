@@ -1,16 +1,18 @@
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { ApiError, login } from '../api';
 
 import {Form} from '../components';
 
-import { ValidateContext } from '../context/ValidateContext';
-
-import '../app.css'
+import { LoginContext, ValidateContext } from '../context';
 
 function Login() {
 
-    const { setValidate, setErro, erro, email, setEmail, password, setPassword, navigate, setName } = useContext(ValidateContext)
+    const { setValidate } = useContext(ValidateContext)
+    const { setErro, erro, email, setEmail, password, setPassword, setName } = useContext(LoginContext)
+
+    const navigate = useNavigate()
 
     function handleSubmitLogin(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
