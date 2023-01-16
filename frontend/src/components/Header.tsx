@@ -22,7 +22,7 @@ function Header() {
 
     return (
         <header>
-            <h1>My API</h1>
+            <Link to='/'><h1>My API</h1></Link>
             <ul>
                 {validate && <li><Link to='/'>Home</Link></li>}
                 {validate ? <li><Link to={`/conta/${userLocalStorage?._id}`}>Minha Conta</Link></li> : <li><Link to='/login'>Login</Link></li>}

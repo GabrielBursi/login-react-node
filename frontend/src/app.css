@@ -25,8 +25,8 @@ html{
 
 /*! HEADER */
 header {
-    background-color: #232526;
-    color: #fff;
+    background-color: none;
+    color: #232526;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -42,6 +42,11 @@ header h1 {
     font-size: 3rem;
 }
 
+header a {
+    text-decoration: none;
+    color: #232526;
+}
+
 header ul {
     display: flex;
     justify-content: space-around;
@@ -51,10 +56,22 @@ header ul {
     list-style: none;
 }
 
+header ul li{
+    border-radius: 10px;
+    padding: 2%;
+    cursor: pointer;
+}
+
 header ul li a {
     text-decoration: none;
-    color: #fff;
+    color: #232526;
+    transition: .4s;
 }
+
+header ul li:not(:hover) {
+    opacity: 0.5;
+}
+
 /*! HOME */
 .home {
     display: flex;
@@ -146,6 +163,21 @@ header ul li a {
 .user-data p>span {
     color: #f0c42c;
 }
+
+
+*::-webkit-scrollbar {
+    width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: gray;
+    border-radius: 10px;
+}
+
 /*! LOGIN */
 .login-form {
     display: flex;
