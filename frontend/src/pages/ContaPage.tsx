@@ -1,10 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState, useContext } from 'react';
 import { MdDelete, MdEdit, MdLogout } from 'react-icons/md'
 
-import { deleteUserById } from '../api';
+import { deleteUserById, editUserById, ApiError } from '../api';
 import { Modal } from '../components';
 
-import { ModalContext, ValidateContext } from '../context';
+import { LoginContext, ModalContext, ValidateContext } from '../context';
 
 import { LocalStorage } from '../types/Types';
 
@@ -12,6 +13,7 @@ function Conta() {
 
     const { validate, setValidate } = useContext(ValidateContext)
     const { showModal, setShowModal } = useContext(ModalContext)
+    const { email, password, name, setErro } = useContext(LoginContext)
 
     const [userLocalStorage, setUserLocalStorage] = useState<LocalStorage>();
 
@@ -22,11 +24,57 @@ function Conta() {
             let user = {...infoLogin};
             setUserLocalStorage(user);
         }
+
+        return () => setShowModal(undefined)
     }, [validate]);
+
+    function editUser(){
+
+        const editedUser = {
+            name,
+            email,
+            password
+        }
+
+        editUserById(userLocalStorage!._id, editedUser)
+            .then((data) => {
+                if (data instanceof ApiError) {
+                    localStorage.removeItem('login')
+                    alert(data)
+                    return
+                }
+
+                const { error, validate, name, password, _id, createAt } = data
+                
+                if (error) {
+                    setErro(error)
+                    setValidate(!validate)
+                }else{
+                    setValidate(validate)
+                    setErro('')
+
+                    const userLocalStorage = {
+                        name,
+                        email,
+                        password,
+                        _id,
+                        createAt
+                    }
+
+                    localStorage.setItem('login', JSON.stringify(userLocalStorage))
+                    setShowModal(undefined)
+                }
+
+            }).catch(err => {
+                alert(err);
+            })
+        
+    }
 
     function logout(){
         localStorage.removeItem('login')
-        setValidate(false)
+        setValidate(!validate)
+        setShowModal(undefined)
     }
 
     function deleteUser(){
@@ -35,6 +83,7 @@ function Conta() {
         }).catch(err => {
             alert(err);
         })
+        setShowModal(undefined)
     }
 
     const questionEdit = 'Edite suas informações da conta'
@@ -45,7 +94,7 @@ function Conta() {
     const infoLogout = 'Isso fará com que você tenha que fazer login novamente para acessar a página.'
     const btnLogout = 'Sair da conta'
 
-    const questionDelete = 'Tem certeza que deseja excluir sua conta?'
+    const questionDelete = 'Tem certeza que deseja apagar sua conta?'
     const infoDelete = 'Isso fará com que você tenha que criar outra conta para acessar a página.'
     const btnDelete = 'Apagar conta'
 
@@ -73,8 +122,9 @@ function Conta() {
                     question={questionEdit} 
                     info={infoEdit} 
                     btnText={btnEdit} 
-                    action={() => console.log('editou')} 
+                    action={editUser} 
                     edit={true}
+                    user={userLocalStorage}
                 />
             }
             {showModal === 'sair' && 

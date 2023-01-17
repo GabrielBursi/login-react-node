@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import { ModalContext } from "../context";
+import { LoginContext, ModalContext } from "../context";
 import { MdOutlineClose } from 'react-icons/md'
+import { LocalStorage } from "../types/Types";
 
 type ModalProps = {
     question: string, 
@@ -8,12 +9,14 @@ type ModalProps = {
     btnText: string,
     action: () => void,
     edit?: boolean,
+    user?: LocalStorage
 }
 
-function Modal({question, info, btnText, action, edit}: ModalProps) {
+function Modal({question, info, btnText, action, edit, user}: ModalProps) {
 
     const { setShowModal } = useContext(ModalContext)
-
+    const { setEmail, setPassword, setName, erro } = useContext(LoginContext)
+    
     return (
         <div className="modal">
             <div className="header-modal">
@@ -24,13 +27,34 @@ function Modal({question, info, btnText, action, edit}: ModalProps) {
                 <span>{info}</span>
                 {edit && 
                     <div className="edit-info">
+                        <div className="alert-error">
+                            {erro && <span>{erro}</span>}
+                        </div>
                         <form>
-                            <label htmlFor="name">Novo Nome:</label>
-                            <input type="text" name="name" id="name" />
-                            <label htmlFor="email">Novo Email:</label>
-                            <input type="text" name="email" id="email" />
-                            <label htmlFor="senha">Nova senha:</label>
-                            <input type="password" name="senha" id="senha" />
+                            <label htmlFor="name">Nome:</label>
+                            <input 
+                                type="text" 
+                                name="name" id="name" 
+                                placeholder={user?.name} 
+                                onChange={(e) => setName(e.target.value)} 
+                                autoComplete='off'
+                            />
+                            <label htmlFor="email">Email:</label>
+                            <input 
+                                type="text" 
+                                name="email" id="email" 
+                                placeholder={user?.email} 
+                                onChange={(e) => setEmail(e.target.value)} 
+                                autoComplete='off'
+                            />
+                            <label htmlFor="senha">Senha:</label>
+                            <input 
+                                type="password" 
+                                name="senha" 
+                                id="senha" 
+                                onChange={(e) => setPassword(e.target.value)} 
+                                autoComplete='off'
+                            />
                         </form>
                     </div>
                 }

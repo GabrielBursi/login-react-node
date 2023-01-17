@@ -11,6 +11,7 @@ function HomePage() {
         
         getAll().then(data => {
             if(data instanceof ApiError){
+                localStorage.removeItem('login')
                 alert(data.message) //!pagina de erro aqui
             }else if(data.users.length === 0){
                 localStorage.removeItem('login');
@@ -18,15 +19,13 @@ function HomePage() {
                 setUsers(data.users);
             }
         })
-
-    }, [users]);
+    }, []);
     
     return (
         <div className="container">
             <div className="home">
                 <div className="api-text">
                     <h1>URL da API: <a href="http://localhost:3333/users" target="_blank" rel="noreferrer">http://localhost:3333/users</a></h1>
-                    <span>Apenas usuarios cadastrados conseguem acessar essa página.</span>
                 </div>
                 <div className="user-container">
                     <h2>Todos usuarios cadastrados no banco de dados MongoDB:</h2>
