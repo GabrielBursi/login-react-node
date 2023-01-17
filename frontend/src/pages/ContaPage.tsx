@@ -5,7 +5,7 @@ import { MdDelete, MdEdit, MdLogout } from 'react-icons/md'
 import { deleteUserById, editUserById, ApiError } from '../api';
 import { Modal } from '../components';
 
-import { LoginContext, ModalContext, ValidateContext } from '../context';
+import { HeaderContext, LoginContext, ModalContext, ValidateContext } from '../context';
 
 import { LocalStorage } from '../types/Types';
 
@@ -13,7 +13,8 @@ function Conta() {
 
     const { validate, setValidate } = useContext(ValidateContext)
     const { showModal, setShowModal } = useContext(ModalContext)
-    const { email, password, name, setErro } = useContext(LoginContext)
+    const { email, password, name, setErro, setEmail, setName, setPassword } = useContext(LoginContext)
+    const { setUpperCase } = useContext(HeaderContext)
 
     const [userLocalStorage, setUserLocalStorage] = useState<LocalStorage>();
 
@@ -62,6 +63,8 @@ function Conta() {
                     }
 
                     localStorage.setItem('login', JSON.stringify(userLocalStorage))
+                    setUserLocalStorage(userLocalStorage)
+                    setUpperCase(`É bom ver você novamente-${name[0].toUpperCase() + name.substring(1)}.`)
                     setShowModal(undefined)
                 }
 
@@ -75,6 +78,9 @@ function Conta() {
         localStorage.removeItem('login')
         setValidate(!validate)
         setShowModal(undefined)
+        setEmail('')
+        setName('')
+        setPassword('')
     }
 
     function deleteUser(){
@@ -84,6 +90,9 @@ function Conta() {
             alert(err);
         })
         setShowModal(undefined)
+        setEmail('')
+        setName('')
+        setPassword('')
     }
 
     const questionEdit = 'Edite suas informações da conta'

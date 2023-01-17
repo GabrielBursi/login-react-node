@@ -49,7 +49,7 @@ function NovaConta() {
                 }
     
                 localStorage.setItem("login", JSON.stringify(userLocalStorage));
-                setUpperCase(`-${name[0].toUpperCase() + name.substring(1)}`)
+                setUpperCase(`Seja bem-vindo(a) ${name[0].toUpperCase() + name.substring(1)}.`)
                 setName('')
                 setEmail('')
                 setPassword('')

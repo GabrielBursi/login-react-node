@@ -55,17 +55,17 @@ function login(req, res){
     const {email, password} = req.body
 
     if (!email || !password) {
-        return res.json({error: 'Informações inválidas'})
+        return res.status(401).json({error: 'Informações inválidas'})
     }
 
     try {
         ModelUser.findOne({email}).then(user => {
             if(user) {
                 
-                res.json({ validate: true, ...user._doc})
+                res.status(200).json({ validate: true, ...user._doc})
             }
             else{
-                res.json({error: 'Email ou senha incorretas!'})
+                res.status(401).json({error: 'Email ou senha incorretas!'})
             }
         })
     } catch (error) {
@@ -78,34 +78,33 @@ function editUser(req, res) {
     const { id } = req.params
     const { name, email, password } = req.body
 
-    if (!email && !password && !name) {
-        return res.json({ error: "Informações invalidas" })
+    if (!email || !password || !name) {
+        return res.status(401).json({ error: "Informações invalidas" })
     }
 
     try {
-        ModelUser.findByIdAndUpdate(id, { email, password, name })
-            .then(() => {
 
-                const editUser = {
-                    email,
-                    password,
-                    name
-                }
+        ModelUser.findOne({ email }).then((user) => {
+            if (user) {
+                return res.json({ error: "Esse email ja existe." })
+            }
 
-                bcrypt.genSalt(saltRounds, (err, salt) => {
-                    bcrypt.hash(editUser.password, salt, (err, hash) => {
-                        if (err) {
-                            return res.json({ error: `problema com o hash${err}` })
-                        } else {
-
-                            res.status(200).json({ validate: true, ...editUser, password: hash })
-                                
-                        }
-                    })
+            bcrypt.genSalt(saltRounds, (err, salt) => {
+                bcrypt.hash(password, salt, (err, hash) => {
+                    if (err) {
+                        return res.json({ error: `problema com o hash${err}` })
+                    } else {
+                        
+                        ModelUser.findOneAndUpdate({_id: id}, { email, password: hash, name })
+                            .then((user) => {
+                                res.status(200).json({ validate: true, ...user._doc, password: hash, email, name})
+                            })
+                            .catch(error => res.status(401).json({ error: "id invalido " + error }))
+                    }
                 })
-                
             })
-            .catch(error => res.json({ error: "id invalido " + error }))
+        })
+            
     } catch (error) {
         res.status(404).json({ error: 'Nao possível acessar ao MongoDB: ' + error })
     }
@@ -118,7 +117,7 @@ function deleteUser(req, res){
     try {
         ModelUser.findByIdAndDelete(id)
             .then(() => res.status(200).json({message: 'Usuario excluído com sucesso!'}))
-            .catch(error => res.json({error : "Id invalido! " + error}))
+            .catch(error => res.status(401).json({error : "Id invalido! " + error}))
     } catch (error) {
         res.status(404).json({ error: 'Nao possível acessar ao MongoDB: ' + error })
     }

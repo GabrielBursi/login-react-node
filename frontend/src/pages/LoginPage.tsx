@@ -47,7 +47,7 @@ function Login() {
                     createAt
                 }
                 localStorage.setItem("login", JSON.stringify(userLocalStorage));
-                setUpperCase(`-${name[0].toUpperCase() + name.substring(1)}`)
+                setUpperCase(`É bom ver você novamente ${name[0].toUpperCase() + name.substring(1)}.`)
                 setEmail('')
                 setPassword('')
             }
