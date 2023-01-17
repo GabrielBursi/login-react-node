@@ -51,23 +51,26 @@ function createUser(req, res){
     }
 }
 
-function login(req, res){
+async function login(req, res){
     const {email, password} = req.body
 
     if (!email || !password) {
-        return res.status(401).json({error: 'Informações inválidas'})
+        return res.status(500).json({error: 'Informações inválidas'})
     }
 
+    
     try {
-        ModelUser.findOne({email}).then(user => {
-            if(user) {
-                
-                res.status(200).json({ validate: true, ...user._doc})
-            }
-            else{
-                res.status(401).json({error: 'Email ou senha incorretas!'})
-            }
-        })
+        const user = await ModelUser.findOne({email})
+
+        if(!user) return res.status(500).json({error: 'Esse email não existe.'})
+
+        const passwordCompare = await bcrypt.compare(password, user.password)
+
+        if(passwordCompare) return res.status(200).json({ validate: true, ...user._doc})
+        
+        res.json({error: 'Senha incorreta.'})
+
+        
     } catch (error) {
         res.status(404).json({ error: 'Nao possível acessar ao MongoDB: ' + error })
     }
@@ -79,7 +82,7 @@ function editUser(req, res) {
     const { name, email, password } = req.body
 
     if (!email || !password || !name) {
-        return res.status(401).json({ error: "Informações invalidas" })
+        return res.status(500).json({ error: "Informações invalidas" })
     }
 
     try {
@@ -99,7 +102,7 @@ function editUser(req, res) {
                             .then((user) => {
                                 res.status(200).json({ validate: true, ...user._doc, password: hash, email, name})
                             })
-                            .catch(error => res.status(401).json({ error: "id invalido " + error }))
+                            .catch(error => res.status(500).json({ error: "id invalido " + error }))
                     }
                 })
             })
@@ -117,7 +120,7 @@ function deleteUser(req, res){
     try {
         ModelUser.findByIdAndDelete(id)
             .then(() => res.status(200).json({message: 'Usuario excluído com sucesso!'}))
-            .catch(error => res.status(401).json({error : "Id invalido! " + error}))
+            .catch(error => res.status(500).json({error : "Id invalido! " + error}))
     } catch (error) {
         res.status(404).json({ error: 'Nao possível acessar ao MongoDB: ' + error })
     }
