@@ -52,6 +52,11 @@ export type TModalContext = {
     setShowModal: React.Dispatch<React.SetStateAction<ModalOptions>>,
 }
 
+export type THeaderContext = {
+    upperCase: string | undefined
+    setUpperCase: React.Dispatch<React.SetStateAction<string | undefined>>
+}
+
 export type ModalOptions = 'editar' | 'sair' | 'apagar' | undefined
 
 export type FormProps = {

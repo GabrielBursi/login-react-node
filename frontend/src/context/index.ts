@@ -8,3 +8,6 @@ export { default as ModalContextProvider } from './ModalContext'
 export { ModalContext } from './ModalContext'
 
 export { default as ContextProvider } from './ContextProvider'
+
+export { default as HeaderContextProvider } from './HeaderContext'
+export { HeaderContext } from './HeaderContext'
