@@ -19,6 +19,7 @@ function Header() {
             const infoLogin = JSON.parse(login)
             let user = { ...infoLogin };
             setUserLocalStorage(user);
+            setUpperCase(`É bom ver você novamente ${user.name[0].toUpperCase() + user.name.substring(1)}.`)
         }else{
             setUpperCase('')
         }
@@ -27,7 +28,10 @@ function Header() {
     
     return (
         <header>
-            <Link to='/'><h1>My API {upperCase} </h1></Link>
+            <div className='header-logo'>
+                <Link to='/'><h1>My API </h1></Link>
+                <span>{upperCase}</span>
+            </div>
             <ul>
                 {validate && <li><Link to='/'>Home</Link></li>}
                 {validate ? <li><Link to={`/conta/${userLocalStorage?._id}`}>Minha Conta</Link></li> : <li><Link to='/login'>Login</Link></li>}
