@@ -5,12 +5,13 @@ import { ApiError, login } from '../api';
 
 import {Form} from '../components';
 
-import { LoginContext, ValidateContext } from '../context';
+import { HeaderContext, LoginContext, ValidateContext } from '../context';
 
 function Login() {
 
     const { setValidate } = useContext(ValidateContext)
     const { setErro, erro, email, setEmail, password, setPassword, setName } = useContext(LoginContext)
+    const { setUpperCase } = useContext(HeaderContext)
 
     const navigate = useNavigate()
 
@@ -24,6 +25,8 @@ function Login() {
 
         login(user).then((data)=> {
             if(data instanceof ApiError){
+                localStorage.removeItem('login')
+                alert(data)
                 return
             }
             
@@ -44,6 +47,7 @@ function Login() {
                     createAt
                 }
                 localStorage.setItem("login", JSON.stringify(userLocalStorage));
+                setUpperCase(`-${name[0].toUpperCase() + name.substring(1)}`)
                 setEmail('')
                 setPassword('')
             }
