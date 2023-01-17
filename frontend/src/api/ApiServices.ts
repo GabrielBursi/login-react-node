@@ -28,7 +28,7 @@ async function createUser(newUser: Pick<ApiType, 'name' | 'email' | 'password'>)
     }
 }
 
-async function editUserById(id: string, editedUser: Omit<ApiType, '_id'>){
+async function editUserById(id: string, editedUser: Omit<ApiType, '_id' | 'createAt'>){
     try {
         const { data } = await Api.put(`/users/${id}`, editedUser)
         return data
@@ -46,7 +46,6 @@ async function deleteUserById(id: string): Promise<string | ApiError>{
     }
 }
 
-// eslint-disable-next-line import/no-anonymous-default-export
 export {
     getAll,
     login,

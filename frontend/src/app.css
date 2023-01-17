@@ -58,7 +58,6 @@ header ul {
 
 header ul li{
     border-radius: 10px;
-    padding: 2%;
     cursor: pointer;
 }
 
@@ -66,6 +65,10 @@ header ul li a {
     text-decoration: none;
     color: #232526;
     transition: .4s;
+}
+
+header ul li:nth-child(1){
+    color: red;
 }
 
 header ul li:not(:hover) {
