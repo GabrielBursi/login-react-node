@@ -1,3 +1,5 @@
+import mongoose from 'mongoose';
+
 import ModelUser from '../model/User.js'
 
 import bcrypt from 'bcrypt'
@@ -17,33 +19,28 @@ function createUser(req, res){
     const {name, email, password} = req.body
 
     if (!name ||!email ||!password ) {
-        return res.json({error: 'Informações inválidas'})
+        return res.status(401).json({error: 'Informações inválidas'})
     }
 
     try{
         ModelUser.findOne({email}).then((user) => {
             if (user) {
-                return res.json({error: "Esse email ja existe."})
+                return res.status(401).json({error: "Esse email ja existe."})
             }else{
                 const newUser = new ModelUser({
                     name,
                     email,
                     password
                 })
-    
-                bcrypt.genSalt(saltRounds, (err, salt) => {
-                    bcrypt.hash(newUser.password, salt, (err, hash) => {
-                        if(err){
-                            return res.json({error:`problema com o hash${err}`})
-                        }else{
-                            newUser.password = hash
-    
-                            newUser.save().then(() => {
-                                res.status(200).json({ validate: true, ...newUser._doc })
-                            })
-                        }
-                    })
+                
+                const passwordHash = bcrypt.hashSync(password, saltRounds);
+                
+                newUser.password = passwordHash
+
+                newUser.save().then(() => {
+                    res.status(200).json({ validate: true, ...newUser._doc })
                 })
+                
             }
         })
     } catch (error) {
@@ -55,14 +52,14 @@ async function login(req, res){
     const {email, password} = req.body
 
     if (!email || !password) {
-        return res.status(500).json({error: 'Informações inválidas'})
+        return res.status(401).json({error: 'Informações inválidas'})
     }
 
     
     try {
         const user = await ModelUser.findOne({email})
 
-        if(!user) return res.status(500).json({error: 'Esse email não existe.'})
+        if (!user) return res.status(401).json({error: 'Esse email não existe.'})
 
         const passwordCompare = await bcrypt.compare(password, user.password)
 
@@ -82,35 +79,38 @@ function editUser(req, res) {
     const { name, email, password } = req.body
 
     if (!email || !password || !name) {
-        return res.status(500).json({ error: "Informações invalidas" })
-    }
+        res.status(401).json({ error: "Informações invalidas" })
+    }else{
 
-    try {
+        try {
+    
+            ModelUser.findOne({email}).then((user) => {
 
-        ModelUser.findOne({ email }).then((user) => {
-            if (user) {
-                return res.json({ error: "Esse email ja existe." })
-            }
+                const _id = new mongoose.Types.ObjectId(id)
 
-            bcrypt.genSalt(saltRounds, (err, salt) => {
-                bcrypt.hash(password, salt, (err, hash) => {
-                    if (err) {
-                        return res.json({ error: `problema com o hash${err}` })
-                    } else {
-                        
-                        ModelUser.findOneAndUpdate({_id: id}, { email, password: hash, name })
-                            .then((user) => {
-                                res.status(200).json({ validate: true, ...user._doc, password: hash, email, name})
-                            })
-                            .catch(error => res.status(500).json({ error: "id invalido " + error }))
-                    }
-                })
+                if (user._id.toString() === _id.toString()){
+                    
+                    const passwordHash = bcrypt.hashSync(password, saltRounds);
+                    
+                    ModelUser.findOneAndUpdate({_id: id}, { email, password: passwordHash, name })
+                        .then((user) => {
+                            res.status(200).json({ validate: true, ...user._doc, password: passwordHash, email, name})
+                        })
+                        .catch(error => {
+                            res.status(500).json({ error: "id invalido " + error })
+                        })
+
+                }else{
+                    return res.status(401).json({ error: 'Esse email já existe.' })
+                }
+
             })
-        })
-            
-    } catch (error) {
-        res.status(404).json({ error: 'Nao possível acessar ao MongoDB: ' + error })
+                
+        } catch (error) {
+            res.status(404).json({ error: 'Nao possível acessar ao MongoDB: ' + error })
+        }
     }
+
 }
 
 function deleteUser(req, res){
