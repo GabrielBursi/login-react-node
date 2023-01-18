@@ -35,7 +35,7 @@ function HomePage() {
                                 <p>Usuario: {index + 1}</p>
                                 <p>"Nome": <span>"{user.name}",</span></p>
                                 <p>"Email": <span>"{user.email}",</span></p>
-                                <p>"Senha": <span>"{user.password}",</span></p>
+                                <p>"Senha criptografada": <span>"{user.password?.slice(0,10)}",</span></p>
                                 <p>"Data de criação da conta": <span>"{user.createAt}"</span></p>
                             </div>
                         )) : <h1>Nenhum Usuario cadastrado :(</h1>}

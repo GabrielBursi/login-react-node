@@ -15,7 +15,12 @@ type ModalProps = {
 function Modal({question, info, btnText, action, edit, user}: ModalProps) {
 
     const { setShowModal } = useContext(ModalContext)
-    const { setEmail, setPassword, setName, erro } = useContext(LoginContext)
+    const { setEmail, setPassword, setName, erro, setErro } = useContext(LoginContext)
+
+    function cancel(){
+        setShowModal(undefined)
+        setErro('')
+    }
     
     return (
         <div className="modal">
@@ -41,7 +46,7 @@ function Modal({question, info, btnText, action, edit, user}: ModalProps) {
                             />
                             <label htmlFor="email">Email:</label>
                             <input 
-                                type="text" 
+                                type="email" 
                                 name="email" id="email" 
                                 placeholder={user?.email} 
                                 onChange={(e) => setEmail(e.target.value)} 
@@ -60,7 +65,7 @@ function Modal({question, info, btnText, action, edit, user}: ModalProps) {
                 }
                 <div className="actions modalBtn">
                     <button type="button" onClick={action}>{btnText}</button>
-                    <button type="button" onClick={() => setShowModal(undefined)}>Cancelar</button>
+                    <button type="button" onClick={cancel}>Cancelar</button>
                 </div>
             </div>
         </div>

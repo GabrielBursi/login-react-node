@@ -64,7 +64,7 @@ function Conta() {
 
                     localStorage.setItem('login', JSON.stringify(userLocalStorage))
                     setUserLocalStorage(userLocalStorage)
-                    setUpperCase(`É bom ver você novamente-${name[0].toUpperCase() + name.substring(1)}.`)
+                    setUpperCase(`É bom ver você novamente ${name[0].toUpperCase() + name.substring(1)}.`)
                     setShowModal(undefined)
                 }
 
