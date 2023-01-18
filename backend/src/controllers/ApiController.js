@@ -80,32 +80,32 @@ function editUser(req, res) {
 
     if (!email || !password || !name) {
         res.status(401).json({ error: "Informações invalidas" })
-    }else{
+    } else {
 
         try {
-    
-            ModelUser.findOne({email}).then((user) => {
+
+            ModelUser.findOne({ email }).then((user) => {
 
                 const _id = new mongoose.Types.ObjectId(id)
 
-                if (user._id.toString() === _id.toString()){
-                    
+                if (user._id.toString() === _id.toString()) {
+
                     const passwordHash = bcrypt.hashSync(password, saltRounds);
-                    
-                    ModelUser.findOneAndUpdate({_id: id}, { email, password: passwordHash, name })
+
+                    ModelUser.findOneAndUpdate({ _id: id }, { email, password: passwordHash, name })
                         .then((user) => {
-                            res.status(200).json({ validate: true, ...user._doc, password: passwordHash, email, name})
+                            res.status(200).json({ validate: true, ...user._doc, password: passwordHash, email, name })
                         })
                         .catch(error => {
                             res.status(500).json({ error: "id invalido " + error })
                         })
 
-                }else{
+                } else {
                     return res.status(401).json({ error: 'Esse email já existe.' })
                 }
 
             })
-                
+
         } catch (error) {
             res.status(404).json({ error: 'Nao possível acessar ao MongoDB: ' + error })
         }
