@@ -87,25 +87,34 @@ function editUser(req, res) {
 
     try {
 
-        ModelUser.findOne({ email }).then((user) => {
-            if (user) {
-                return res.json({ error: "Esse email ja existe." })
-            }
+        ModelUser.find().then((users) => {
 
-            bcrypt.genSalt(saltRounds, (err, salt) => {
-                bcrypt.hash(password, salt, (err, hash) => {
-                    if (err) {
-                        return res.json({ error: `problema com o hash${err}` })
-                    } else {
-                        
-                        ModelUser.findOneAndUpdate({_id: id}, { email, password: hash, name })
-                            .then((user) => {
-                                res.status(200).json({ validate: true, ...user._doc, password: hash, email, name})
-                            })
-                            .catch(error => res.status(500).json({ error: "id invalido " + error }))
-                    }
-                })
+            users.forEach(user => {
+                if(user.email === email){
+                    res.json({ email: "Mesmo email" })
+                }else{
+                    res.json({ error: "Esse email ja existe." })
+                }
+
+                // bcrypt.genSalt(saltRounds, (err, salt) => {
+                //     bcrypt.hash(password, salt, (err, hash) => {
+                //         if (err) {
+                //             return res.json({ error: `problema com o hash${err}` })
+                //         } else {
+                            
+                //             ModelUser.findOneAndUpdate({_id: id}, { email, password: hash, name })
+                //                 .then((user) => {
+                //                     return res.status(200).json({ validate: true, ...user._doc, password: hash, email, name})
+                //                 })
+                //                 .catch(error => {
+                //                     return res.status(500).json({ error: "id invalido " + error })
+                //                 })
+                //         }
+                //     })
+                // })
             })
+
+            
         })
             
     } catch (error) {
