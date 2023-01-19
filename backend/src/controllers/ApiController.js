@@ -8,10 +8,10 @@ const saltRounds = 5;
 function getAll(req, res){
     try {
         ModelUser.find().sort({createAt: 'desc'}).then(users => {
-            res.status(200).json({users})
+            res.json({ users }).status(200)
         })
     } catch (error) {
-        res.status(404).json({error : 'Nao foi possível acessar ao MongoDB: ' + error})
+        res.json({ error: 'Nao foi possível acessar ao MongoDB: ' + error }).status(404)
     }
 }
 
@@ -19,13 +19,13 @@ function createUser(req, res){
     const {name, email, password} = req.body
 
     if (!name ||!email ||!password ) {
-        return res.status(401).json({error: 'Informações inválidas'})
+        return res.json({ error: 'Informações inválidas' }).status(401)
     }
 
     try{
         ModelUser.findOne({email}).then((user) => {
             if (user) {
-                return res.status(401).json({error: "Esse email ja existe."})
+                return res.json({ error: "Esse email ja existe." }).status(401)
             }else{
                 const newUser = new ModelUser({
                     name,
@@ -44,7 +44,7 @@ function createUser(req, res){
             }
         })
     } catch (error) {
-        res.status(404).json({ error: 'Nao possível acessar ao MongoDB: ' + error })
+        res.json({ error: 'Nao possível acessar ao MongoDB: ' + error }).status(404)
     }
 }
 
@@ -52,24 +52,24 @@ async function login(req, res){
     const {email, password} = req.body
 
     if (!email || !password) {
-        return res.status(401).json({error: 'Informações inválidas'})
+        return res.json({ error: 'Informações inválidas' }).status(401)
     }
 
     
     try {
         const user = await ModelUser.findOne({email})
 
-        if (!user) return res.status(401).json({error: 'Esse email não existe.'})
+        if (!user) return res.json({ error: 'Esse email não existe.' }).status(401)
 
         const passwordCompare = await bcrypt.compare(password, user.password)
 
         if(passwordCompare) return res.status(200).json({ validate: true, ...user._doc})
         
-        res.json({error: 'Senha incorreta.'})
+        res.json({ error: 'Senha incorreta.' }).status(401)
 
         
     } catch (error) {
-        res.status(404).json({ error: 'Nao possível acessar ao MongoDB: ' + error })
+        res.status(404).json({ error: 'Nao possível acessar ao MongoDB: ' + error }).status(404)
     }
 
 }
@@ -79,7 +79,7 @@ function editUser(req, res) {
     const { name, email, password } = req.body
 
     if (!email || !password || !name) {
-        res.status(401).json({ error: "Informações invalidas" })
+        res.json({ error: "Informações invalidas" }).status(401)
     } else {
 
         try {
@@ -97,17 +97,17 @@ function editUser(req, res) {
                             res.status(200).json({ validate: true, ...user._doc, password: passwordHash, email, name })
                         })
                         .catch(error => {
-                            res.status(500).json({ error: "id invalido " + error })
+                            res.json({ error: "id invalido " + error }).status(401)
                         })
 
                 } else {
-                    return res.status(401).json({ error: 'Esse email já existe.' })
+                    return res.json({ error: 'Esse email já existe.' }).status(401)
                 }
 
             })
 
         } catch (error) {
-            res.status(404).json({ error: 'Nao possível acessar ao MongoDB: ' + error })
+            res.json({ error: 'Nao possível acessar ao MongoDB: ' + error }).status(404)
         }
     }
 
@@ -120,9 +120,9 @@ function deleteUser(req, res){
     try {
         ModelUser.findByIdAndDelete(id)
             .then(() => res.status(200).json({message: 'Usuario excluído com sucesso!'}))
-            .catch(error => res.status(500).json({error : "Id invalido! " + error}))
+            .catch(error => res.json({ error: "Id invalido! " + error })).status(401)
     } catch (error) {
-        res.status(404).json({ error: 'Nao possível acessar ao MongoDB: ' + error })
+        res.json({ error: 'Nao possível acessar ao MongoDB: ' + error }).status(404)
     }
 }
 
