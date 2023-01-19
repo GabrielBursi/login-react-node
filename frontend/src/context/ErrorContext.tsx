@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useCallback } from "react";
 import { useNavigate } from 'react-router-dom';
 import { ApiError } from "../api";
 import { Children, TErrorContext } from "../types/Types";
@@ -10,11 +10,11 @@ function ErrorContextProvider({children} : Children) {
 
     const navigate = useNavigate()
 
-    function alertError(data: ApiError){
+    const alertError = useCallback((data: ApiError) => {
         localStorage.removeItem('login')
         navigate('/error')
         alert(data.message)
-    }
+    },[])
 
     return (
         <ErrorContext.Provider value={{alertError}}>
