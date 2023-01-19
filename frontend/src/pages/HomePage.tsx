@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { ApiError, getAll } from "../api";
+import { ErrorContext } from "../context";
 
 import {ApiType} from "../types/Types";
 
@@ -7,12 +8,13 @@ function HomePage() {
 
     const [users, setUsers] = useState<ApiType[]>([]);
 
+    const { alertError } = useContext(ErrorContext)
+
     useEffect(() => {
         
         getAll().then(data => {
             if(data instanceof ApiError){
-                localStorage.removeItem('login')
-                alert(data.message) //!pagina de erro aqui
+                return alertError(data)
             }else if(data.users.length === 0){
                 localStorage.removeItem('login');
             }else{

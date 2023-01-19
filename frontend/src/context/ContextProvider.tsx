@@ -1,17 +1,19 @@
 import { Children } from "../types/Types";
-import { ValidateContextProvider, LoginContextProvider, ModalContextProvider, HeaderContextProvider } from "./";
+import { ValidateContextProvider, LoginContextProvider, ModalContextProvider, HeaderContextProvider, ErrorContextProvider } from "./";
 
 function ContextProvider({children}: Children) {
     return (
-        <ValidateContextProvider>
-            <HeaderContextProvider>
-                <LoginContextProvider>
-                    <ModalContextProvider>
-                        {children}
-                    </ModalContextProvider>
-                </LoginContextProvider>
-            </HeaderContextProvider>
-        </ValidateContextProvider>
+        <ErrorContextProvider>
+            <ValidateContextProvider>
+                <HeaderContextProvider>
+                    <LoginContextProvider>
+                        <ModalContextProvider>
+                            {children}
+                        </ModalContextProvider>
+                    </LoginContextProvider>
+                </HeaderContextProvider>
+            </ValidateContextProvider>
+        </ErrorContextProvider>
     );
 }
 

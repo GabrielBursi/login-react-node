@@ -5,6 +5,7 @@ import { HomePage, ContaPage, LoginPage, NovaContaPage, SobrePage } from './page
 
 import { ValidateContext } from './context/ValidateContext';
 import { ChildrenRoute } from './types/Types';
+import Error from './pages/Error';
 
 function RoutesApp() {
     return (
@@ -14,6 +15,7 @@ function RoutesApp() {
             <Route path='/sobre' element={<SobrePage />} />
             <Route path='/criar' element={<NovaContaPage />} />
             <Route path='/conta/:id' element={<Private><ContaPage /></Private>} />
+            <Route path='/error' element={<Private><Error /></Private>} />
         </Routes>
     );
 }

@@ -5,13 +5,14 @@ import { ApiError, createUser } from "../api/";
 
 import {Form} from "../components";
 
-import { HeaderContext, LoginContext, ValidateContext } from '../context';
+import { ErrorContext, HeaderContext, LoginContext, ValidateContext } from '../context';
 
 function NovaConta() {
 
     const { setValidate } = useContext(ValidateContext)
     const { setErro, erro, email, setEmail, password, setPassword, name, setName } = useContext(LoginContext)
     const { setUpperCase } = useContext(HeaderContext)
+    const { alertError } = useContext(ErrorContext)
 
     const navigate = useNavigate()
 
@@ -26,9 +27,7 @@ function NovaConta() {
 
         createUser(newUser).then((data)=> {
             if(data instanceof ApiError){
-                localStorage.removeItem('login')
-                alert(data)
-                return
+                return alertError(data)
             }
 
             const { error, validate, password, _id, createAt } = data

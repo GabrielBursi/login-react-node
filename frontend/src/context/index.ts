@@ -11,3 +11,6 @@ export { default as ContextProvider } from './ContextProvider'
 
 export { default as HeaderContextProvider } from './HeaderContext'
 export { HeaderContext } from './HeaderContext'
+
+export { default as ErrorContextProvider } from './ErrorContext'
+export { ErrorContext } from './ErrorContext'

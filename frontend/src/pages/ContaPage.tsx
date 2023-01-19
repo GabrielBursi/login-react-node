@@ -5,7 +5,7 @@ import { MdDelete, MdEdit, MdLogout } from 'react-icons/md'
 import { deleteUserById, editUserById, ApiError } from '../api';
 import { Modal } from '../components';
 
-import { HeaderContext, LoginContext, ModalContext, ValidateContext } from '../context';
+import { ErrorContext, HeaderContext, LoginContext, ModalContext, ValidateContext } from '../context';
 
 import { LocalStorage } from '../types/Types';
 
@@ -15,6 +15,7 @@ function Conta() {
     const { showModal, setShowModal } = useContext(ModalContext)
     const { email, password, name, setErro, setEmail, setName, setPassword } = useContext(LoginContext)
     const { setUpperCase } = useContext(HeaderContext)
+    const { alertError } = useContext(ErrorContext)
 
     const [userLocalStorage, setUserLocalStorage] = useState<LocalStorage>();
 
@@ -40,9 +41,7 @@ function Conta() {
         editUserById(userLocalStorage!._id, editedUser)
             .then((data) => {
                 if (data instanceof ApiError) {
-                    localStorage.removeItem('login')
-                    alert(data)
-                    return
+                    return alertError(data)
                 }
 
                 const { error, validate, name, password, _id, createAt } = data

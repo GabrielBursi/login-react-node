@@ -1,3 +1,5 @@
+import { ApiError } from "../api"
+
 export type ApiType = {
     _id?: string,
     name?: string,
@@ -70,4 +72,8 @@ export type FormProps = {
     handleSubmitLogin?: (e: React.FormEvent<HTMLFormElement>) => void,
     handleSubmitNovaConta?: (e: React.FormEvent<HTMLFormElement>) => void,
     haveAccount: boolean
+}
+
+export type TErrorContext = {
+    alertError: (data: ApiError) => void
 }
