@@ -2,7 +2,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import './app.css'
 
-import RoutesApp from "./Routes";
+import RoutesApp from "./routes/Routes";
 import {Header} from './components';
 import { ContextProvider } from './context';
 

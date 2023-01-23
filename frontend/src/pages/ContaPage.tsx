@@ -108,49 +108,53 @@ function Conta() {
 
     return (
         <div className="container">
-            <div className={`${showModal !== undefined ? 'modalOpen' : 'minha-conta'}`}>
-                <div className="header-minha-conta">
-                    <h1>Minha conta</h1>
+            <div className='page'>
+                <div className={`${showModal !== undefined ? 'modalOpen' : 'minha-conta'}`}>
+                    <div className="header-minha-conta">
+                        <h1>Minha conta</h1>
+                    </div>
+                    <section className="info-container">
+                        <div className='info-conta'>
+                            <p><strong>{userLocalStorage?.name}</strong></p> | 
+                            <p><strong>{userLocalStorage?.email}</strong></p>| 
+                            <p><strong>{userLocalStorage?.createAt}</strong></p>
+                        </div>
+                        <div className="actions">
+                            <button type="button" onClick={() => { setShowModal('editar') }}>Editar<MdEdit /></button>
+                            <button type="button" onClick={() => { setShowModal('sair') }}>Sair<MdLogout /></button>
+                            <button type="button" onClick={() => { setShowModal('apagar') }}>Apagar Conta<MdDelete/> </button>
+                        </div>
+                    </section>
                 </div>
-                <section className="info-container">
-                    <div className='info-conta'>
-                        <p>Nome: <span>{userLocalStorage?.name}</span></p>
-                        <p>Email: <span>{userLocalStorage?.email}</span></p>
-                        <p>Conta criada em: <span>{userLocalStorage?.createAt}</span></p>
-                    </div>
-                    <div className="actions">
-                        <button type="button" onClick={() => { setShowModal('editar') }}>Editar<MdEdit /></button>
-                        <button type="button" onClick={() => { setShowModal('sair') }}>Sair<MdLogout /></button>
-                        <button type="button" onClick={() => { setShowModal('apagar') }}>Apagar Conta<MdDelete/> </button>
-                    </div>
-                </section>
+                <div className={`${showModal !== undefined ? 'modal-container' : 'modalClose'}`}>
+                    {showModal === 'editar' && 
+                        <Modal 
+                            question={questionEdit} 
+                            info={infoEdit} 
+                            btnText={btnEdit} 
+                            action={editUser} 
+                            edit={true}
+                            user={userLocalStorage}
+                        />
+                    }
+                    {showModal === 'sair' && 
+                        <Modal 
+                            question={questionLogout} 
+                            info={infoLogout} 
+                            btnText={btnLogout} 
+                            action={logout}
+                        />
+                    }
+                    {showModal === 'apagar' && 
+                        <Modal 
+                            question={questionDelete} 
+                            info={infoDelete} 
+                            btnText={btnDelete} 
+                            action={deleteUser}
+                        />
+                    }
+                </div>
             </div>
-            {showModal === 'editar' && 
-                <Modal 
-                    question={questionEdit} 
-                    info={infoEdit} 
-                    btnText={btnEdit} 
-                    action={editUser} 
-                    edit={true}
-                    user={userLocalStorage}
-                />
-            }
-            {showModal === 'sair' && 
-                <Modal 
-                    question={questionLogout} 
-                    info={infoLogout} 
-                    btnText={btnLogout} 
-                    action={logout}
-                />
-            }
-            {showModal === 'apagar' && 
-                <Modal 
-                    question={questionDelete} 
-                    info={infoDelete} 
-                    btnText={btnDelete} 
-                    action={deleteUser}
-                />
-            }
         </div>
     );
 }

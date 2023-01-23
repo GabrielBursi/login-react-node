@@ -59,17 +59,19 @@ function NovaConta() {
 
     return (
         <div className="container">
-            <Form
-                erro={erro}
-                email={email}
-                name={name}
-                setName={setName}
-                setEmail={setEmail}
-                password={password}
-                setPassword={setPassword}
-                handleSubmitNovaConta={handleSubmitNovaConta}
-                haveAccount={false}
-            />
+            <div className="page">
+                <Form
+                    erro={erro}
+                    email={email}
+                    name={name}
+                    setName={setName}
+                    setEmail={setEmail}
+                    password={password}
+                    setPassword={setPassword}
+                    handleSubmitNovaConta={handleSubmitNovaConta}
+                    haveAccount={false}
+                />
+            </div>
         </div>
     );
 }

@@ -56,16 +56,18 @@ function Login() {
 
     return (
         <div className="container">
-            <Form 
-                setName={setName}
-                erro={erro} 
-                email={email} 
-                setEmail={setEmail} 
-                password={password} 
-                setPassword={setPassword} 
-                handleSubmitLogin={handleSubmitLogin} 
-                haveAccount={true}
-            />
+            <div className='page'>
+                <Form 
+                    setName={setName}
+                    erro={erro} 
+                    email={email} 
+                    setEmail={setEmail} 
+                    password={password} 
+                    setPassword={setPassword} 
+                    handleSubmitLogin={handleSubmitLogin} 
+                    haveAccount={true}
+                />
+            </div>
         </div>
     );
 }

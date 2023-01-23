@@ -25,7 +25,7 @@ function HomePage() {
     
     return (
         <div className="container">
-            <div className="home">
+            <div className="page">
                 <div className="api-text">
                     <h1>URL da API: <a href="http://localhost:3333/users" target="_blank" rel="noreferrer">http://localhost:3333/users</a></h1>
                 </div>

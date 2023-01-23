@@ -16,7 +16,7 @@ function ErrorContextProvider({children} : Children) {
     const alertError = useCallback((data: ApiError) => {
         localStorage.removeItem('login')
         navigate('/error')
-        alert(data.message)
+        alert(`Página de erro diz ${data.message}`)
         setUpperCase('')
     },[])
 
