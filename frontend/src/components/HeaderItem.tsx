@@ -1,4 +1,5 @@
-import { Link, useMatch, useResolvedPath } from "react-router-dom";
+import Button from "@mui/material/Button";
+import { Link as RouterLink, useMatch, useResolvedPath } from "react-router-dom";
 import { HeaderItemProps } from "../types/Types";
 
 
@@ -9,7 +10,7 @@ function HeaderItem({label, to}: HeaderItemProps) {
     const match = useMatch({ path: resolvedPath.pathname, end: true })
 
     return (
-        <Link to={to} className={match ? 'selected' : 'not-selected'}>{label}</Link>
+        <Button component={RouterLink} to={to} size="large" variant="outlined">{label}</Button>
     );
 }   
 

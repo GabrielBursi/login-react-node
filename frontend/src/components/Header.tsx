@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { Box, Button, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
 import { HeaderContext, ValidateContext } from '../context';
 
@@ -26,20 +27,56 @@ function Header() {
         }
     }, [validate]);
 
-    
+    const theme = useTheme();
+    const smDown = useMediaQuery(theme.breakpoints.down('sm'));
+    const mdDown = useMediaQuery(theme.breakpoints.down('md'));
+    const lgDown = useMediaQuery(theme.breakpoints.down('lg'));
+
     return (
-        <header>
-            <div className='header-logo'>
-                <Link to='/'><h1>My API </h1></Link>
-                <span>{upperCase}</span>
-            </div>
-            <nav>
-                {validate && <HeaderItem label='Home' to='/'/>}
+        <Box 
+            sx={{
+                width: "100wh", 
+                height: "10vh", 
+                display: "flex", 
+                justifyContent:"space-between", 
+                alignItems:"center", 
+                padding:"0 4%",
+                border: '1px solid red',
+            }}
+        >
+            <Box 
+                sx={{
+                    width: "20%",
+                    height:"100%",
+                    border: '1px solid red'
+
+                }}
+            >
+                <Typography variant="h5" component="h2">
+                    <RouterLink to='/'><h1>My API </h1></RouterLink>
+                </Typography>
+                <Typography variant='subtitle1' component="span">
+                    <span>{upperCase}</span>
+                </Typography>
+            </Box>
+            <Stack
+                sx={{
+                    width: "40%",
+                    height: "100%",
+                    display:"flex",
+                    alignItems: "center",
+                    justifyContent:"center",
+                    border: '1px solid red',
+                }}
+                direction="row"
+                spacing={2}
+            >
+                {validate && <HeaderItem label='Home' to='/' />}
                 {validate ? <HeaderItem label='Minha conta' to={`/conta/${userLocalStorage?._id}`} /> : <HeaderItem label='Login' to='/login' />}
                 <HeaderItem label='Sobre o projeto' to='/sobre' />
-                <a href='https://github.com/GabrielBursi/login-react-node'>Repositório GitHub</a>
-            </nav>
-        </header>
+                <Button href="https://github.com/GabrielBursi/login-react-node" variant="contained">Repositório GitHub</Button>
+            </Stack>
+        </Box>
     );
 }
 
