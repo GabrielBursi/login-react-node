@@ -77,3 +77,8 @@ export type FormProps = {
 export type TErrorContext = {
     alertError: (data: ApiError) => void
 }
+
+export type HeaderItemProps = {
+    label: string;
+    to: string;
+}

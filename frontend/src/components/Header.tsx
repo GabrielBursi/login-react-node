@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { HeaderContext, ValidateContext } from '../context';
 
 import { LocalStorage } from '../types/Types';
+import HeaderItem from './HeaderItem';
 
 function Header() {
 
@@ -32,12 +33,12 @@ function Header() {
                 <Link to='/'><h1>My API </h1></Link>
                 <span>{upperCase}</span>
             </div>
-            <ul>
-                {validate && <li><Link to='/'>Home</Link></li>}
-                {validate ? <li><Link to={`/conta/${userLocalStorage?._id}`}>Minha Conta</Link></li> : <li><Link to='/login'>Login</Link></li>}
-                <li><Link to='/sobre'>Sobre o projeto</Link></li>
-                <li><a href='https://github.com/GabrielBursi/login-react-node'>Repositório GitHub</a></li>
-            </ul>
+            <nav>
+                {validate && <HeaderItem label='Home' to='/'/>}
+                {validate ? <HeaderItem label='Minha conta' to={`/conta/${userLocalStorage?._id}`} /> : <HeaderItem label='Login' to='/login' />}
+                <HeaderItem label='Sobre o projeto' to='/sobre' />
+                <a href='https://github.com/GabrielBursi/login-react-node'>Repositório GitHub</a>
+            </nav>
         </header>
     );
 }
