@@ -2,14 +2,9 @@ import { Box } from '@mui/material';
 import { useContext } from 'react'
 import { Link } from "react-router-dom";
 import { ErrorContext, LoginContext } from "../../context";
+import { FooterFormProps } from '../../types';
 import ButtonComponent from './ButtonComponent';
 
-type FooterFormProps = {
-    text: string,
-    login: string,
-    route: string,
-    haveAccount: boolean,
-}
 
 function FooterForm({ text, login, route, haveAccount }: FooterFormProps) {
 

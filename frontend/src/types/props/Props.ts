@@ -1,3 +1,5 @@
+import { LocalStorage } from "../Types";
+
 export type FormProps = {
     error: string | undefined,
     name?: string,
@@ -11,9 +13,32 @@ export type FormProps = {
     haveAccount: boolean
 }
 
-
-
 export type HeaderItemProps = {
     label: string;
     to: string;
+}
+
+export type ButtonProps = {
+    text: string
+}
+
+export type FooterFormProps = {
+    text: string,
+    login: string,
+    route: string,
+    haveAccount: boolean,
+}
+
+export type ErrorInfoProps = {
+    error?: string,
+    haveAccount: boolean
+}
+
+export type ModalProps = {
+    question: string,
+    info: string,
+    btnText: string,
+    action: () => void,
+    edit?: boolean,
+    user?: LocalStorage
 }

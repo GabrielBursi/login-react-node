@@ -1,8 +1,6 @@
 import { Box, Button } from "@mui/material";
 
-type ButtonProps = {
-    text: string
-}
+import { ButtonProps } from '../../types'
 
 function ButtonComponent({text}: ButtonProps) {
     return (

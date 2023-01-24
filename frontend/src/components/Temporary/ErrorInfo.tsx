@@ -1,11 +1,9 @@
 import { Alert, AlertTitle, Box } from "@mui/material";
 import { useContext, useEffect } from "react";
 import { ErrorContext } from "../../context";
+import { ErrorInfoProps } from "../../types";
 
-type ErrorInfoProps = {
-    error?: string,
-    haveAccount: boolean
-}
+
 
 function ErrorInfo({ error, haveAccount }: ErrorInfoProps) {
 

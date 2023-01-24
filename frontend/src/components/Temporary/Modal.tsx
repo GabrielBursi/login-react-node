@@ -1,16 +1,9 @@
 import { useContext } from "react";
 import { LoginContext, ModalContext } from "../../context";
 import { MdOutlineClose } from 'react-icons/md'
-import { LocalStorage } from "../../types";
+import { ModalProps } from "../../types";
 
-type ModalProps = {
-    question: string, 
-    info: string, 
-    btnText: string,
-    action: () => void,
-    edit?: boolean,
-    user?: LocalStorage
-}
+
 
 function Modal({question, info, btnText, action, edit, user}: ModalProps) {
 
