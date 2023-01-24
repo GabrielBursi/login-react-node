@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import { useContext } from 'react'
 import { Link } from "react-router-dom";
-import { ErrorContext, LoginContext } from "../context";
+import { ErrorContext, LoginContext } from "../../context";
 import ButtonComponent from './ButtonComponent';
 
 type FooterFormProps = {

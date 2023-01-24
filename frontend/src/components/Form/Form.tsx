@@ -3,11 +3,11 @@ import { Box, TextField } from '@mui/material';
 import { useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { ErrorContext, ValidateContext } from '../context/';
+import { ErrorContext, ValidateContext } from '../../context';
 
-import { FormProps } from "../types";
-import { FooterForm} from './'
-import ErrorInfo from './ErrorInfo';
+import { FormProps } from "../../types";
+import { FooterForm} from '..'
+import ErrorInfo from '../Temporary/ErrorInfo';
 
 function Form({ 
     error, 

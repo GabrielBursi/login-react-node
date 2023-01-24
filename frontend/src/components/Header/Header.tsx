@@ -3,9 +3,9 @@ import { Box, Button, Stack, Typography } from '@mui/material';
 import { useContext, useEffect, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
-import { HeaderContext, ValidateContext } from '../context';
+import { HeaderContext, ValidateContext } from '../../context';
 
-import { LocalStorage } from '../types';
+import { LocalStorage } from '../../types';
 import HeaderItem from './HeaderItem';
 
 function Header() {
