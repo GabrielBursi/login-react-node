@@ -8,7 +8,7 @@ export type TValidateContext = {
 }
 
 export type TLoginContext = {
-    erro: string | undefined,
+    error: string | undefined,
     setErro: React.Dispatch<React.SetStateAction<string | undefined>>,
     name: string,
     setName: React.Dispatch<React.SetStateAction<string>>,
@@ -29,5 +29,7 @@ export type THeaderContext = {
 }
 
 export type TErrorContext = {
-    alertError: (data: ApiError) => void
+    alertError: (data: ApiError) => void,
+    showErrorInfo: boolean,
+    setShowErrorInfo: React.Dispatch<React.SetStateAction<boolean>>
 }

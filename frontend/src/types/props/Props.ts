@@ -1,5 +1,5 @@
 export type FormProps = {
-    erro: string | undefined,
+    error: string | undefined,
     name?: string,
     setName: React.Dispatch<React.SetStateAction<string>>,
     email: string,

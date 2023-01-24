@@ -5,7 +5,7 @@ export const LoginContext = createContext({} as TLoginContext)
 
 function LoginContextProvider({ children }: Children) {
 
-    const [erro, setErro] = useState<string>();
+    const [error, setErro] = useState<string>();
 
     const [name, setName] = useState<string>('');
     const [email, setEmail] = useState<string>('');
@@ -14,7 +14,7 @@ function LoginContextProvider({ children }: Children) {
     return (
         <LoginContext.Provider value={
             {
-                erro,
+                error,
                 setErro,
                 name,
                 setName,

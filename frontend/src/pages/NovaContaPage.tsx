@@ -11,9 +11,9 @@ import { ErrorContext, HeaderContext, LoginContext, ValidateContext } from '../c
 function NovaConta() {
 
     const { setValidate } = useContext(ValidateContext)
-    const { setErro, erro, email, setEmail, password, setPassword, name, setName } = useContext(LoginContext)
+    const { setErro, error, email, setEmail, password, setPassword, name, setName } = useContext(LoginContext)
     const { setUpperCase } = useContext(HeaderContext)
-    const { alertError } = useContext(ErrorContext)
+    const { alertError, setShowErrorInfo } = useContext(ErrorContext)
 
     const navigate = useNavigate()
 
@@ -34,6 +34,7 @@ function NovaConta() {
             const { error, validate, password, _id, createAt } = data
             if (error) {
                 setErro(error)
+                setShowErrorInfo(true)
                 setValidate(!validate)
             } else {
                 setValidate(validate)
@@ -70,7 +71,7 @@ function NovaConta() {
             padding={4}
         >
             <Form
-                erro={erro}
+                error={error}
                 email={email}
                 name={name}
                 setName={setName}

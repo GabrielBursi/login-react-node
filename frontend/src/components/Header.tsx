@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Box, Button, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Button, Stack, Typography } from '@mui/material';
 import { useContext, useEffect, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
@@ -27,10 +27,6 @@ function Header() {
         }
     }, [validate]);
 
-    const theme = useTheme();
-    const smDown = useMediaQuery(theme.breakpoints.down('sm'));
-    const mdDown = useMediaQuery(theme.breakpoints.down('md'));
-    const lgDown = useMediaQuery(theme.breakpoints.down('lg'));
 
     return (
         <Box 
@@ -41,14 +37,12 @@ function Header() {
                 justifyContent:"space-between", 
                 alignItems:"center", 
                 padding:"0 4%",
-                border: '1px solid red',
             }}
         >
             <Box 
                 sx={{
                     width: "20%",
                     height:"100%",
-                    border: '1px solid red',
                     display: "flex",
                     justifyContent:"center",
                     alignItems:"center",
@@ -69,7 +63,6 @@ function Header() {
                     display:"flex",
                     alignItems: "center",
                     justifyContent:"center",
-                    border: '1px solid red',
                 }}
                 direction="row"
                 spacing={2}

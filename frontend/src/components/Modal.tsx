@@ -15,7 +15,7 @@ type ModalProps = {
 function Modal({question, info, btnText, action, edit, user}: ModalProps) {
 
     const { setShowModal } = useContext(ModalContext)
-    const { setEmail, setPassword, setName, erro, setErro } = useContext(LoginContext)
+    const { setEmail, setPassword, setName, error, setErro } = useContext(LoginContext)
 
     function cancel(){
         setShowModal(undefined)
@@ -33,7 +33,7 @@ function Modal({question, info, btnText, action, edit, user}: ModalProps) {
                 {edit && 
                     <div className="edit-info">
                         <div className="alert-error">
-                            {erro && <span>{erro}</span>}
+                            {error && <span>{error}</span>}
                         </div>
                         <form>
                             <label htmlFor="name">Nome:</label>

@@ -1,15 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Alert, AlertTitle, Box, TextField } from '@mui/material';
+import { Box, TextField } from '@mui/material';
 import { useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { ValidateContext } from '../context/';
+import { ErrorContext, ValidateContext } from '../context/';
 
 import { FormProps } from "../types";
-import {ButtonComponent, FooterForm} from './'
+import { FooterForm} from './'
+import ErrorInfo from './ErrorInfo';
 
 function Form({ 
-    erro, 
+    error, 
     name, 
     setName, 
     email, 
@@ -24,6 +25,7 @@ function Form({
     const navigate = useNavigate()
 
     const { setValidate } = useContext(ValidateContext)
+    const { showErrorInfo } = useContext(ErrorContext)
 
     useEffect(() => {
         const login = localStorage.getItem("login");
@@ -50,25 +52,7 @@ function Form({
                         justifyContent:"space-between"
                     }}
                 >
-
-                    <Box
-                        sx={{
-                            width: "100%",
-                            height: "10%",
-                        }}
-                    >
-                        {erro &&  haveAccount ? 
-                            <Alert severity="error">
-                                <AlertTitle>{erro}</AlertTitle>
-                                Não foi possível fazer o login — <strong>cheque corretamente seus dados!</strong>
-                            </Alert> 
-                            : 
-                            <Alert severity="warning">
-                                <AlertTitle>{erro}</AlertTitle>
-                                Não foi possível criar sua conta — <strong>tente outro email.</strong>
-                            </Alert> 
-                        }
-                    </Box>
+                    {showErrorInfo && <ErrorInfo error={error} haveAccount={haveAccount}/>}
                     
                     <Box
                         sx={{

@@ -11,9 +11,9 @@ import { ErrorContext, HeaderContext, LoginContext, ValidateContext } from '../c
 function Login() {
 
     const { setValidate } = useContext(ValidateContext)
-    const { setErro, erro, email, setEmail, password, setPassword, setName } = useContext(LoginContext)
+    const { setErro, error, email, setEmail, password, setPassword, setName } = useContext(LoginContext)
     const { setUpperCase } = useContext(HeaderContext)
-    const { alertError } = useContext(ErrorContext)
+    const { alertError, setShowErrorInfo } = useContext(ErrorContext)
 
     const navigate = useNavigate()
 
@@ -33,6 +33,7 @@ function Login() {
             const { error, validate, name, password, _id, createAt } = data
             if(error){
                 setErro(error)
+                setShowErrorInfo(true)
                 setValidate(!validate)
             }else{
                 setValidate(validate)
@@ -68,7 +69,7 @@ function Login() {
         >
             <Form 
                 setName={setName}
-                erro={erro} 
+                error={error} 
                 email={email} 
                 setEmail={setEmail} 
                 password={password} 
