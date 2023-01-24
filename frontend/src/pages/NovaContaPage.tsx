@@ -35,7 +35,7 @@ function NovaConta() {
             if (error) {
                 setErro(error)
                 setShowErrorInfo(true)
-                setValidate(!validate)
+                setValidate(false)
             } else {
                 setValidate(validate)
                 setErro('')
