@@ -1,4 +1,4 @@
-import { Children } from "../types/Types";
+import { Children } from "../types";
 import { ValidateContextProvider, LoginContextProvider, ModalContextProvider, HeaderContextProvider, ErrorContextProvider } from "./";
 
 function ContextProvider({children}: Children) {

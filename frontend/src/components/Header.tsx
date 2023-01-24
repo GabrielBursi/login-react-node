@@ -5,7 +5,7 @@ import { Link as RouterLink } from 'react-router-dom';
 
 import { HeaderContext, ValidateContext } from '../context';
 
-import { LocalStorage } from '../types/Types';
+import { LocalStorage } from '../types';
 import HeaderItem from './HeaderItem';
 
 function Header() {

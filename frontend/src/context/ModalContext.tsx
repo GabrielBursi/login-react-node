@@ -1,6 +1,5 @@
 import { createContext, useState } from "react";
-import { Children, TModalContext, ModalOptions } from "../types/Types";
-
+import { Children, TModalContext, ModalOptions } from "../types"
 export const ModalContext = createContext({} as TModalContext)
 
 function ModalContextProvider({ children }: Children) {

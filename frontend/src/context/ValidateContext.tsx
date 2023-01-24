@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import { Children, TValidateContext } from "../types/Types";
+import { Children, TValidateContext } from "../types";
 
 export const ValidateContext = createContext({} as TValidateContext)
 

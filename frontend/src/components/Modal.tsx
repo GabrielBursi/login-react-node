@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { LoginContext, ModalContext } from "../context";
 import { MdOutlineClose } from 'react-icons/md'
-import { LocalStorage } from "../types/Types";
+import { LocalStorage } from "../types";
 
 type ModalProps = {
     question: string, 

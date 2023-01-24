@@ -1,5 +1,5 @@
 import {ApiError, Api} from './'
-import {ApiType, Response, Users} from '../types/Types';
+import {ApiType, Response, Users} from '../types';
 
 async function getAll(): Promise<Users | ApiError>{
     try {

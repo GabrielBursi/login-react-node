@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import { Children, THeaderContext } from "../types/Types";
+import { Children, THeaderContext } from "../types";
 
 export const HeaderContext = createContext({} as THeaderContext)
 

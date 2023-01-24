@@ -1,7 +1,7 @@
 import { createContext, useCallback, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
 import { ApiError } from "../api";
-import { Children, TErrorContext } from "../types/Types";
+import { Children, TErrorContext } from "../types";
 import { HeaderContext } from "./HeaderContext";
 
 export const ErrorContext = createContext({} as TErrorContext)

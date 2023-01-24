@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { ValidateContext } from '../context/';
 
-import { FormProps } from "../types/Types";
+import { FormProps } from "../types";
 
 import {Button, FooterForm} from './'
 

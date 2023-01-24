@@ -4,7 +4,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import { HomePage, ContaPage, LoginPage, NovaContaPage, SobrePage, Error } from '../pages'
 
 import { ValidateContext } from '../context/ValidateContext';
-import { ChildrenRoute } from '../types/Types';
+import { ChildrenRoute } from '../types';
 
 function RoutesApp() {
     return (

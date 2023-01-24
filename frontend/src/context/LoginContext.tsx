@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import { Children, TLoginContext } from "../types/Types";
+import { Children, TLoginContext } from "../types";
 
 export const LoginContext = createContext({} as TLoginContext)
 

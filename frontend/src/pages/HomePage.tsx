@@ -1,9 +1,9 @@
-import { Box, Typography, Link, List, ListItem, ListItemButton, ListItemText, Divider } from "@mui/material";
+import { Box, Typography, Link, List, ListItem, ListItemText, Divider } from "@mui/material";
 import { useEffect, useState, useContext } from "react";
 import { ApiError, getAll } from "../api";
 import { ErrorContext } from "../context";
 
-import {ApiType} from "../types/Types";
+import {ApiType} from "../types";
 
 function HomePage() {
 

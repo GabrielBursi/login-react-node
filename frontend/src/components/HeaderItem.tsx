@@ -1,8 +1,7 @@
 import Button from "@mui/material/Button";
 import { Link as RouterLink, useMatch, useResolvedPath } from "react-router-dom";
-import { HeaderItemProps } from "../types/Types";
 
-
+import { HeaderItemProps } from "../types";
 
 function HeaderItem({label, to}: HeaderItemProps) {
 
