@@ -1,3 +1,4 @@
+import { Box } from '@mui/material';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -55,20 +56,27 @@ function Login() {
     }
 
     return (
-        <div className="container">
-            <div className='page'>
-                <Form 
-                    setName={setName}
-                    erro={erro} 
-                    email={email} 
-                    setEmail={setEmail} 
-                    password={password} 
-                    setPassword={setPassword} 
-                    handleSubmitLogin={handleSubmitLogin} 
-                    haveAccount={true}
-                />
-            </div>
-        </div>
+        <Box
+            sx={{
+                width:"40%",
+                height:"70%",
+                display:"flex",
+                justifyContent:"center",
+                alignItems:"center"
+            }}
+            padding={4}
+        >
+            <Form 
+                setName={setName}
+                erro={erro} 
+                email={email} 
+                setEmail={setEmail} 
+                password={password} 
+                setPassword={setPassword} 
+                handleSubmitLogin={handleSubmitLogin} 
+                haveAccount={true}
+            />
+        </Box>
     );
 }
 

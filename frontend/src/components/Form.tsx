@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { Alert, AlertTitle, Box, TextField } from '@mui/material';
 import { useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { ValidateContext } from '../context/';
 
 import { FormProps } from "../types";
-
-import {Button, FooterForm} from './'
+import {ButtonComponent, FooterForm} from './'
 
 function Form({ 
     erro, 
@@ -34,62 +34,102 @@ function Form({
     }, []);
 
     return (
-        <div className='container-form'>
+        <Box
+            sx={{
+                width:"100%",
+                height:"100%",
+            }}
+        >
             <form action="#" className='login-form' onSubmit={haveAccount ? handleSubmitLogin : handleSubmitNovaConta }>
-                <div className='teste'>
-                    <div className="alert-error">
-                        {erro && <span>{erro}</span>}
-                    </div>
-                    {!haveAccount && 
-                        <div className="field">
-                            <label htmlFor="name">Nome:</label>
-                            <input
-                                type="text"
-                                name="name"
-                                id="name"
+                <Box
+                    sx={{
+                        width: "100%",
+                        height: "100%",
+                        display:"flex",
+                        flexDirection: "column",
+                        justifyContent:"space-between"
+                    }}
+                >
+
+                    <Box
+                        sx={{
+                            width: "100%",
+                            height: "10%",
+                        }}
+                    >
+                        {erro &&  haveAccount ? 
+                            <Alert severity="error">
+                                <AlertTitle>{erro}</AlertTitle>
+                                Não foi possível fazer o login — <strong>cheque corretamente seus dados!</strong>
+                            </Alert> 
+                            : 
+                            <Alert severity="warning">
+                                <AlertTitle>{erro}</AlertTitle>
+                                Não foi possível criar sua conta — <strong>tente outro email.</strong>
+                            </Alert> 
+                        }
+                    </Box>
+                    
+                    <Box
+                        sx={{
+                            display:"flex",
+                            flexDirection:"column",
+                            justifyContent:"center",
+                            flex:1,
+                            gap: 2,
+                        }}
+                    >
+                        {!haveAccount && 
+                            
+                            <TextField 
+                                id="outlined-basic" 
+                                label="Nome" 
+                                variant="outlined" 
                                 autoComplete="off"
                                 placeholder='Seu nome'
+                                required
+                                fullWidth
                                 value={name}
-                                onChange={(e) => setName(e.target.value)}
+                                onChange={(e) => setName(e.target.value)} 
                             />
-                        </div>
-                    }
-                    
-                    <div className="field">
-                        <label htmlFor="email">Email:</label>
-                        <input
+                            
+                        }
+                        
+                        <TextField
                             type="email"
                             name="email"
                             id="email"
+                            label="Email"
                             autoComplete="off"
-                            placeholder='Seu melhor email'
+                            placeholder='Digite seu email'
+                            required
+                            fullWidth
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
-                    </div>
-                    <div className="field">
-                        <label htmlFor="password">Senha:</label>
-                        <input
+                        
+                        <TextField
                             type="password"
                             name="password"
                             id="password"
+                            label="Senha"
                             autoComplete="off"
                             placeholder='Digite sua senha'
+                            required
+                            fullWidth
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
-                    </div>
-                </div>
-                <div className="field-btn">
-                    <Button text={haveAccount ? 'Entrar' : 'Criar conta'}/>
-                    <FooterForm 
-                        text={haveAccount ? 'Não tem conta?' : 'Já possui uma conta ?'} 
-                        login={haveAccount ? 'Crie uma agora' : 'Faça login'} 
-                        route={haveAccount ? '/criar' : '/login'}
-                    />
-                </div>
+                        <FooterForm 
+                            text={haveAccount ? 'Não tem conta?' : 'Já possui uma conta ?'} 
+                            login={haveAccount ? 'Crie uma agora' : 'Faça login'} 
+                            route={haveAccount ? '/criar' : '/login'}
+                            haveAccount={haveAccount}
+                        />
+                    </Box>
+                </Box>
             </form>
-        </div>
+        </Box>
     );
 }
 

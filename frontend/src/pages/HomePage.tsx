@@ -29,14 +29,13 @@ function HomePage() {
             sx={{
                 height:"90vh", 
                 width:"100%",
-                border:"10px solid green",
                 display:"flex",
                 flexDirection: "column",
                 alignItems:"center",
                 justifyContent:"center"
             }}
         >
-            <Typography variant="h5" component="h2" marginBottom="2%">
+            <Typography variant="h5" component="h2" marginBottom={2}>
                 <h2>URL da API:
                     <Link 
                         href="http://localhost:3333/users" 

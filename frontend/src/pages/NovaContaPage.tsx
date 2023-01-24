@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import React, {useContext} from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -58,21 +59,28 @@ function NovaConta() {
     }
 
     return (
-        <div className="container">
-            <div className="page">
-                <Form
-                    erro={erro}
-                    email={email}
-                    name={name}
-                    setName={setName}
-                    setEmail={setEmail}
-                    password={password}
-                    setPassword={setPassword}
-                    handleSubmitNovaConta={handleSubmitNovaConta}
-                    haveAccount={false}
-                />
-            </div>
-        </div>
+        <Box
+            sx={{
+                width: "40%",
+                height: "70%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center"
+            }}
+            padding={4}
+        >
+            <Form
+                erro={erro}
+                email={email}
+                name={name}
+                setName={setName}
+                setEmail={setEmail}
+                password={password}
+                setPassword={setPassword}
+                handleSubmitNovaConta={handleSubmitNovaConta}
+                haveAccount={false}
+            />
+        </Box>
     );
 }
 
