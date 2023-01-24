@@ -9,7 +9,7 @@ function HeaderItem({label, to}: HeaderItemProps) {
     const match = useMatch({ path: resolvedPath.pathname, end: true })
 
     return (
-        <Button component={RouterLink} to={to} size="large" variant="outlined">{label}</Button>
+        <Button component={RouterLink} to={to} size="large" variant={match ? 'contained' : 'outlined'}>{label}</Button>
     );
 }   
 

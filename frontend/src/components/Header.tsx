@@ -21,7 +21,7 @@ function Header() {
             const infoLogin = JSON.parse(login)
             let user = { ...infoLogin };
             setUserLocalStorage(user);
-            setUpperCase(`É bom ver você novamente ${user.name[0].toUpperCase() + user.name.substring(1)}.`)
+            setUpperCase(`É bom ver você novamente ${(user.name[0].toUpperCase() + user.name.substring(1).split(' ')[0])}.`)
         }else{
             setUpperCase('')
         }
