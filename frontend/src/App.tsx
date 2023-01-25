@@ -11,18 +11,19 @@ function App() {
   return (
       <BrowserRouter>
         <ContextProvider>
+          <Box
+            sx={{
+              overflowY:"hidden",
+              height: "100vh",
+              width: "100wh",
+              display: "flex",
+              flexDirection:"column",
+              justifyContent: "space-between",
+            }}
+          >
             <Header/>
-            <Box
-              sx={{
-                height:"90vh",
-                width:"100wh",
-                display:"flex",
-                justifyContent:"center",
-                alignItems:"center", 
-              }}
-            >
-              <RoutesApp/>
-            </Box>
+            <RoutesApp/>
+          </Box>
         </ContextProvider>
       </BrowserRouter>
   );

@@ -112,125 +112,136 @@ function Conta() {
 
     return (
         <Box
-            component={Paper}
             sx={{
-                width:"40%",
-                height:"70%",
+                width:"100%",
+                height:"90vh",
                 display:"flex",
                 justifyContent:"center",
                 alignItems:"center",
             }}
-            paddingTop={2}
         >
-                <Box
-                    sx={{
-                        width: "100%",
-                        height: "100%",
-                        display: "flex",
-                        flexDirection:"column",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                    }}
-                >
-                    <Typography variant='h2' component="h1" align='center' color="primary">
-                        Minha conta
-                    </Typography>
+
+            <Box
+                component={Paper}
+                sx={{
+                    width:"40%",
+                    height:"70%",
+                    display:"flex",
+                    justifyContent:"center",
+                    alignItems:"center",
+                }}
+                paddingTop={2}
+            >
                     <Box
                         sx={{
                             width: "100%",
-                            height: "80%",
+                            height: "100%",
                             display: "flex",
-                            flexDirection: "column",
+                            flexDirection:"column",
                             justifyContent: "space-between",
                             alignItems: "center",
                         }}
                     >
+                        <Typography variant='h2' component="h1" align='center' color="primary">
+                            Minha conta
+                        </Typography>
                         <Box
                             sx={{
                                 width: "100%",
                                 height: "80%",
-                                display:"flex",
-                                justifyContent:"center"
-                            }}
-                        >
-                            <Typography
-                                variant='h5'
-                                component='p'
-                                sx={{
-                                    width: "30%",
-                                    height: "100%",
-                                    display: "flex",
-                                    flexDirection:"column",
-                                    justifyContent: "space-evenly",
-                                    alignItems: "center",
-                                }}
-                            >
-                                <p><strong>Nome:</strong></p>  
-                                <p><strong>Email:</strong></p>
-                                <p><strong>Conta criada em:</strong></p>
-                            </Typography>
-                            <Typography
-                                variant='h5'
-                                component='p'
-                                sx={{
-                                    width: "30%",
-                                    height: "100%",
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    justifyContent: "space-evenly",
-                                    alignItems: "center",
-                                }}
-                            >
-                                <p><strong>{userLocalStorage?.name}</strong></p>
-                                <p><strong>{userLocalStorage?.email}</strong></p>
-                                <p><strong>{userLocalStorage?.createAt}</strong></p>
-                            </Typography>
-                        </Box>
-                        <Box
-                            sx={{
-                                width: "100%",
-                                height: "20%",
                                 display: "flex",
-                                justifyContent:"center",
-                                alignItems:"center"
+                                flexDirection: "column",
+                                justifyContent: "space-between",
+                                alignItems: "center",
                             }}
                         >
-                            <ButtonGroup size="large" aria-label="large button group">
-                                <Button type="button" onClick={() => { setShowModal('editar') }} endIcon={<MdEdit/>}>Editar</Button>
-                                <Button type="button" onClick={() => { setShowModal('sair') }} endIcon={<MdLogout/>}>Sair</Button>
-                                <Button type="button" onClick={() => { setShowModal('apagar') }} endIcon={<MdDelete/>}>Apagar Conta</Button>
-                            </ButtonGroup>
+                            <Box
+                                sx={{
+                                    width: "100%",
+                                    height: "80%",
+                                    display:"flex",
+                                    justifyContent:"center"
+                                }}
+                            >
+                                <Typography
+                                    variant='h5'
+                                    component='p'
+                                    sx={{
+                                        width: "30%",
+                                        height: "100%",
+                                        display: "flex",
+                                        flexDirection:"column",
+                                        justifyContent: "space-evenly",
+                                        alignItems: "center",
+                                    }}
+                                >
+                                    <p><strong>Nome:</strong></p>  
+                                    <p><strong>Email:</strong></p>
+                                    <p><strong>Conta criada em:</strong></p>
+                                </Typography>
+                                <Typography
+                                    variant='h5'
+                                    component='p'
+                                    sx={{
+                                        width: "30%",
+                                        height: "100%",
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        justifyContent: "space-evenly",
+                                        alignItems: "center",
+                                    }}
+                                >
+                                    <p><strong>{userLocalStorage?.name}</strong></p>
+                                    <p><strong>{userLocalStorage?.email}</strong></p>
+                                    <p><strong>{userLocalStorage?.createAt}</strong></p>
+                                </Typography>
+                            </Box>
+                            <Box
+                                sx={{
+                                    width: "100%",
+                                    height: "20%",
+                                    display: "flex",
+                                    justifyContent:"center",
+                                    alignItems:"center"
+                                }}
+                            >
+                                <ButtonGroup size="large" aria-label="large button group">
+                                    <Button type="button" onClick={() => { setShowModal('editar') }} endIcon={<MdEdit/>}>Editar</Button>
+                                    <Button type="button" onClick={() => { setShowModal('sair') }} endIcon={<MdLogout/>}>Sair</Button>
+                                    <Button type="button" onClick={() => { setShowModal('apagar') }} endIcon={<MdDelete/>}>Apagar Conta</Button>
+                                </ButtonGroup>
+                            </Box>
                         </Box>
                     </Box>
-                </Box>
-                <Box>
-                    {showModal === 'editar' && 
-                        <Modal 
-                            question={questionEdit} 
-                            info={infoEdit} 
-                            btnText={btnEdit} 
-                            action={editUser} 
-                            edit={true}
-                            user={userLocalStorage}
-                        />
-                    }
-                    {showModal === 'sair' && 
-                        <Modal 
-                            question={questionLogout} 
-                            info={infoLogout} 
-                            btnText={btnLogout} 
-                            action={logout}
-                        />
-                    }
-                    {showModal === 'apagar' && 
-                        <Modal 
-                            question={questionDelete} 
-                            info={infoDelete} 
-                            btnText={btnDelete} 
-                            action={deleteUser}
-                        />
-                    }
-                </Box>
+                    <Box>
+                        {showModal === 'editar' && 
+                            <Modal 
+                                question={questionEdit} 
+                                info={infoEdit} 
+                                btnText={btnEdit} 
+                                action={editUser} 
+                                edit={true}
+                                user={userLocalStorage}
+                            />
+                        }
+                        {showModal === 'sair' && 
+                            <Modal 
+                                question={questionLogout} 
+                                info={infoLogout} 
+                                btnText={btnLogout} 
+                                action={logout}
+                            />
+                        }
+                        {showModal === 'apagar' && 
+                            <Modal 
+                                question={questionDelete} 
+                                info={infoDelete} 
+                                btnText={btnDelete} 
+                                action={deleteUser}
+                            />
+                        }
+                    </Box>
+            </Box>
         </Box>
     );
 }
