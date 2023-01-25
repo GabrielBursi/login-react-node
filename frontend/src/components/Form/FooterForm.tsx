@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useContext } from 'react'
 import { Link } from "react-router-dom";
 import { ErrorContext, LoginContext } from "../../context";
@@ -32,8 +32,19 @@ function FooterForm({ text, login, route, haveAccount }: FooterFormProps) {
             }}
         >
             <ButtonComponent text={haveAccount ? 'Entrar' : 'Criar conta'} />
-            <span>{text}</span>
-            <Link to={`${route}`} onClick={clearInfos}>{login}</Link>
+            <Typography
+                variant='subtitle1'
+                component='span'
+                sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                }}
+            >
+                <span>{text}</span>
+                <Link to={`${route}`} onClick={clearInfos}>{login}</Link>
+            </Typography>
         </Box>
     );
 }

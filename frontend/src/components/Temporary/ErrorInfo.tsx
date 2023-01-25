@@ -21,6 +21,7 @@ function ErrorInfo({ error, haveAccount }: ErrorInfoProps) {
                 width: "100%",
                 height: "10%",
             }}
+            marginBottom={2}
         >
             {error && haveAccount ?
                 <Alert severity="error">

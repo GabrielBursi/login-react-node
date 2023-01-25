@@ -40,19 +40,23 @@ function Form({
             sx={{
                 width:"100%",
                 height:"100%",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems:"center"
             }}
         >
-            <form action="#" className='login-form' onSubmit={haveAccount ? handleSubmitLogin : handleSubmitNovaConta }>
-                <Box
-                    sx={{
-                        width: "100%",
-                        height: "100%",
-                        display:"flex",
-                        flexDirection: "column",
-                        justifyContent:"space-between"
-                    }}
-                >
-                    {showErrorInfo && <ErrorInfo error={error} haveAccount={haveAccount}/>}
+            <Box
+                sx={{
+                    width: "100%",
+                    height: "100%",
+                    display:"flex",
+                    flexDirection: "column",
+                    justifyContent:"center",
+                }}
+            >
+                <form action="#" onSubmit={haveAccount ? handleSubmitLogin : handleSubmitNovaConta}>
+
                     
                     <Box
                         sx={{
@@ -62,7 +66,8 @@ function Form({
                             flex:1,
                             gap: 2,
                         }}
-                    >
+                        >
+                        {showErrorInfo && <ErrorInfo error={error} haveAccount={haveAccount}/>}
                         {!haveAccount && 
                             
                             <TextField 
@@ -111,8 +116,8 @@ function Form({
                             haveAccount={haveAccount}
                         />
                     </Box>
-                </Box>
-            </form>
+                </form>
+            </Box>
         </Box>
     );
 }
