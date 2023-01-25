@@ -1,3 +1,4 @@
+import { LocalStorage } from './../Types';
 import { ApiError } from "../../api"
 import { ModalOptions } from "../Types"
 
@@ -8,7 +9,7 @@ export type TValidateContext = {
 }
 
 export type TLoginContext = {
-    error: string | undefined,
+    error?: string,
     setErro: React.Dispatch<React.SetStateAction<string | undefined>>,
     name: string,
     setName: React.Dispatch<React.SetStateAction<string>>,
@@ -24,7 +25,7 @@ export type TModalContext = {
 }
 
 export type THeaderContext = {
-    upperCase: string | undefined
+    upperCase?: string,
     setUpperCase: React.Dispatch<React.SetStateAction<string | undefined>>
 }
 
@@ -32,4 +33,9 @@ export type TErrorContext = {
     alertError: (data: ApiError) => void,
     showErrorInfo: boolean,
     setShowErrorInfo: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export type TLocalStorageContext = {
+    userLocalStorage?: LocalStorage,
+    setUserLocalStorage: React.Dispatch<React.SetStateAction<LocalStorage | undefined>>
 }
