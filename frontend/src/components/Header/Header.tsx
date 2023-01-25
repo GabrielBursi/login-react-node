@@ -1,30 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Box, Button, Stack, Typography } from '@mui/material';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
-import { HeaderContext, ValidateContext } from '../../context';
+import { HeaderContext, LocalStorageContext, ValidateContext } from '../../context';
 
-import { LocalStorage } from '../../types';
 import HeaderItem from './HeaderItem';
 
 function Header() {
 
     const { validate } = useContext(ValidateContext)
     const { setUpperCase, upperCase } = useContext(HeaderContext)
-
-    const [userLocalStorage, setUserLocalStorage] = useState<LocalStorage>();
+    const { getUserLocalStorage, userLocalStorage } = useContext(LocalStorageContext)
 
     useEffect(() => {
-        const login = localStorage.getItem("login");
-        if (login) {
-            const infoLogin = JSON.parse(login)
-            let user = { ...infoLogin };
-            setUserLocalStorage(user);
-            setUpperCase(`É bom ver você novamente ${(user.name[0].toUpperCase() + user.name.substring(1).split(' ')[0])}.`)
-        }else{
-            setUpperCase('')
-        }
+
+        getUserLocalStorage(setUpperCase)
+        
     }, [validate]);
 
 

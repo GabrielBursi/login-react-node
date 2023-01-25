@@ -3,7 +3,7 @@ import { Box, TextField } from '@mui/material';
 import { useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { ErrorContext, ValidateContext } from '../../context';
+import { ErrorContext, LocalStorageContext, ValidateContext } from '../../context';
 
 import { FormProps } from "../../types";
 import { FooterForm} from '..'
@@ -26,13 +26,10 @@ function Form({
 
     const { setValidate } = useContext(ValidateContext)
     const { showErrorInfo } = useContext(ErrorContext)
+    const { getUserLocalStorage } = useContext(LocalStorageContext)
 
     useEffect(() => {
-        const login = localStorage.getItem("login");
-        if(login){
-            setValidate(true)
-            navigate('/')
-        }
+        getUserLocalStorage( undefined, setValidate, navigate)
     }, []);
 
     return (

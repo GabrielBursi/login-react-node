@@ -1,4 +1,4 @@
-import { LocalStorage } from './../Types';
+import { LocalStorage, NavigateFunction } from './../Types';
 import { ApiError } from "../../api"
 import { ModalOptions } from "../Types"
 
@@ -37,5 +37,10 @@ export type TErrorContext = {
 
 export type TLocalStorageContext = {
     userLocalStorage?: LocalStorage,
-    setUserLocalStorage: React.Dispatch<React.SetStateAction<LocalStorage | undefined>>
+    setUserLocalStorage: React.Dispatch<React.SetStateAction<LocalStorage | undefined>>,
+    getUserLocalStorage: (
+        setUpperCase?: React.Dispatch<React.SetStateAction<string | undefined>>,
+        setValidate?: React.Dispatch<React.SetStateAction<boolean>>,
+        navigate?: NavigateFunction
+    ) => void
 }

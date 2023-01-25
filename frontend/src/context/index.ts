@@ -14,3 +14,7 @@ export { HeaderContext } from './HeaderContext'
 
 export { default as ErrorContextProvider } from './ErrorContext'
 export { ErrorContext } from './ErrorContext'
+
+
+export { default as LocalStorageContextProvider } from './LocalStorageContext'
+export { LocalStorageContext } from './LocalStorageContext'

@@ -9,7 +9,7 @@ import ButtonComponent from './ButtonComponent';
 function FooterForm({ text, login, route, haveAccount }: FooterFormProps) {
 
     const { setErro, setEmail, setName, setPassword } = useContext(LoginContext)
-    const { setShowErrorInfo} = useContext(ErrorContext)
+    const { setShowErrorInfo } = useContext(ErrorContext)
 
     function clearInfos(){
         setErro("")
