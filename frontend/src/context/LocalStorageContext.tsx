@@ -40,13 +40,3 @@ function LocalStorageContextProvider({ children }: Children) {
 }
 
 export default LocalStorageContextProvider;
-
-/* 
-const login = localStorage.getItem("login");
-if(login){
-    setValidate(true)
-    navigate('/')
-}
-
-
-*/ 

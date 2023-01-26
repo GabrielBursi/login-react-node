@@ -1,10 +1,9 @@
-import { Box } from '@mui/material';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { ApiError, login } from '../api';
 
-import {Form} from '../components';
+import {Container, Form} from '../components';
 
 import { ErrorContext, HeaderContext, LoginContext, ValidateContext } from '../context';
 
@@ -57,17 +56,9 @@ function Login() {
     }
 
     return (
-        <Box
-            sx={{
-                width:"40%",
-                height:"70%",
-                display:"flex",
-                justifyContent:"center",
-                alignItems:"center"
-            }}
-            padding={4}
-        >
+        <Container>
             <Form 
+                text='Fazer Login'
                 setName={setName}
                 error={error} 
                 email={email} 
@@ -77,7 +68,7 @@ function Login() {
                 handleSubmitLogin={handleSubmitLogin} 
                 haveAccount={true}
             />
-        </Box>
+        </Container>
     );
 }
 

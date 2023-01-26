@@ -1,10 +1,9 @@
-import { Box } from "@mui/material";
 import React, {useContext} from "react";
 import { useNavigate } from "react-router-dom";
 
 import { ApiError, createUser } from "../api/";
 
-import {Form} from "../components";
+import {Container, Form} from "../components";
 
 import { ErrorContext, HeaderContext, LoginContext, ValidateContext } from '../context';
 
@@ -60,17 +59,9 @@ function NovaConta() {
     }
 
     return (
-        <Box
-            sx={{
-                width: "40%",
-                height: "70%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center"
-            }}
-            padding={4}
-        >
+        <Container>
             <Form
+                text="Criar conta"
                 error={error}
                 email={email}
                 name={name}
@@ -81,7 +72,7 @@ function NovaConta() {
                 handleSubmitNovaConta={handleSubmitNovaConta}
                 haveAccount={false}
             />
-        </Box>
+        </Container>
     );
 }
 
