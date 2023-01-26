@@ -27,7 +27,7 @@ function Conta() {
 
     function toggleModal(action: ModalOptions){
         setShowModal(action)
-        navigate(`/conta/${userLocalStorage?._id}/modal`)
+        navigate(`/conta/modal/${userLocalStorage?._id}`)
     }
 
     return (

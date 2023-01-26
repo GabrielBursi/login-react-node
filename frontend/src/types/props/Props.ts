@@ -10,7 +10,8 @@ export type FormProps = {
     setPassword: React.Dispatch<React.SetStateAction<string>>,
     handleSubmitLogin?: (e: React.FormEvent<HTMLFormElement>) => void,
     handleSubmitNovaConta?: (e: React.FormEvent<HTMLFormElement>) => void,
-    haveAccount: boolean
+    haveAccount: boolean,
+    text: string
 }
 
 export type HeaderItemProps = {
@@ -31,7 +32,8 @@ export type FooterFormProps = {
 
 export type ErrorInfoProps = {
     error?: string,
-    haveAccount: boolean
+    haveAccount?: boolean,
+    modal?: boolean
 }
 
 export type ModalProps = {
@@ -40,5 +42,6 @@ export type ModalProps = {
     btnText: string,
     action: () => void,
     edit?: boolean,
-    user?: LocalStorage
+    user?: LocalStorage,
+    actionIcon: JSX.Element
 }

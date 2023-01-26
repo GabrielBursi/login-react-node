@@ -1,12 +1,13 @@
 import { useContext } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 
-import { HomePage, ContaPage, LoginPage, NovaContaPage, SobrePage, Error } from '../pages'
+import { HomePage, ContaPage, LoginPage, NovaContaPage, SobrePage, Error, ModalPage } from '../pages'
 
 import { ValidateContext } from '../context/ValidateContext';
 import { ChildrenRoute } from '../types';
 
 function RoutesApp() {
+
     return (
         <Routes>
             <Route path='/' element={<Private><HomePage /></Private>} />
@@ -14,6 +15,7 @@ function RoutesApp() {
             <Route path='/sobre' element={<SobrePage />} />
             <Route path='/criar' element={<NovaContaPage />} />
             <Route path='/conta/:id' element={<Private><ContaPage /></Private>} />
+            <Route path='/conta/modal/:id' element={<Private><ModalPage/></Private>} />
             <Route path='/error' element={<Private><Error /></Private>} />
         </Routes>
     );
