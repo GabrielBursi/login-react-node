@@ -3,9 +3,7 @@ import { useContext, useEffect } from "react";
 import { ErrorContext } from "../../context";
 import { ErrorInfoProps } from "../../types";
 
-
-
-function ErrorInfo({ error, haveAccount }: ErrorInfoProps) {
+function ErrorInfo({ error, haveAccount, modal }: ErrorInfoProps) {
 
     const {setShowErrorInfo} = useContext(ErrorContext)
 
@@ -24,6 +22,17 @@ function ErrorInfo({ error, haveAccount }: ErrorInfoProps) {
             marginBottom={2}
         >
             {error && haveAccount ?
+                <Alert severity="error">
+                    <AlertTitle>{error}</AlertTitle>
+                    Não foi possível fazer o login — <strong>cheque corretamente seus dados!</strong>
+                </Alert>
+                :
+                <Alert severity="warning">
+                    <AlertTitle>{error}</AlertTitle>
+                    Não foi possível criar sua conta — <strong>tente outro email.</strong>
+                </Alert>
+            }
+            {error && modal ? 
                 <Alert severity="error">
                     <AlertTitle>{error}</AlertTitle>
                     Não foi possível fazer o login — <strong>cheque corretamente seus dados!</strong>
