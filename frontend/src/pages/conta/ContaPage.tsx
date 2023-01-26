@@ -4,9 +4,9 @@ import { MdDelete, MdEdit, MdLogout } from 'react-icons/md'
 import { Box, ButtonGroup } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-import { LocalStorageContext, ModalContext, ValidateContext } from '../context';
+import { LocalStorageContext, ModalContext, ValidateContext } from '../../context';
 
-import { ModalOptions } from '../types/Types';
+import { ModalOptions } from '../../types/Types';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';

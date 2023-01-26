@@ -2,11 +2,11 @@ import { useContext, useEffect } from "react";
 import { Box } from "@mui/material";
 import { MdDelete, MdEdit, MdLogout } from 'react-icons/md'
 
-import { ApiError, deleteUserById, editUserById } from "../api";
+import { ApiError, deleteUserById, editUserById } from "../../api";
 
-import { Container, Modal } from "../components";
+import { Container, Modal } from "../../components";
 
-import { ErrorContext, HeaderContext, LocalStorageContext, LoginContext, ModalContext, ValidateContext } from "../context";
+import { ErrorContext, HeaderContext, LocalStorageContext, LoginContext, ModalContext, ValidateContext } from "../../context";
 
 function ModalPage() {
 

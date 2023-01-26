@@ -1,11 +1,11 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { ApiError, login } from '../api';
+import { ApiError, login } from '../../api';
 
-import {Container, Form} from '../components';
+import {Container, Form} from '../../components';
 
-import { ErrorContext, HeaderContext, LoginContext, ValidateContext } from '../context';
+import { ErrorContext, HeaderContext, LoginContext, ValidateContext } from '../../context';
 
 function Login() {
 

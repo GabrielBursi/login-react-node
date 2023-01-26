@@ -1,11 +1,11 @@
 import React, {useContext} from "react";
 import { useNavigate } from "react-router-dom";
 
-import { ApiError, createUser } from "../api/";
+import { ApiError, createUser } from "../../api";
 
-import {Container, Form} from "../components";
+import {Container, Form} from "../../components";
 
-import { ErrorContext, HeaderContext, LoginContext, ValidateContext } from '../context';
+import { ErrorContext, HeaderContext, LoginContext, ValidateContext } from '../../context';
 
 function NovaConta() {
 
