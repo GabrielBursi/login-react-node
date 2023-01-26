@@ -1,4 +1,4 @@
-import { Box, Typography, Link, List, ListItem, ListItemText, Divider } from "@mui/material";
+import { Box, Typography, Link, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, TableFooter, LinearProgress, Pagination } from "@mui/material";
 import { useEffect, useState, useContext } from "react";
 import { ApiError, getAll } from "../api";
 import { ErrorContext } from "../context";
@@ -8,12 +8,14 @@ import {ApiType} from "../types";
 function HomePage() {
 
     const [users, setUsers] = useState<ApiType[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const { alertError } = useContext(ErrorContext)
 
     useEffect(() => {
-        
+        setIsLoading(true)
         getAll().then(data => {
+            setIsLoading(false)
             if(data instanceof ApiError){
                 return alertError(data)
             }else if(data.users.length === 0){
@@ -47,76 +49,48 @@ function HomePage() {
                     </Link>
                 </h2>
             </Typography>
-            <Box
-                sx={{
-                    backgroundColor: "#262636",
-                    width: "50%",
-                    height: "80%",
-                    borderRadius: "10px",
-                    display: "flex",
-                    flexDirection:"column",
-                }}
-            >   
-                <Box
-                    sx={{
-                        height:"10%",
-                        width:"100%",
-                        borderRadius: "10px 10px 0 0",
-                        display:"flex",
-                        justifyContent:"center",
-                        alignItems:"center",
-                        padding:"4% 0"
-                    }}
-                >
-                    <Typography variant="h5" component="h3" color="#fff">
-                        Todos usuarios cadastrados no banco de dados MongoDB:
-                    </Typography>
-                </Box>
-                <Box
-                    sx={{
-                        width:"100%",
-                        height:"100%",
-                        overflowY: "scroll",
-                        padding: "0 2%"
-                    }}
-                >
-                    <List>
-                        {users.length > 0 ? users.map((user, index) => (
-                            <ListItem key={user._id} component="div"
-                                sx={{
-                                    display:"flex",
-                                    flexDirection:"column",
-                                    justifyContent:"flex-start",
-                                    alignItems:"start"
-                                }}
-                            >
-                                <Typography variant="subtitle1" component="span" color="#fff">
-                                    <ListItemText primary={`Usuario: ${index + 1}`} />
-                                </Typography>
-                                <Box sx={{
-                                    display:"flex",
-                                    width:"50%",
-                                    justifyContent:"space-between"
-                                }}>
-                                    <Typography variant="h4" component="p" color="#75ba24">
-                                        <ListItemText primary={`"Nome":`} />
-                                        <ListItemText primary={`"Email":`} />
-                                        <ListItemText primary={`"Senha criptografada":`} />
-                                        <ListItemText primary={`"Data de criação da conta":`} />
-                                    </Typography>
-                                    <Typography variant="h4" component="p" color="#f0e137">
-                                        <ListItemText primary={`"${user.name}"`} />
-                                        <ListItemText primary={`"${user.email}"`} />
-                                        <ListItemText primary={`"${user.password?.slice(0, 10)}"`} />
-                                        <ListItemText primary={`"${user.createAt}"`} />
-                                    </Typography>
-                                </Box>
-                                <Divider flexItem color="#fff"/>
-                            </ListItem>
-                        )) : <h1>Nenhum Usuario cadastrado :(</h1>}
-                    </List>
-                </Box>
-            </Box>
+            <TableContainer component={Paper} variant="outlined" sx={{ m: 2, width: 'auto' }}>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Nome</TableCell>
+                            <TableCell>Email</TableCell>
+                            <TableCell>Senha com hash</TableCell>
+                            <TableCell>Criado em</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {users.map(user => (
+                            <TableRow key={user._id}>
+                                <TableCell>{`${user.name![0].toUpperCase()}${user.name?.substring(1).split(' ')[0]}`}</TableCell>
+                                <TableCell>{user.email}</TableCell>
+                                <TableCell>{user.password?.slice(0,15)}</TableCell>
+                                <TableCell>{user.createAt}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                    <TableFooter>
+                        {isLoading && (
+                            <TableRow >
+                                <TableCell colSpan={4}>
+                                    <LinearProgress variant="indeterminate" />
+                                </TableCell>
+                            </TableRow>
+                        )}
+                        {(users.length > 0 && users.length > 7) && (
+                            <TableRow>
+                                <TableCell colSpan={4}>
+                                    <Pagination
+                                        page={1}
+                                        color="primary"
+                                        count={Math.ceil(users.length / 7)}
+                                    />
+                                </TableCell>
+                            </TableRow>
+                        )}
+                    </TableFooter>
+                </Table>
+            </TableContainer>
         </Box>
     );
 }
