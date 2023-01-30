@@ -14,7 +14,7 @@ function ModalPage() {
     const { showModal, setShowModal } = useContext(ModalContext)
     const { email, password, name, setErro, setEmail, setName, setPassword } = useContext(LoginContext)
     const { setUpperCase } = useContext(HeaderContext)
-    const { alertError } = useContext(ErrorContext)
+    const { alertError, setShowErrorInfo } = useContext(ErrorContext)
     const { getUserLocalStorage, userLocalStorage, setUserLocalStorage } = useContext(LocalStorageContext)
 
     useEffect(() => {
@@ -40,6 +40,7 @@ function ModalPage() {
 
                 if (error) {
                     setErro(error)
+                    setShowErrorInfo(true)
                     setValidate(!validate)
                 } else {
                     setValidate(validate)
@@ -88,7 +89,7 @@ function ModalPage() {
 
 
     const questionEdit = 'Edite suas informações da conta'
-    const infoEdit = 'Você pode editar suas informações quando quiser, nome, email e senha.'
+    const infoEdit = 'Você pode editar suas informações quando quiser, nome, email e senha. (os três campos são obrigatórios)'
     const btnEdit = 'Pronto'
 
     const questionLogout = 'Tem certeza que deseja sair da sua conta?'

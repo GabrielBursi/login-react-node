@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Box, Button, Paper, Typography, TextField, ButtonGroup  } from "@mui/material";
+import { Box, Button, Typography, TextField, ButtonGroup, Divider  } from "@mui/material";
 import { MdOutlineClose } from 'react-icons/md'
 
 import { ErrorContext, LocalStorageContext, LoginContext, ModalContext } from "../../context";
@@ -46,28 +46,36 @@ function Modal({question, info, btnText, action, edit, user, actionIcon}: ModalP
 
                 <Box
                     sx={{
-                        border:"1px solid black",
-                        height:"20%"
+                        height:"30%",
+                        display:"flex",
+                        justifyContent:"space-between",
+                        alignItems:"center"
+
                     }}
                 >
-                    <Typography variant='h2' component="h1" align='center' color="primary" noWrap>
+                    <Typography variant='h2' component="h1" color="primary">
                         {question}
-                        <Button onClick={cancel} size="large"><MdOutlineClose /></Button>
                     </Typography>
+                    <Button onClick={cancel} size="large" sx={{fontSize:'2rem'}}><MdOutlineClose/></Button>
                 </Box>
+                <Divider color="black"/>
                 <Box
                     sx={{
-                        border: "1px solid black",
+                        mt:2,
                         flex:1
                     }}
                 >
-                    <Typography variant='subtitle1' component="span">
-                        {info}
+                    <Typography variant='h5' component="span">
+                        {showErrorInfo ? <ErrorInfo error={error} modal={true} haveAccount={false} /> : info}
                     </Typography>
                     {edit && 
-                        <Box>
-                            {showErrorInfo && <ErrorInfo error={error} modal={true} />}
-                            <form>
+                        <Box
+                            sx={{
+                                height:"60%",
+                                marginTop:2
+                            }}
+                        >
+                            <form style={{ height:'100%' ,display: 'flex', flexDirection:'column', justifyContent:'space-between', marginTop:'1%'}}>
                                 <TextField 
                                     label="Nome"
                                     variant="outlined"
@@ -75,7 +83,8 @@ function Modal({question, info, btnText, action, edit, user, actionIcon}: ModalP
                                     type="text" 
                                     name="name" 
                                     id="name"
-                                    fullWidth 
+                                    fullWidth
+                                    required 
                                     placeholder={user?.name} 
                                     onChange={(e) => setName(e.target.value)} 
                                 />
@@ -85,6 +94,7 @@ function Modal({question, info, btnText, action, edit, user, actionIcon}: ModalP
                                     name="email" 
                                     id="email" 
                                     fullWidth
+                                    required
                                     placeholder={user?.email} 
                                     onChange={(e) => setEmail(e.target.value)} 
                                     autoComplete='off'
@@ -94,19 +104,24 @@ function Modal({question, info, btnText, action, edit, user, actionIcon}: ModalP
                                     type="password" 
                                     name="senha" 
                                     id="senha"
-                                    fullWidth 
+                                    fullWidth
+                                    required 
                                     onChange={(e) => setPassword(e.target.value)} 
                                     autoComplete='off'
                                 />
                             </form>
                         </Box>
                     }
-                    <Box>
+                    <Box
+                        sx={{
+                            flex:2,
+                            mt:2
+                        }}
+                    >
                         <ButtonGroup>
-
+                            <Button type="button" onClick={action} endIcon={actionIcon}>{btnText}</Button>
+                            <Button type="button" onClick={cancel} endIcon={<MdOutlineClose/>}>Cancelar</Button>
                         </ButtonGroup>
-                        <Button type="button" onClick={action} endIcon={actionIcon}>{btnText}</Button>
-                        <Button type="button" onClick={cancel} endIcon={<MdOutlineClose/>}>Cancelar</Button>
                     </Box>
                 </Box>
             </Box>

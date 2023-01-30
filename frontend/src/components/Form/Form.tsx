@@ -64,7 +64,7 @@ function Form({
                         height:"100%"
                     }}
                     >
-                    <form action="#" onSubmit={haveAccount ? handleSubmitLogin : handleSubmitNovaConta} style={{marginTop:"10%", height:"100%"}}>
+                    <form action="#" onSubmit={haveAccount ? handleSubmitLogin : handleSubmitNovaConta} style={{marginTop:"2%", height:"100%"}}>
 
                         <Box
                             sx={{
@@ -75,7 +75,7 @@ function Form({
                             }}
                         >
 
-                            {showErrorInfo && <ErrorInfo error={error} haveAccount={haveAccount}/>}
+                            {showErrorInfo && <ErrorInfo error={error} haveAccount={haveAccount} modal={false}/>}
                             {!haveAccount && 
                                 
                                 <TextField 

@@ -19,7 +19,7 @@ function createUser(req, res){
     const {name, email, password} = req.body
 
     if (!name ||!email ||!password ) {
-        return res.json({ error: 'Informações inválidas' })
+        return res.json({ error: 'Informações inválidas.' })
     }
 
     try{
@@ -52,7 +52,7 @@ async function login(req, res){
     const {email, password} = req.body
 
     if (!email || !password) {
-        return res.json({ error: 'Informações inválidas' })
+        return res.json({ error: 'Informações inválidas.' })
     }
 
     
@@ -79,7 +79,7 @@ function editUser(req, res) {
     const { name, email, password } = req.body
 
     if (!email || !password || !name) {
-        res.json({ error: "Informações invalidas" })
+        res.json({ error: "Informações inválidas." })
     } else {
 
         try {

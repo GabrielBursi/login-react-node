@@ -17,6 +17,7 @@ function RoutesApp() {
             <Route path='/conta/:id' element={<Private><ContaPage /></Private>} />
             <Route path='/conta/modal/:id' element={<Private><ModalPage/></Private>} />
             <Route path='/error' element={<Private><Error /></Private>} />
+            <Route path='*' element={<Navigate to='/' />} />
         </Routes>
     );
 }
