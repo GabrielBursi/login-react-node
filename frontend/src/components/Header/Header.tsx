@@ -62,7 +62,7 @@ function Header() {
                 {validate && <HeaderItem label='Home' to='/' />}
                 {validate ? <HeaderItem label='Minha conta' to={`/conta/${userLocalStorage?._id}`} /> : <HeaderItem label='Login' to='/login' />}
                 <HeaderItem label='Sobre o projeto' to='/sobre' />
-                <Button href="https://github.com/GabrielBursi/login-react-node" variant="contained">Repositório GitHub</Button>
+                <Button href="https://github.com/GabrielBursi/login-react-node" variant="contained" size='large'>Repositório GitHub</Button>
             </Stack>
         </Box>
     );

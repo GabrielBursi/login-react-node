@@ -14,7 +14,7 @@ function Error() {
                 }}
             >
                 
-                <Typography variant='h1' component="h1" color="primary">
+                <Typography variant='h2' component="h1" color="primary">
                     400
                 </Typography>
                 <Typography variant='h3' component="p">
