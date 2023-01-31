@@ -15,10 +15,11 @@ function ErrorContextProvider({children} : Children) {
     const {setUpperCase} = useContext(HeaderContext)
 
     const alertError = useCallback((data: ApiError) => {
+        alert(`Ops! Aconteceu um erro: ${data.message}`)
         localStorage.removeItem('login')
-        navigate('/error')
-        alert(`Página de erro diz ${data.message}`)
         setUpperCase('')
+        setShowErrorInfo(true)
+        navigate('/error')
     },[])
 
     return (

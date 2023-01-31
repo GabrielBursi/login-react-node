@@ -5,17 +5,17 @@ import LocalStorageContextProvider from "./LocalStorageContext";
 function ContextProvider({children}: Children) {
     return (
         <LocalStorageContextProvider>
-            <ErrorContextProvider>
-                <ValidateContextProvider>
-                    <HeaderContextProvider>
+            <HeaderContextProvider>
+                <ErrorContextProvider>
+                    <ValidateContextProvider>
                         <LoginContextProvider>
                             <ModalContextProvider>
                                 {children}
                             </ModalContextProvider>
                         </LoginContextProvider>
-                    </HeaderContextProvider>
-                </ValidateContextProvider>
-            </ErrorContextProvider>
+                    </ValidateContextProvider>
+                </ErrorContextProvider>
+            </HeaderContextProvider>
         </LocalStorageContextProvider>
     );
 }
