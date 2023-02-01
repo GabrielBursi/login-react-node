@@ -45,3 +45,10 @@ export type ModalProps = {
     user?: LocalStorage,
     actionIcon: JSX.Element
 }
+
+export type ListItemProps = {
+    to: string,
+    label: string,
+    icon: string,
+    onClick?: () => void
+}

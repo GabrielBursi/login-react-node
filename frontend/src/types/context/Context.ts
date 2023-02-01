@@ -54,3 +54,16 @@ export type TMediaQueryContext = {
     xlDown: boolean,
     theme: Theme
 }
+
+export type DrawerOptions = {
+    icon: string,
+    path: string,
+    label: string
+}
+
+export type TDrawerContext = {
+    isDrawerOpen: boolean,
+    toggleDrawer: () => void,
+    drawerOptions: DrawerOptions[],
+    toggleDrawerOptions: (newDrawerOptions: DrawerOptions[]) => void
+}

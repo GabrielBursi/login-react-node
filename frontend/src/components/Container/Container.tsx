@@ -6,7 +6,7 @@ function Container({children}: Children) {
         <Box
             sx={{
                 width: "100%",
-                height: "90vh",
+                height: "88vh",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",

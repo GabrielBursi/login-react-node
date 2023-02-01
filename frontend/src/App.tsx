@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import './app.css'
 
 import RoutesApp from "./routes/Routes";
-import {Header} from './components';
+import {Header, SideBar} from './components';
 import { ContextProvider } from './context';
 import { Box } from '@mui/material';
 
@@ -22,7 +22,9 @@ function App() {
             }}
           >
             <Header/>
-            <RoutesApp/>
+            <SideBar>
+              <RoutesApp/>
+            </SideBar>
           </Box>
         </ContextProvider>
       </BrowserRouter>

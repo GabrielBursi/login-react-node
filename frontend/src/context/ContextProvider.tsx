@@ -6,7 +6,8 @@ import {
     HeaderContextProvider, 
     ErrorContextProvider, 
     MediaQueryContextProvider, 
-    LocalStorageContextProvider
+    LocalStorageContextProvider,
+    DrawerContextProvider
 } from "./";
 
 function ContextProvider({children}: Children) {
@@ -14,15 +15,17 @@ function ContextProvider({children}: Children) {
         <LocalStorageContextProvider>
             <MediaQueryContextProvider>
                 <HeaderContextProvider>
-                    <ErrorContextProvider>
-                        <ValidateContextProvider>
-                            <LoginContextProvider>
-                                <ModalContextProvider>
-                                    {children}
-                                </ModalContextProvider>
-                            </LoginContextProvider>
-                        </ValidateContextProvider>
-                    </ErrorContextProvider>
+                    <DrawerContextProvider>
+                        <ErrorContextProvider>
+                            <ValidateContextProvider>
+                                <LoginContextProvider>
+                                    <ModalContextProvider>
+                                        {children}
+                                    </ModalContextProvider>
+                                </LoginContextProvider>
+                            </ValidateContextProvider>
+                        </ErrorContextProvider>
+                    </DrawerContextProvider>
                 </HeaderContextProvider>
             </MediaQueryContextProvider>
         </LocalStorageContextProvider>

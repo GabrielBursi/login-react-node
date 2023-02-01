@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Box, Button, Stack, Typography } from '@mui/material';
+import { Box, Button, Icon, IconButton, Stack, Typography } from '@mui/material';
 import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { HeaderContext, LocalStorageContext, MediaQueryContext, ValidateContext } from '../../context';
+import { DrawerContext, HeaderContext, LocalStorageContext, MediaQueryContext, ValidateContext } from '../../context';
 
 import HeaderItem from './HeaderItem';
 
@@ -13,6 +13,7 @@ function Header() {
     const { setUpperCase, upperCase } = useContext(HeaderContext)
     const { getUserLocalStorage, userLocalStorage } = useContext(LocalStorageContext)
     const { smDown, lgDown, mdDown } = useContext(MediaQueryContext)
+    const { toggleDrawer } = useContext(DrawerContext)
 
     const navigate = useNavigate()
 
@@ -27,7 +28,7 @@ function Header() {
         <Box 
             sx={{
                 width: "100wh", 
-                height: "10vh", 
+                height: "12vh", 
                 display: "flex", 
                 justifyContent:"space-between", 
                 alignItems:"center", 
@@ -50,8 +51,10 @@ function Header() {
                     <span>{upperCase}</span>
                 </Typography>
             </Box>
-            {mdDown ? 
-                <p>Drawer</p>
+            {(mdDown && validate) ? 
+                <IconButton onClick={toggleDrawer}>
+                    <Icon>menu</Icon>
+                </IconButton>
                 :
                 <Stack
                     sx={{
@@ -67,7 +70,7 @@ function Header() {
                     {validate && <HeaderItem label='Home' to='/' />}
                     {validate ? <HeaderItem label='Minha conta' to={`/conta/${userLocalStorage?._id}`} /> : <HeaderItem label='Login' to='/login' />}
                     <HeaderItem label='Sobre o projeto' to='/sobre' />
-                    <Button href="https://github.com/GabrielBursi/login-react-node" variant="contained" size={lgDown ? 'small' : 'large'}>Repositório GitHub</Button>
+                    {!smDown && <Button href="https://github.com/GabrielBursi/login-react-node" variant="contained" size={lgDown ? 'small' : 'large'}>Repositório GitHub</Button>}
                 </Stack>
             }
         </Box>

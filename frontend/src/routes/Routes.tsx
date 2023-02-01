@@ -1,13 +1,36 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 
 import { HomePage, ContaPage, LoginPage, NovaContaPage, SobrePage, Error, ModalPage } from '../pages'
 import { ValidateContext } from '../context/ValidateContext';
 import { Children } from '../types';
-import { ErrorContext } from '../context';
+import { DrawerContext, ErrorContext } from '../context';
 
 
 function RoutesApp() {
+
+    const { toggleDrawerOptions } = useContext(DrawerContext)
+
+    useEffect(() => {
+        toggleDrawerOptions([
+            {
+                icon: "home",
+                label: "Página inicial",
+                path: "/"
+            },
+            {
+                icon: 'account_circle',
+                path: '/conta/:id',
+                label: 'Minha conta',
+            },
+            {
+                icon: "help",
+                label: "Sobre o projeto",
+                path: "/sobre"
+            }
+        ])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         <Routes>

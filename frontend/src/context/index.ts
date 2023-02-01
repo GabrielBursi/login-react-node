@@ -21,3 +21,6 @@ export { LocalStorageContext } from './LocalStorageContext'
 
 export { default as MediaQueryContextProvider } from './MediaQueryContext'
 export { MediaQueryContext } from './MediaQueryContext'
+
+export { default as DrawerContextProvider } from './DrawerContext'
+export { DrawerContext } from './DrawerContext'
