@@ -15,7 +15,7 @@ function MediaQueryContextProvider({ children }: Children) {
     const xlDown = useMediaQuery(theme.breakpoints.down('xl'));
 
     return (
-        <MediaQueryContext.Provider value={{ xsDown, lgDown, mdDown, smDown, xlDown }}>
+        <MediaQueryContext.Provider value={{ xsDown, lgDown, mdDown, smDown, xlDown, theme }}>
             {children}
         </MediaQueryContext.Provider>
     );

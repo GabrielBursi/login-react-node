@@ -1,6 +1,7 @@
 import { LocalStorage, NavigateFunction } from './../Types';
 import { ApiError } from "../../api"
 import { ModalOptions } from "../Types"
+import { Theme } from '@mui/material';
 
 export type TValidateContext = {
     validate: boolean,
@@ -51,4 +52,5 @@ export type TMediaQueryContext = {
     mdDown: boolean,
     lgDown: boolean,
     xlDown: boolean,
+    theme: Theme
 }

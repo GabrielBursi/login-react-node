@@ -3,7 +3,7 @@ import { Box, Button, Stack, Typography } from '@mui/material';
 import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { HeaderContext, LocalStorageContext, ValidateContext } from '../../context';
+import { HeaderContext, LocalStorageContext, MediaQueryContext, ValidateContext } from '../../context';
 
 import HeaderItem from './HeaderItem';
 
@@ -12,7 +12,7 @@ function Header() {
     const { validate } = useContext(ValidateContext)
     const { setUpperCase, upperCase } = useContext(HeaderContext)
     const { getUserLocalStorage, userLocalStorage } = useContext(LocalStorageContext)
-
+    const { smDown, lgDown, mdDown } = useContext(MediaQueryContext)
 
     const navigate = useNavigate()
 
@@ -40,33 +40,36 @@ function Header() {
                     height:"100%",
                     display: "flex",
                     justifyContent:"center",
-                    alignItems:"center",
                     flexDirection:"column",
                 }}
             >
-                <Typography variant="h3" component="h2" color="primary" onClick={() => navigate('/')}>
+                <Typography variant={smDown ? 'h5' : mdDown ? 'h4' : 'h2'} color="primary" onClick={() => navigate('/')} noWrap>
                     My API
                 </Typography>
-                <Typography variant='subtitle1' component="span">
+                <Typography variant={smDown ? 'caption' : 'subtitle1'} component="span" noWrap>
                     <span>{upperCase}</span>
                 </Typography>
             </Box>
-            <Stack
-                sx={{
-                    minWidth: "40%",
-                    height: "100%",
-                    display:"flex",
-                    alignItems: "center",
-                    justifyContent:"center",
-                }}
-                direction="row"
-                spacing={2}
-            >
-                {validate && <HeaderItem label='Home' to='/' />}
-                {validate ? <HeaderItem label='Minha conta' to={`/conta/${userLocalStorage?._id}`} /> : <HeaderItem label='Login' to='/login' />}
-                <HeaderItem label='Sobre o projeto' to='/sobre' />
-                <Button href="https://github.com/GabrielBursi/login-react-node" variant="contained" size='large'>Repositório GitHub</Button>
-            </Stack>
+            {mdDown ? 
+                <p>Drawer</p>
+                :
+                <Stack
+                    sx={{
+                        minWidth: "40%",
+                        height: "100%",
+                        display:"flex",
+                        alignItems: "center",
+                        justifyContent:"center",
+                    }}
+                    direction="row"
+                    spacing={2}
+                >
+                    {validate && <HeaderItem label='Home' to='/' />}
+                    {validate ? <HeaderItem label='Minha conta' to={`/conta/${userLocalStorage?._id}`} /> : <HeaderItem label='Login' to='/login' />}
+                    <HeaderItem label='Sobre o projeto' to='/sobre' />
+                    <Button href="https://github.com/GabrielBursi/login-react-node" variant="contained" size={lgDown ? 'small' : 'large'}>Repositório GitHub</Button>
+                </Stack>
+            }
         </Box>
     );
 }
