@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Box, Button, Stack, Typography } from '@mui/material';
 import { useContext, useEffect } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { HeaderContext, LocalStorageContext, ValidateContext } from '../../context';
 
@@ -12,6 +12,9 @@ function Header() {
     const { validate } = useContext(ValidateContext)
     const { setUpperCase, upperCase } = useContext(HeaderContext)
     const { getUserLocalStorage, userLocalStorage } = useContext(LocalStorageContext)
+
+
+    const navigate = useNavigate()
 
     useEffect(() => {
 
@@ -33,7 +36,7 @@ function Header() {
         >
             <Box 
                 sx={{
-                    width: "20%",
+                    minWidth: "30%",
                     height:"100%",
                     display: "flex",
                     justifyContent:"center",
@@ -41,8 +44,8 @@ function Header() {
                     flexDirection:"column",
                 }}
             >
-                <Typography variant="h5" component="h2">
-                    <RouterLink to='/'><h1>My API </h1></RouterLink>
+                <Typography variant="h3" component="h2" color="primary" onClick={() => navigate('/')}>
+                    My API
                 </Typography>
                 <Typography variant='subtitle1' component="span">
                     <span>{upperCase}</span>
@@ -50,7 +53,7 @@ function Header() {
             </Box>
             <Stack
                 sx={{
-                    width: "40%",
+                    minWidth: "40%",
                     height: "100%",
                     display:"flex",
                     alignItems: "center",

@@ -44,3 +44,11 @@ export type TLocalStorageContext = {
         navigate?: NavigateFunction
     ) => void
 }
+
+export type TMediaQueryContext = {
+    xsDown: boolean,
+    smDown: boolean,
+    mdDown: boolean,
+    lgDown: boolean,
+    xlDown: boolean,
+}

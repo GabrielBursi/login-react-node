@@ -18,3 +18,6 @@ export { ErrorContext } from './ErrorContext'
 
 export { default as LocalStorageContextProvider } from './LocalStorageContext'
 export { LocalStorageContext } from './LocalStorageContext'
+
+export { default as MediaQueryContextProvider } from './MediaQueryContext'
+export { MediaQueryContext } from './MediaQueryContext'

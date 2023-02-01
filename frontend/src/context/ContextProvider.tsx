@@ -1,21 +1,30 @@
 import { Children } from "../types";
-import { ValidateContextProvider, LoginContextProvider, ModalContextProvider, HeaderContextProvider, ErrorContextProvider } from "./";
-import LocalStorageContextProvider from "./LocalStorageContext";
+import { 
+    ValidateContextProvider, 
+    LoginContextProvider, 
+    ModalContextProvider, 
+    HeaderContextProvider, 
+    ErrorContextProvider, 
+    MediaQueryContextProvider, 
+    LocalStorageContextProvider
+} from "./";
 
 function ContextProvider({children}: Children) {
     return (
         <LocalStorageContextProvider>
-            <HeaderContextProvider>
-                <ErrorContextProvider>
-                    <ValidateContextProvider>
-                        <LoginContextProvider>
-                            <ModalContextProvider>
-                                {children}
-                            </ModalContextProvider>
-                        </LoginContextProvider>
-                    </ValidateContextProvider>
-                </ErrorContextProvider>
-            </HeaderContextProvider>
+            <MediaQueryContextProvider>
+                <HeaderContextProvider>
+                    <ErrorContextProvider>
+                        <ValidateContextProvider>
+                            <LoginContextProvider>
+                                <ModalContextProvider>
+                                    {children}
+                                </ModalContextProvider>
+                            </LoginContextProvider>
+                        </ValidateContextProvider>
+                    </ErrorContextProvider>
+                </HeaderContextProvider>
+            </MediaQueryContextProvider>
         </LocalStorageContextProvider>
     );
 }
