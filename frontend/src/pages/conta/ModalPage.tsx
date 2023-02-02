@@ -20,6 +20,7 @@ function ModalPage() {
     useEffect(() => {
         getUserLocalStorage()
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [validate]);
 
     function editUser() {
