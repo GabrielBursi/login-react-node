@@ -88,17 +88,17 @@ function ModalPage() {
     }
 
 
-    const questionEdit = 'Edite suas informações da conta'
-    const infoEdit = 'Você pode editar suas informações quando quiser, nome, email e senha. (os três campos são obrigatórios)'
+    const questionEdit = 'Edite sua conta'
+    const infoEdit = 'Você pode editar suas informações quando quiser, nome, email e senha.'
     const btnEdit = 'Pronto'
 
     const questionLogout = 'Tem certeza que deseja sair da sua conta?'
     const infoLogout = 'Isso fará com que você tenha que fazer login novamente para acessar a página.'
-    const btnLogout = 'Sair da conta'
+    const btnLogout = 'Sair'
 
     const questionDelete = 'Tem certeza que deseja apagar sua conta?'
     const infoDelete = 'Isso fará com que você tenha que criar outra conta para acessar a página.'
-    const btnDelete = 'Apagar conta'
+    const btnDelete = 'Apagar'
 
     return (
         <Box

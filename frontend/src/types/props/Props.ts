@@ -55,7 +55,7 @@ export type ListItemProps = {
 }
 
 export type TypographyComponentProps = {
-    text: string,
+    text: string | JSX.Element,
     variant: 'h1' | 'h2' | "h3" | 'h4' | 'h5' | 'h6' | 'subtitle1' | 'subtitle2'
     color?: 'primary' | 'black',
     sx?: SxProps<Theme>,
@@ -64,7 +64,7 @@ export type TypographyComponentProps = {
 }
 
 export type TextProps = {
-    text: string,
+    text: string | JSX.Element,
     sx?: SxProps<Theme>,
     onClick?: () => void,
     noWrap?: boolean,

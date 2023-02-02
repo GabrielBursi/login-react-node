@@ -1,12 +1,14 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Box, Button, Typography, TextField, ButtonGroup, Divider  } from "@mui/material";
+import { Box, Button, TextField, Divider, Grid  } from "@mui/material";
 import { MdOutlineClose } from 'react-icons/md'
 
-import { ErrorContext, LocalStorageContext, LoginContext, ModalContext } from "../../context";
+import { ErrorContext, LocalStorageContext, LoginContext, MediaQueryContext, ModalContext } from "../../context";
 
 import { ModalProps } from "../../types";
 import ErrorInfo from "./ErrorInfo";
+import Title from "../typography/Title";
+import TextBody from "../typography/TextBody";
 
 function Modal({question, info, btnText, action, edit, user, actionIcon}: ModalProps) {
 
@@ -14,6 +16,7 @@ function Modal({question, info, btnText, action, edit, user, actionIcon}: ModalP
     const { setEmail, setPassword, setName, error, setErro } = useContext(LoginContext)
     const { userLocalStorage } = useContext(LocalStorageContext)
     const { showErrorInfo } = useContext(ErrorContext)
+    const { smDown, mdDown } = useContext(MediaQueryContext)
 
     const navigate = useNavigate()
 
@@ -46,33 +49,35 @@ function Modal({question, info, btnText, action, edit, user, actionIcon}: ModalP
 
                 <Box
                     sx={{
-                        height:"30%",
+                        height: question === 'Edite sua conta' ? "10%" :"20%",
                         display:"flex",
                         justifyContent:"space-between",
-                        alignItems:"center"
+                        alignItems:"center",
 
                     }}
                 >
-                    <Typography variant='h2' component="h1" color="primary">
-                        {question}
-                    </Typography>
-                    <Button onClick={cancel} size="large" sx={{fontSize:'2rem'}}><MdOutlineClose/></Button>
+                    <Title text={question}/>
+                    <Button
+                        onClick={cancel} 
+                        size={smDown ? 'small' : mdDown ? 'medium' : 'large'} 
+                        sx={{ fontSize: smDown ? '20px' : mdDown ? '30px' : '40px' }}
+                    >
+                        <MdOutlineClose/>
+                    </Button>
                 </Box>
-                <Divider color="black"/>
+                <Divider color="black" />
                 <Box
                     sx={{
                         mt:2,
                         flex:1
                     }}
                 >
-                    <Typography variant='h5' component="span">
-                        {showErrorInfo ? <ErrorInfo error={error} modal={true} haveAccount={false} /> : info}
-                    </Typography>
+                    <TextBody text={showErrorInfo ? <ErrorInfo error={error} modal={true} haveAccount={false} /> : info} />
                     {edit && 
                         <Box
                             sx={{
-                                height:"60%",
-                                marginTop:2
+                                height:mdDown ? '35%' : '45%',
+                                marginTop:2,
                             }}
                         >
                             <form style={{ height:'100%' ,display: 'flex', flexDirection:'column', justifyContent:'space-between', marginTop:'1%'}}>
@@ -118,10 +123,14 @@ function Modal({question, info, btnText, action, edit, user, actionIcon}: ModalP
                             mt:2
                         }}
                     >
-                        <ButtonGroup>
-                            <Button type="button" onClick={action} endIcon={actionIcon}>{btnText}</Button>
-                            <Button type="button" onClick={cancel} endIcon={<MdOutlineClose/>}>Cancelar</Button>
-                        </ButtonGroup>
+                        <Grid container spacing={2}>
+                            <Grid item xs={6} sm={6} md={4} >
+                                <Button size={smDown ? 'medium' : 'large'} endIcon={actionIcon} variant='outlined' fullWidth onClick={action}>{btnText}</Button>
+                            </Grid>
+                            <Grid item xs={6} sm={6} md={4} >
+                                <Button size={smDown ? 'medium' : 'large'} endIcon={<MdOutlineClose/>} variant='outlined' fullWidth onClick={cancel}>cancelar</Button>
+                            </Grid>
+                        </Grid>
                     </Box>
                 </Box>
             </Box>
