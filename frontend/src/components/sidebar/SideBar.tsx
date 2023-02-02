@@ -7,7 +7,7 @@ import ListItem from './ListItem';
 
 function SideBar({ children }: Children) {
 
-    const { theme, mdDown } = useContext(MediaQueryContext)
+    const { theme, lgDown } = useContext(MediaQueryContext)
     const { drawerOptions, toggleDrawer, isDrawerOpen } = useContext(DrawerContext)
     
     return (
@@ -25,7 +25,7 @@ function SideBar({ children }: Children) {
                                     icon={option.icon}
                                     label={option.label}
                                     to={option.path}
-                                    onClick={mdDown ? toggleDrawer : undefined}
+                                    onClick={lgDown ? toggleDrawer : undefined}
                                 />
                             ))}
                         </List>

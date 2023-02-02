@@ -1,9 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Box, Button, Icon, IconButton, Stack, Typography } from '@mui/material';
+import { Box, Button, Icon, IconButton, Stack } from '@mui/material';
 import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { DrawerContext, HeaderContext, LocalStorageContext, MediaQueryContext, ValidateContext } from '../../context';
+import TextBody from '../typography/TextBody';
+import Title from '../typography/Title';
 
 import HeaderItem from './HeaderItem';
 
@@ -12,7 +14,7 @@ function Header() {
     const { validate } = useContext(ValidateContext)
     const { setUpperCase, upperCase } = useContext(HeaderContext)
     const { getUserLocalStorage, userLocalStorage } = useContext(LocalStorageContext)
-    const { smDown, lgDown, mdDown } = useContext(MediaQueryContext)
+    const { smDown, lgDown } = useContext(MediaQueryContext)
     const { toggleDrawer } = useContext(DrawerContext)
 
     const navigate = useNavigate()
@@ -44,14 +46,10 @@ function Header() {
                     flexDirection:"column",
                 }}
             >
-                <Typography variant={smDown ? 'h5' : mdDown ? 'h4' : 'h2'} color="primary" onClick={() => navigate('/')} noWrap>
-                    My API
-                </Typography>
-                <Typography variant={smDown ? 'caption' : 'subtitle1'} component="span" noWrap>
-                    <span>{upperCase}</span>
-                </Typography>
+                <Title text='My API' onClick={() => navigate('/')} sx={{cursor:'pointer'}} noWrap/>
+                <TextBody text={upperCase ? upperCase : ''} noWrap/>
             </Box>
-            {(mdDown && validate) ? 
+            {(lgDown && validate) ? 
                 <IconButton onClick={toggleDrawer}>
                     <Icon>menu</Icon>
                 </IconButton>

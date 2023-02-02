@@ -15,7 +15,7 @@ function Sobre() {
             >
                 <Box display="flex" gap={2} flexDirection="column">
                     <Box>
-                        <Title text="Sobre o projeto"/>
+                        <Title text="Sobre o projeto" noWrap/>
                     </Box>
                     <Box flex={1} display="flex" gap={2} flexDirection="column">
                         <TextBody text='A ideia principal do projeto é deixar a página principal, onde contém os dados da API, acessível apenas para quem estiver logado em uma conta.'/>
@@ -24,7 +24,7 @@ function Sobre() {
                 </Box>
                 <Box display="flex" gap={2} flexDirection="column">
                     <Box>
-                        <Title text="Tecnologias usadas:" />
+                        <Title text="Tecnologias usadas:" noWrap/>
                     </Box>
                     <Box>
                         <TextBody text="React com TypeScript - Material UI - React Router Dom - Axios -NodeJS(Express) - MongoDB"/>
