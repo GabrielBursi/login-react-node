@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useContext } from 'react';
 import { MdDelete, MdEdit, MdLogout } from 'react-icons/md'
-import { Box, Button, ButtonGroup, Typography } from '@mui/material';
+import { Box, Button, ButtonGroup } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 import { LocalStorageContext, MediaQueryContext, ModalContext, ValidateContext } from '../../context';
 import { ModalOptions } from '../../types/Types';
-import { Container, TypographyComponent } from '../../components';
+import { Container, TextBody, Title } from '../../components';
 
 function Conta() {
 
@@ -40,7 +40,7 @@ function Conta() {
                     alignItems: "center",
                 }}
             >
-                <TypographyComponent text='Minha Conta' variant={smDown ? 'h4' : mdDown ? 'h3' : 'h2'}/>
+                <Title text='Minha Conta'/>
                 <Box
                     sx={{
                         width: "100%",
@@ -59,9 +59,11 @@ function Conta() {
                             justifyContent:"center"
                         }}
                     >
-                        <Typography
-                            variant='h5'
-                            component='p'
+                        <TextBody
+                            text={` Nome: 
+                                    Email: 
+                                    Conta criada em:`
+                                }
                             sx={{
                                 width: "30%",
                                 height: "100%",
@@ -70,14 +72,14 @@ function Conta() {
                                 justifyContent: "space-evenly",
                                 alignItems: "center",
                             }}
-                        >
-                            <p><strong>Nome:</strong></p>  
-                            <p><strong>Email:</strong></p>
-                            <p><strong>Conta criada em:</strong></p>
-                        </Typography>
-                        <Typography
-                            variant='h5'
-                            component='p'
+                        />
+                        <TextBody
+                            text=
+                                {
+                                    `${userLocalStorage?.name} 
+                                    ${userLocalStorage?.email}
+                                    ${userLocalStorage?.createAt}`
+                                }
                             sx={{
                                 width: "30%",
                                 height: "100%",
@@ -86,11 +88,8 @@ function Conta() {
                                 justifyContent: "space-evenly",
                                 alignItems: "center",
                             }}
-                        >
-                            <p><strong>{userLocalStorage?.name}</strong></p>
-                            <p><strong>{userLocalStorage?.email}</strong></p>
-                            <p><strong>{userLocalStorage?.createAt}</strong></p>
-                        </Typography>
+                        />
+                        
                     </Box>
                     <Box
                         sx={{
@@ -101,7 +100,7 @@ function Conta() {
                             alignItems:"center"
                         }}
                     >
-                        <ButtonGroup size="large" aria-label="large button group">
+                        <ButtonGroup size={smDown ? 'small' : mdDown ? 'medium' : 'large'} aria-label="large button group">
                             <Button type="button" onClick={() => { toggleModal('editar') }} endIcon={<MdEdit/>}>Editar</Button>
                             <Button type="button" onClick={() => { toggleModal('sair') }} endIcon={<MdLogout/>}>Sair</Button>
                             <Button type="button" onClick={() => { toggleModal('apagar') }} endIcon={<MdDelete/>}>Apagar Conta</Button>
