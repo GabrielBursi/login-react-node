@@ -52,3 +52,9 @@ export type ListItemProps = {
     icon: string,
     onClick?: () => void
 }
+
+export type TypographyComponentProps = {
+    text: string,
+    variant: 'h1' | 'h2' | "h3" | 'h4' | 'h5' | 'h6' | 'subtitle1' | 'subtitle2'
+    color?: 'primary' | 'black'
+}

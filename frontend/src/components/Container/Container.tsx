@@ -1,7 +1,12 @@
 import { Box, Paper } from "@mui/material";
+import { useContext } from "react";
+import { MediaQueryContext } from "../../context";
 import { Children } from "../../types";
 
 function Container({children}: Children) {
+
+    const { mdDown, smDown } = useContext(MediaQueryContext)
+
     return (
         <Box
             sx={{
@@ -16,8 +21,8 @@ function Container({children}: Children) {
             <Box
                 component={Paper}
                 sx={{
-                    width: "40%",
-                    height: "70%",
+                    width: mdDown ? "90%" : "80%",
+                    height: smDown ? "100%" : mdDown ? "90%" : "80%",
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",

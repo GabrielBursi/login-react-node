@@ -1,36 +1,47 @@
+import { useContext } from "react";
 import { Box } from "@mui/material";
-import Typography from "@mui/material/Typography";
-import { Container } from "../components";
+import { Container, TypographyComponent } from "../components";
+import { MediaQueryContext } from "../context";
 
 function Sobre() {
+
+    const { mdDown, smDown } = useContext(MediaQueryContext)
+    
     return (
         <Container>
-            <Box display="flex" gap={2} flexDirection="column">
+            <Box 
+                sx={{
+                    height: "100%",
+                    display:"flex", 
+                    gap:2, 
+                    flexDirection:"column",
+                    justifyContent:"start",
+                }}
+            >
                 <Box display="flex" gap={2} flexDirection="column">
                     <Box>
-                        <Typography color='primary' variant='h2'>
-                            Sobre o projeto
-                        </Typography>
+                        <TypographyComponent color="primary" text="Sobre o Projeto" variant={smDown ? 'h4' : mdDown ? 'h3' : 'h2'} />
                     </Box>
                     <Box flex={1} display="flex" gap={2} flexDirection="column">
-                        <Typography variant='h5'>
-                            A ideia principal do projeto é deixar a página principal, onde contém os dados da API, acessível apenas para quem estiver logado em uma conta.
-                        </Typography>
-                        <Typography variant='h5'>
-                            A autenticação acontece pelo back-end que retorna para o usuário um objeto com os dados da conta com uma propriedade <i>validate</i>, caso o login exista ou caso ele crie uma conta. O front-end utiliza esses dados para salvar em Local Storage e validar se o usuário está logado ou não.
-                        </Typography>
+                        <TypographyComponent 
+                            text='A ideia principal do projeto é deixar a página principal, onde contém os dados da API, acessível apenas para quem estiver logado em uma conta.'
+                            variant={smDown ? 'subtitle1' : mdDown ? 'h6' : 'h5'}
+                        />
+                        <TypographyComponent
+                            text='A autenticação acontece pelo back-end que retorna para o usuário um objeto com os dados da conta com uma propriedade validate, caso o login exista ou caso ele crie uma conta. O front-end utiliza esses dados para salvar em Local Storage e validar se o usuário está logado ou não.'
+                            variant={smDown ? 'subtitle1' : mdDown ? 'h6' : 'h5'}
+                        />
                     </Box>
                 </Box>
                 <Box display="flex" gap={2} flexDirection="column">
                     <Box>
-                        <Typography color='primary' variant='h3'>
-                            Tecnologias:
-                        </Typography>
+                        <TypographyComponent color="primary" text="Tecnologias usadas:" variant={smDown ? 'h5' : mdDown ? 'h4' : 'h3'} />
                     </Box>
                     <Box>
-                        <Typography variant='h5'>
-                            React com TypeScript - Material UI - React Router Dom - Axios -NodeJS(Express) - MongoDB
-                        </Typography>
+                        <TypographyComponent
+                            text='React com TypeScript - Material UI - React Router Dom - Axios -NodeJS(Express) - MongoDB'
+                            variant={smDown ? 'subtitle1' : mdDown ? 'h6' : 'h5'}
+                        />
                     </Box>
                 </Box>
             </Box>

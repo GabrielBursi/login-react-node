@@ -33,7 +33,7 @@ function SideBar({ children }: Children) {
                 </Box>
             </Drawer>
 
-            <Box height='100vh' marginRight={mdDown ? 0 : theme.spacing(28)}>
+            <Box height='100vh'>
                 {children}
             </Box>
         </>
