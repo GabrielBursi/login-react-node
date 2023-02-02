@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import { TypographyComponentProps } from "../types";
+import { TypographyComponentProps } from "../../types";
 
 function TypographyComponent({ text, variant, color }: TypographyComponentProps) {
     return (
