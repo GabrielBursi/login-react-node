@@ -10,27 +10,48 @@ import { DrawerContext, ErrorContext } from '../context';
 function RoutesApp() {
 
     const { toggleDrawerOptions } = useContext(DrawerContext)
+    const { validate } = useContext(ValidateContext)
 
     useEffect(() => {
+        if(validate){
+            return toggleDrawerOptions([
+                {
+                    icon: "home",
+                    label: "Página inicial",
+                    path: "/"
+                },
+                {
+                    icon: 'account_circle',
+                    path: '/conta/:id',
+                    label: 'Minha conta',
+                },
+                {
+                    icon: "help",
+                    label: "Sobre o projeto",
+                    path: "/sobre"
+                }
+            ])
+        }
         toggleDrawerOptions([
             {
-                icon: "home",
-                label: "Página inicial",
-                path: "/"
+                icon: "login",
+                label: "Login",
+                path: "/login"
             },
             {
-                icon: 'account_circle',
-                path: '/conta/:id',
-                label: 'Minha conta',
+                icon: 'person_add',
+                path: '/criar',
+                label: 'Criar conta',
             },
             {
                 icon: "help",
                 label: "Sobre o projeto",
                 path: "/sobre"
-            }
+            },
         ])
+        
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [validate])
 
     return (
         <Routes>

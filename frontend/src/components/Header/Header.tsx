@@ -49,7 +49,7 @@ function Header() {
                 <Title text='My API' onClick={() => navigate('/')} sx={{cursor:'pointer'}} noWrap/>
                 <TextBody text={upperCase ? upperCase : ''} noWrap={false}/>
             </Box>
-            {(lgDown && validate) ? 
+            {lgDown ? 
                 <IconButton onClick={toggleDrawer}>
                     <Icon>menu</Icon>
                 </IconButton>
@@ -67,6 +67,7 @@ function Header() {
                 >
                     {validate && <HeaderItem label='Home' to='/' />}
                     {validate ? <HeaderItem label='Minha conta' to={`/conta/${userLocalStorage?._id}`} /> : <HeaderItem label='Login' to='/login' />}
+                    {!validate && <HeaderItem label='Criar Conta' to='/criar' />}
                     <HeaderItem label='Sobre o projeto' to='/sobre' />
                     {!smDown && <Button href="https://github.com/GabrielBursi/login-react-node" variant="contained" size={lgDown ? 'small' : 'large'}>Repositório GitHub</Button>}
                 </Stack>
