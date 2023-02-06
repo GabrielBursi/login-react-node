@@ -83,27 +83,23 @@ function editUser(req, res) {
     } else {
 
         try {
+            const passwordHash = bcrypt.hashSync(password, saltRounds);
 
-            ModelUser.findOne({ email }).then((user) => {
-
+            const query = {_id:id}
+            const update = {
+                name, 
+                email,
+                password: passwordHash
+            }
+            ModelUser.findOne({email}).then(user => {
                 const _id = new mongoose.Types.ObjectId(id)
-
-                if (user._id.toString() === _id.toString()) {
-
-                    const passwordHash = bcrypt.hashSync(password, saltRounds);
-
-                    ModelUser.findOneAndUpdate({ _id: id }, { email, password: passwordHash, name })
-                        .then((user) => {
-                            res.json({ validate: true, ...user._doc, password: passwordHash, email, name })
-                        })
-                        .catch(error => {
-                            res.json({ error: "id invalido " + error })
-                        })
-
-                } else {
+                if (!user) {
+                    ModelUser.findOneAndUpdate(query, update).then(user => res.json({ validate: true, ...user._doc, password: passwordHash, email, name }))
+                } else if (user._id.toString() !== _id.toString()){
                     return res.json({ error: 'Esse email já existe.' })
+                } else if (user._id.toString() === _id.toString()){
+                    ModelUser.findOneAndUpdate(query, update).then(user => res.json({ validate: true, ...user._doc, password: passwordHash, email, name }))
                 }
-
             })
 
         } catch (error) {
