@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Box, Button, TextField, Divider, Grid  } from "@mui/material";
+import { Box, Button, TextField, Divider, Grid, LinearProgress  } from "@mui/material";
 import { MdOutlineClose } from 'react-icons/md'
 
 import { ErrorContext, LocalStorageContext, LoginContext, MediaQueryContext, ModalContext } from "../../context";
@@ -13,7 +13,7 @@ import TextBody from "../typography/TextBody";
 function Modal({question, info, btnText, action, edit, user, actionIcon}: ModalProps) {
 
     const { setShowModal } = useContext(ModalContext)
-    const { setEmail, setPassword, setName, error, setErro } = useContext(LoginContext)
+    const { setEmail, setPassword, setName, error, setErro, isLoading } = useContext(LoginContext)
     const { userLocalStorage } = useContext(LocalStorageContext)
     const { showErrorInfo } = useContext(ErrorContext)
     const { smDown, mdDown } = useContext(MediaQueryContext)
@@ -131,6 +131,11 @@ function Modal({question, info, btnText, action, edit, user, actionIcon}: ModalP
                                 <Button size={smDown ? 'medium' : 'large'} endIcon={<MdOutlineClose/>} variant='outlined' fullWidth onClick={cancel}>cancelar</Button>
                             </Grid>
                         </Grid>
+                        {isLoading &&
+                            <Box sx={{ width: '100%', mt: 2 }}>
+                                <LinearProgress />
+                            </Box>
+                        }
                     </Box>
                 </Box>
             </Box>

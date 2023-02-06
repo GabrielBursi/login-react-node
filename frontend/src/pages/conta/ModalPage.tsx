@@ -12,7 +12,7 @@ function ModalPage() {
 
     const { validate, setValidate } = useContext(ValidateContext)
     const { showModal, setShowModal } = useContext(ModalContext)
-    const { email, password, name, setErro, setEmail, setName, setPassword } = useContext(LoginContext)
+    const { email, password, name, setErro, setEmail, setName, setPassword, setIsLoading } = useContext(LoginContext)
     const { setUpperCase } = useContext(HeaderContext)
     const { alertError, setShowErrorInfo } = useContext(ErrorContext)
     const { getUserLocalStorage, userLocalStorage, setUserLocalStorage } = useContext(LocalStorageContext)
@@ -30,9 +30,10 @@ function ModalPage() {
             email,
             password
         }
-
+        setIsLoading(true)
         editUserById(userLocalStorage!._id, editedUser)
             .then((data) => {
+                setIsLoading(false)
                 if (data instanceof ApiError) {
                     return alertError(data)
                 }
@@ -77,15 +78,11 @@ function ModalPage() {
     }
 
     function deleteUser() {
+        setIsLoading(true)
         deleteUserById(userLocalStorage!._id).then(() => {
+            setIsLoading(false)
             logout()
-        }).catch(err => {
-            alert(err);
         })
-        setShowModal(undefined)
-        setEmail('')
-        setName('')
-        setPassword('')
     }
 
 
