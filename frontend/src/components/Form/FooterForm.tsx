@@ -37,19 +37,21 @@ function FooterForm({ text, login, route, haveAccount }: FooterFormProps) {
                     <LinearProgress />
                 </Box> 
             }
-            <Typography
-                variant='subtitle1'
-                component='span'
-                sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center",
-                }}
-            >
-                <span>{text}</span>
-                <Link to={`${route}`} onClick={clearInfos}>{login}</Link>
-            </Typography>
+            {!isLoading && 
+                <Typography
+                    variant='subtitle1'
+                    component='span'
+                    sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                    }}
+                >
+                    <span>{text}</span>
+                    <Link to={`${route}`} onClick={clearInfos}>{login}</Link>
+                </Typography>
+            }
         </Box>
     );
 }

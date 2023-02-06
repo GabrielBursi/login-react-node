@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Box, TextField, Typography } from '@mui/material';
+import { Box, TextField } from '@mui/material';
 import { useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { ErrorContext, LocalStorageContext, ValidateContext } from '../../context';
+import { ErrorContext, LocalStorageContext, MediaQueryContext, ValidateContext } from '../../context';
 
 import { FormProps } from "../../types";
-import { FooterForm} from '..'
+import { FooterForm, Title} from '..'
 import ErrorInfo from '../Temporary/ErrorInfo';
 
 function Form({ 
@@ -28,6 +28,7 @@ function Form({
     const { setValidate } = useContext(ValidateContext)
     const { showErrorInfo } = useContext(ErrorContext)
     const { getUserLocalStorage } = useContext(LocalStorageContext)
+    const { mdDown, smDown } = useContext(MediaQueryContext)
 
     useEffect(() => {
         getUserLocalStorage( undefined, setValidate, navigate)
@@ -50,18 +51,16 @@ function Form({
                     height: "100%",
                     display:"flex",
                     flexDirection: "column",
-                    justifyContent:"space-between",
+                    justifyContent:"center",
+
                 }}
             >
                 <Box>
-                    <Typography variant='h2' component="h1" align='center' color="primary">
-                        {text}
-                    </Typography>
+                    <Title text={text}/>
                 </Box>
                 <Box
                     sx={{
-                        flex:1,
-                        height:"100%"
+                        height:smDown ? '50%' : mdDown ? '80%' : '100%',
                     }}
                     >
                     <form action="#" onSubmit={haveAccount ? handleSubmitLogin : handleSubmitNovaConta} style={{marginTop:"2%", height:"100%"}}>

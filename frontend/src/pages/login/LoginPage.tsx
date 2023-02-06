@@ -17,6 +17,7 @@ function Login() {
     const navigate = useNavigate()
 
     function handleSubmitLogin(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault()
 
         const user = {
             email,

@@ -14,7 +14,7 @@ function Container({children}: Children) {
                 height: "88vh",
                 display: "flex",
                 justifyContent: "center",
-                alignItems: "center",
+                alignItems: smDown ? 'start' : 'center',
             }}
             paddingTop={2}
         >
@@ -22,7 +22,8 @@ function Container({children}: Children) {
                 component={Paper}
                 sx={{
                     width: mdDown ? "90%" : "80%",
-                    height: smDown ? "100%" : mdDown ? "90%" : "80%",
+                    height: smDown ? "auto" : mdDown ? "90%" : "80%",
+                    maxHeight: '100%',
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
