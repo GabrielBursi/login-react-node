@@ -10,6 +10,7 @@ function LoginContextProvider({ children }: Children) {
     const [name, setName] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     return (
         <LoginContext.Provider value={
@@ -22,6 +23,8 @@ function LoginContextProvider({ children }: Children) {
                 setEmail,
                 password,
                 setPassword,
+                isLoading,
+                setIsLoading
             }
         }>
 

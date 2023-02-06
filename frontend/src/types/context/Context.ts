@@ -18,6 +18,8 @@ export type TLoginContext = {
     setEmail: React.Dispatch<React.SetStateAction<string>>,
     password: string,
     setPassword: React.Dispatch<React.SetStateAction<string>>,
+    isLoading: boolean,
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
 }
 
 export type TModalContext = {

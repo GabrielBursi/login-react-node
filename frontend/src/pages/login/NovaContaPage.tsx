@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { ApiError, createUser } from "../../api";
@@ -10,7 +10,7 @@ import { ErrorContext, HeaderContext, LoginContext, ValidateContext } from '../.
 function NovaConta() {
 
     const { setValidate } = useContext(ValidateContext)
-    const { setErro, error, email, setEmail, password, setPassword, name, setName } = useContext(LoginContext)
+    const { setErro, error, email, setEmail, password, setPassword, name, setName, setIsLoading } = useContext(LoginContext)
     const { setUpperCase } = useContext(HeaderContext)
     const { alertError, setShowErrorInfo } = useContext(ErrorContext)
 
@@ -25,17 +25,21 @@ function NovaConta() {
             password,
         }
 
+        setIsLoading(true)
         createUser(newUser).then((data)=> {
             if(data instanceof ApiError){
+                setIsLoading(false)
                 return alertError(data)
             }
 
             const { error, validate, password, _id, createAt } = data
             if (error) {
+                setIsLoading(false)
                 setErro(error)
                 setShowErrorInfo(true)
                 setValidate(false)
             } else {
+                setIsLoading(false)
                 setValidate(validate)
                 setErro('')
                 navigate('/')
