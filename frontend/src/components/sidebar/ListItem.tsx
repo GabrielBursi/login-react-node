@@ -16,9 +16,9 @@ function ListItem({ icon, label, to, onClick }: ListItemProps) {
     return (
         <ListItemButton selected={!!match} onClick={handleClick}>
             <ListItemIcon>
-                <Icon>{icon}</Icon>
+                <Icon color='primary'>{icon}</Icon>
             </ListItemIcon>
-            <ListItemText primary={label} />
+            <ListItemText primary={label} color='primary' sx={{ color: '#1976d2' }} />
         </ListItemButton>
     );
 }

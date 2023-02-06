@@ -1,9 +1,9 @@
-import { Box, LinearProgress, Typography } from '@mui/material';
 import { useContext } from 'react'
-import { Link } from "react-router-dom";
+import { Box, LinearProgress, Typography, Link } from '@mui/material';
 import { ErrorContext, LoginContext } from "../../context";
 import { FooterFormProps } from '../../types';
 import ButtonComponent from './ButtonComponent';
+import { useNavigate } from 'react-router-dom';
 
 
 function FooterForm({ text, login, route, haveAccount }: FooterFormProps) {
@@ -11,12 +11,15 @@ function FooterForm({ text, login, route, haveAccount }: FooterFormProps) {
     const { setErro, setEmail, setName, setPassword, isLoading } = useContext(LoginContext)
     const { setShowErrorInfo } = useContext(ErrorContext)
 
+    const navigate = useNavigate()
+
     function clearInfos(){
         setErro("")
         setEmail("")
         setName("")
         setPassword("")
         setShowErrorInfo(false)
+        navigate(`${route}`)
     }
     
     return (
@@ -49,7 +52,7 @@ function FooterForm({ text, login, route, haveAccount }: FooterFormProps) {
                     }}
                 >
                     <span>{text}</span>
-                    <Link to={`${route}`} onClick={clearInfos}>{login}</Link>
+                    <Link onClick={clearInfos} underline='none' sx={{cursor:'pointer'}}>{login}</Link>
                 </Typography>
             }
         </Box>
