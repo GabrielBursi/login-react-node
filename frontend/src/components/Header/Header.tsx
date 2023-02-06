@@ -47,7 +47,7 @@ function Header() {
                 }}
             >
                 <Title text='My API' onClick={() => navigate('/')} sx={{cursor:'pointer'}} noWrap/>
-                <TextBody text={upperCase ? upperCase : ''} noWrap/>
+                <TextBody text={upperCase ? upperCase : ''} noWrap={false}/>
             </Box>
             {(lgDown && validate) ? 
                 <IconButton onClick={toggleDrawer}>
