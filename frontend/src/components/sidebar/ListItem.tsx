@@ -6,7 +6,7 @@ function ListItem({ icon, label, to, onClick }: ListItemProps) {
 
     const navigate = useNavigate()
     const resolvedPath = useResolvedPath(to)
-    const match = useMatch({ path: resolvedPath.pathname, end: false })
+    const match = useMatch({ path: resolvedPath.pathname, end: true })
 
     function handleClick() {
         navigate(to)
@@ -18,7 +18,7 @@ function ListItem({ icon, label, to, onClick }: ListItemProps) {
             <ListItemIcon>
                 <Icon color='primary'>{icon}</Icon>
             </ListItemIcon>
-            <ListItemText primary={label} color='primary' sx={{ color: '#1976d2' }} />
+            <ListItemText primary={label}  sx={{ color: '#1976d2' }} />
         </ListItemButton>
     );
 }

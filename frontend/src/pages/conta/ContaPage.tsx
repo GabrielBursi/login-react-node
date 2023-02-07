@@ -56,39 +56,14 @@ function Conta() {
                             width: "100%",
                             height: "80%",
                             display:"flex",
-                            justifyContent:"center"
+                            flexDirection:'column',
+                            justifyContent:"center",
+                            alignItems:'center'
                         }}
                     >
-                        <TextBody
-                            text={` Nome: 
-                                    Email: 
-                                    Conta criada em:`
-                                }
-                            sx={{
-                                width: "30%",
-                                height: "100%",
-                                display: "flex",
-                                flexDirection:"column",
-                                justifyContent: "space-evenly",
-                                alignItems: "center",
-                            }}
-                        />
-                        <TextBody
-                            text=
-                                {
-                                    `${userLocalStorage?.name} 
-                                    ${userLocalStorage?.email}
-                                    ${userLocalStorage?.createAt}`
-                                }
-                            sx={{
-                                width: "30%",
-                                height: "100%",
-                                display: "flex",
-                                flexDirection: "column",
-                                justifyContent: "space-evenly",
-                                alignItems: "center",
-                            }}
-                        />
+                        <TextBody text={`${userLocalStorage?.name}`} sx={{mt:2}}/>
+                        <TextBody text={`${userLocalStorage?.email}`} sx={{mt:2}}/>
+                        <TextBody text={`${userLocalStorage?.createAt}`} sx={{mt:2}}/>
                         
                     </Box>
                     <Box
@@ -97,14 +72,23 @@ function Conta() {
                             height: "20%",
                             display: "flex",
                             justifyContent:"center",
-                            alignItems:"center"
+                            alignItems:"center",
+                            mt:2
                         }}
                     >
-                        <ButtonGroup size={smDown ? 'small' : mdDown ? 'medium' : 'large'} aria-label="large button group">
-                            <Button type="button" onClick={() => { toggleModal('editar') }} endIcon={<MdEdit/>}>Editar</Button>
-                            <Button type="button" onClick={() => { toggleModal('sair') }} endIcon={<MdLogout/>}>Sair</Button>
-                            <Button type="button" onClick={() => { toggleModal('apagar') }} endIcon={<MdDelete/>}>Apagar Conta</Button>
-                        </ButtonGroup>
+                        {smDown ? 
+                            <ButtonGroup size='large' aria-label="large button group">
+                                <Button type="button" onClick={() => { toggleModal('editar') }}><MdEdit/></Button>
+                                <Button type="button" onClick={() => { toggleModal('sair') }}><MdLogout/></Button>
+                                <Button type="button" onClick={() => { toggleModal('apagar') }}><MdDelete/></Button>
+                            </ButtonGroup>
+                        :
+                            <ButtonGroup size={mdDown ? 'medium' : 'large'} aria-label="large button group">
+                                <Button type="button" onClick={() => { toggleModal('editar') }} endIcon={<MdEdit/>}>Editar</Button>
+                                <Button type="button" onClick={() => { toggleModal('sair') }} endIcon={<MdLogout/>}>Sair</Button>
+                                <Button type="button" onClick={() => { toggleModal('apagar') }} endIcon={<MdDelete/>}>Apagar Conta</Button>
+                            </ButtonGroup>
+                        }
                     </Box>
                 </Box>
             </Box>
