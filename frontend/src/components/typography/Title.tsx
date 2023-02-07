@@ -3,7 +3,7 @@ import { MediaQueryContext } from "../../context";
 import { TextProps } from "../../types";
 import TypographyComponent from "./TypographyComponent";
 
-function Title({text, onClick, sx, noWrap = false} : TextProps) {
+function Title({ text, onClick, sx, noWrap = false } : TextProps) {
 
     const { mdDown, smDown } = useContext(MediaQueryContext)
 
