@@ -1,6 +1,6 @@
 import { RelativeRoutingType, To } from 'react-router-dom';
 import {Response} from './api/Api'
-export type LocalStorage = Omit<Response, 'error'| 'validate'>
+export type LocalStorage = Omit<Response, 'error'| 'validate' | 'password'>
 export type ModalOptions = 'editar' | 'sair' | 'apagar' | undefined
 export interface NavigateFunction {
     (

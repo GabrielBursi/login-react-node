@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import { Box } from "@mui/material";
 import { MdDelete, MdEdit, MdLogout } from 'react-icons/md'
+import { useNavigate } from "react-router-dom";
 
 import { ApiError, deleteUserById, editUserById } from "../../api";
 
@@ -16,6 +17,8 @@ function ModalPage() {
     const { setUpperCase } = useContext(HeaderContext)
     const { alertError, setShowErrorInfo } = useContext(ErrorContext)
     const { getUserLocalStorage, userLocalStorage, setUserLocalStorage } = useContext(LocalStorageContext)
+    
+    const navigate = useNavigate()
 
     useEffect(() => {
         getUserLocalStorage()
@@ -38,7 +41,7 @@ function ModalPage() {
                     return alertError(data)
                 }
 
-                const { error, validate, name, password, _id, createAt } = data
+                const { error, validate, name, _id, createAt } = data
 
                 if (error) {
                     setErro(error)
@@ -51,7 +54,6 @@ function ModalPage() {
                     const userLocalStorage = {
                         name,
                         email,
-                        password,
                         _id,
                         createAt
                     }
@@ -60,6 +62,7 @@ function ModalPage() {
                     setUserLocalStorage(userLocalStorage)
                     setUpperCase(`É bom ver você novamente ${name[0].toUpperCase() + name.substring(1)}.`)
                     setShowModal(undefined)
+                    navigate('/')
                 }
 
             }).catch(err => {

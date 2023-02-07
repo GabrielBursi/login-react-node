@@ -31,7 +31,7 @@ function Login() {
                 return alertError(data)
             }
             
-            const { error, validate, name, password, _id, createAt } = data
+            const { error, validate, name, _id, createAt } = data
             if(error){
                 setIsLoading(false)
                 setErro(error)
@@ -46,7 +46,6 @@ function Login() {
                 const userLocalStorage = {
                     name,
                     email,
-                    password,
                     _id,
                     createAt
                 }

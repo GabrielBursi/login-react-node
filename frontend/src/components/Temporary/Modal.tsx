@@ -101,7 +101,8 @@ function Modal({question, info, btnText, action, edit, user, actionIcon}: ModalP
                                     fullWidth
                                     required
                                     placeholder={user?.email} 
-                                    onChange={(e) => setEmail(e.target.value)} 
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    sx={{mt:2}} 
                                     autoComplete='off'
                                 />
                                 <TextField
@@ -112,6 +113,7 @@ function Modal({question, info, btnText, action, edit, user, actionIcon}: ModalP
                                     fullWidth
                                     required 
                                     onChange={(e) => setPassword(e.target.value)} 
+                                    sx={{mt:2}}
                                     autoComplete='off'
                                 />
                             </form>

@@ -5,7 +5,7 @@ import { Children } from "../../types";
 
 function Container({children}: Children) {
 
-    const { mdDown, smDown } = useContext(MediaQueryContext)
+    const { mdDown } = useContext(MediaQueryContext)
 
     return (
         <Box
@@ -14,7 +14,7 @@ function Container({children}: Children) {
                 height: "88vh",
                 display: "flex",
                 justifyContent: "center",
-                alignItems: smDown ? 'start' : 'center',
+                alignItems: 'start',
             }}
             paddingTop={2}
         >
@@ -22,7 +22,7 @@ function Container({children}: Children) {
                 component={Paper}
                 sx={{
                     width: mdDown ? "90%" : "80%",
-                    height: smDown ? "auto" : mdDown ? "90%" : "80%",
+                    height: "auto",
                     maxHeight: '100%',
                     display: "flex",
                     justifyContent: "center",

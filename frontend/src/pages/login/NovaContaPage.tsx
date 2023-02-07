@@ -32,7 +32,7 @@ function NovaConta() {
                 return alertError(data)
             }
 
-            const { error, validate, password, _id, createAt } = data
+            const { error, validate, _id, createAt } = data
             if (error) {
                 setIsLoading(false)
                 setErro(error)
@@ -47,7 +47,6 @@ function NovaConta() {
                 const userLocalStorage = {
                     name, 
                     email, 
-                    password, 
                     _id, 
                     createAt 
                 }
