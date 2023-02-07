@@ -26,7 +26,7 @@ function Form({
     const navigate = useNavigate()
 
     const { setValidate } = useContext(ValidateContext)
-    const { showErrorInfo } = useContext(ErrorContext)
+    const { showErrorInfo, errorName, errorEmail, errorPassword } = useContext(ErrorContext)
     const { getUserLocalStorage } = useContext(LocalStorageContext)
     const { mdDown, smDown } = useContext(MediaQueryContext)
 
@@ -83,10 +83,11 @@ function Form({
                                     variant="outlined" 
                                     autoComplete="off"
                                     placeholder='Seu nome'
-                                    required
                                     fullWidth
                                     value={name}
                                     onChange={(e) => setName(e.target.value)} 
+                                    error={!!errorName}
+                                    helperText={errorName}
                                 />
                                 
                             }
@@ -98,10 +99,11 @@ function Form({
                                 label="Email"
                                 autoComplete="off"
                                 placeholder='Digite seu email'
-                                required
                                 fullWidth
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
+                                error={!!errorEmail}
+                                helperText={errorEmail}
                             />
                             
                             <TextField
@@ -111,10 +113,11 @@ function Form({
                                 label="Senha"
                                 autoComplete="off"
                                 placeholder='Digite sua senha'
-                                required
                                 fullWidth
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
+                                error={!!errorPassword}
+                                helperText={errorPassword}
                             />
                             <FooterForm 
                                 text={haveAccount ? 'Não tem conta?' : 'Já possui uma conta ?'} 

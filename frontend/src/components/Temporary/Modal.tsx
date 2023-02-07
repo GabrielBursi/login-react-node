@@ -15,7 +15,7 @@ function Modal({question, info, btnText, action, edit, user, actionIcon}: ModalP
     const { setShowModal } = useContext(ModalContext)
     const { setEmail, setPassword, setName, error, setErro, isLoading } = useContext(LoginContext)
     const { userLocalStorage } = useContext(LocalStorageContext)
-    const { showErrorInfo } = useContext(ErrorContext)
+    const { showErrorInfo, errorName, errorEmail, errorPassword } = useContext(ErrorContext)
     const { smDown, mdDown } = useContext(MediaQueryContext)
 
     const navigate = useNavigate()
@@ -91,7 +91,9 @@ function Modal({question, info, btnText, action, edit, user, actionIcon}: ModalP
                                     fullWidth
                                     required 
                                     placeholder={user?.name} 
-                                    onChange={(e) => setName(e.target.value)} 
+                                    onChange={(e) => setName(e.target.value)}
+                                    error={!!errorName}
+                                    helperText={errorName} 
                                 />
                                 <TextField
                                     label='Email' 
@@ -102,6 +104,8 @@ function Modal({question, info, btnText, action, edit, user, actionIcon}: ModalP
                                     required
                                     placeholder={user?.email} 
                                     onChange={(e) => setEmail(e.target.value)}
+                                    error={!!errorEmail}
+                                    helperText={errorEmail}
                                     sx={{mt:2}} 
                                     autoComplete='off'
                                 />
@@ -113,6 +117,8 @@ function Modal({question, info, btnText, action, edit, user, actionIcon}: ModalP
                                     fullWidth
                                     required 
                                     onChange={(e) => setPassword(e.target.value)} 
+                                    error={!!errorPassword}
+                                    helperText={errorPassword}
                                     sx={{mt:2}}
                                     autoComplete='off'
                                 />

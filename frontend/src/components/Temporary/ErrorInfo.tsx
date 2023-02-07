@@ -34,9 +34,9 @@ function ErrorInfo({ error, haveAccount, modal }: ErrorInfoProps) {
                 </Alert>
             }
             {(modal && haveAccount === false) &&
-                <Alert severity={error === 'Informações inválidas.' ? 'error' : 'warning'}>
+                <Alert severity='warning'>
                     <AlertTitle>{error}</AlertTitle>
-                    Não foi possível editar sua conta — <strong>{error === 'Informações inválidas.' ? 'preencha todos os campos.' : 'tente outro email.'}</strong>
+                    Não foi possível editar sua conta — <strong>{error}</strong>
                 </Alert>
             }
         </Box>

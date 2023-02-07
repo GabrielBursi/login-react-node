@@ -12,6 +12,10 @@ function ErrorContextProvider({children} : Children) {
     const navigate = useNavigate()
     const [showErrorInfo, setShowErrorInfo] = useState<boolean>(false);
 
+    const [errorName, setErrorName] = useState<string>('');
+    const [errorEmail, setErrorEmail] = useState<string>('');
+    const [errorPassword, setErrorPassword] = useState<string>('');
+
     const {setUpperCase} = useContext(HeaderContext)
 
     const alertError = useCallback((data: ApiError) => {
@@ -23,7 +27,17 @@ function ErrorContextProvider({children} : Children) {
     },[])
 
     return (
-        <ErrorContext.Provider value={{ alertError, showErrorInfo, setShowErrorInfo }}>
+        <ErrorContext.Provider value={{ 
+            alertError, 
+            showErrorInfo, 
+            setShowErrorInfo, 
+            errorName, 
+            setErrorName, 
+            errorEmail, 
+            setErrorEmail, 
+            errorPassword, 
+            setErrorPassword 
+        }}>
             {children}
         </ErrorContext.Provider>
     );

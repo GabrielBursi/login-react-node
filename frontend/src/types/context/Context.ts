@@ -10,7 +10,7 @@ export type TValidateContext = {
 }
 
 export type TLoginContext = {
-    error?: string,
+    error?:string,
     setErro: React.Dispatch<React.SetStateAction<string | undefined>>,
     name: string,
     setName: React.Dispatch<React.SetStateAction<string>>,
@@ -35,7 +35,13 @@ export type THeaderContext = {
 export type TErrorContext = {
     alertError: (data: ApiError) => void,
     showErrorInfo: boolean,
-    setShowErrorInfo: React.Dispatch<React.SetStateAction<boolean>>
+    setShowErrorInfo: React.Dispatch<React.SetStateAction<boolean>>,
+    errorName: string,
+    setErrorName: React.Dispatch<React.SetStateAction<string>>,
+    errorEmail: string,
+    setErrorEmail: React.Dispatch<React.SetStateAction<string>>,
+    errorPassword: string,
+    setErrorPassword: React.Dispatch<React.SetStateAction<string>>,
 }
 
 export type TLocalStorageContext = {

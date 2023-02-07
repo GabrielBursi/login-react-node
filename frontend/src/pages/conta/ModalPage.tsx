@@ -2,12 +2,20 @@ import { useContext, useEffect } from "react";
 import { Box } from "@mui/material";
 import { MdDelete, MdEdit, MdLogout } from 'react-icons/md'
 import { useNavigate } from "react-router-dom";
+import * as yup from 'yup'
 
 import { ApiError, deleteUserById, editUserById } from "../../api";
 
 import { Container, Modal } from "../../components";
 
 import { ErrorContext, HeaderContext, LocalStorageContext, LoginContext, ModalContext, ValidateContext } from "../../context";
+import { SchemaCreateAndEditAccount } from "../../types";
+
+const editAccountSchema: yup.SchemaOf<SchemaCreateAndEditAccount> = yup.object().shape({
+    name: yup.string().required().min(2),
+    email: yup.string().required().email(),
+    password: yup.string().required().min(6),
+});
 
 function ModalPage() {
 
@@ -15,7 +23,7 @@ function ModalPage() {
     const { showModal, setShowModal } = useContext(ModalContext)
     const { email, password, name, setErro, setEmail, setName, setPassword, setIsLoading } = useContext(LoginContext)
     const { setUpperCase } = useContext(HeaderContext)
-    const { alertError, setShowErrorInfo } = useContext(ErrorContext)
+    const { alertError, setShowErrorInfo, setErrorName, setErrorEmail, setErrorPassword } = useContext(ErrorContext)
     const { getUserLocalStorage, userLocalStorage, setUserLocalStorage } = useContext(LocalStorageContext)
     
     const navigate = useNavigate()
@@ -34,42 +42,74 @@ function ModalPage() {
             password
         }
         setIsLoading(true)
-        editUserById(userLocalStorage!._id, editedUser)
-            .then((data) => {
+
+        editAccountSchema.validate(editedUser, {abortEarly: false})
+            .then(valid => {
+                editUserById(userLocalStorage!._id, valid)
+                    .then((data) => {
+                        setIsLoading(false)
+                        if (data instanceof ApiError) {
+                            return alertError(data)
+                        }
+            
+                        const { error, validate, name, _id, createAt } = data
+            
+                        if (error) {
+                            setErro(error)
+                            setShowErrorInfo(true)
+                            setValidate(!validate)
+                        } else {
+                            setValidate(validate)
+                            setErro('')
+            
+                            const userLocalStorage = {
+                                name,
+                                email,
+                                _id,
+                                createAt
+                            }
+            
+                            localStorage.setItem('login', JSON.stringify(userLocalStorage))
+                            setUserLocalStorage(userLocalStorage)
+                            setUpperCase(`É bom ver você novamente ${name[0].toUpperCase() + name.substring(1)}.`)
+                            setShowModal(undefined)
+                            navigate('/')
+                        }
+            
+                    }).catch(err => {
+                        alert(err);
+                    })
+            }).catch((errors: yup.ValidationError) => {
                 setIsLoading(false)
-                if (data instanceof ApiError) {
-                    return alertError(data)
-                }
+                errors.inner.forEach(error => {
+                    switch (error.path) {
+                        case 'name':
+                            setErrorName(error.message);
 
-                const { error, validate, name, _id, createAt } = data
+                            break
+                        case 'email':
+                            setErrorEmail(error.message);
 
-                if (error) {
-                    setErro(error)
-                    setShowErrorInfo(true)
-                    setValidate(!validate)
-                } else {
-                    setValidate(validate)
-                    setErro('')
+                            break
+                        case 'password':
+                            setErrorPassword(error.message);
 
-                    const userLocalStorage = {
-                        name,
-                        email,
-                        _id,
-                        createAt
+                            break
+                        default:
+                            console.log('nenhum erro')
+                            break
                     }
-
-                    localStorage.setItem('login', JSON.stringify(userLocalStorage))
-                    setUserLocalStorage(userLocalStorage)
-                    setUpperCase(`É bom ver você novamente ${name[0].toUpperCase() + name.substring(1)}.`)
-                    setShowModal(undefined)
-                    navigate('/')
-                }
-
-            }).catch(err => {
-                alert(err);
+                });
             })
 
+        setTimeout(() => {
+            setErrorName('')
+            setErrorEmail('')
+            setErrorPassword('')
+        }, 1000 * 3)
+
     }
+    
 
     function logout() {
         localStorage.removeItem('login')
