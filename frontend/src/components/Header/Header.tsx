@@ -69,7 +69,7 @@ function Header() {
                     {validate ? <HeaderItem label='Minha conta' to={`/conta/${userLocalStorage?._id}`} /> : <HeaderItem label='Login' to='/login' />}
                     {!validate && <HeaderItem label='Criar Conta' to='/criar' />}
                     <HeaderItem label='Sobre o projeto' to='/sobre' />
-                    {!smDown && <Button href="https://github.com/GabrielBursi/login-react-node" variant="contained" size={lgDown ? 'small' : 'large'}>Repositório GitHub</Button>}
+                    {!smDown && <Button href="https://github.com/GabrielBursi/login-react-node" target="_blank" rel="noreferrer" variant="contained" size={lgDown ? 'small' : 'large'}>Repositório GitHub</Button>}
                 </Stack>
             }
         </Box>
