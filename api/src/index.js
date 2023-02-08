@@ -15,7 +15,10 @@ app.use(express.json())
 app.use(cors())
 app.use(morgan('tiny'))
 
-app.use('/', router)
+// app.use('/', router)
+
+app.get('/', (req, res) => { res.send('ola') })
+app.get('/teste', (req, res) => { res.send('ola')})
 
 const PORT = process.env.PORT || 3000
 
