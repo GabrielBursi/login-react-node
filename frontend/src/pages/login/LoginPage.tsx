@@ -9,9 +9,11 @@ import {Container, Form} from '../../components';
 import { ErrorContext, HeaderContext, LoginContext, ValidateContext } from '../../context';
 import { SchemaLogin } from '../../types';
 
+import '../../TraducoesYup';
+
 const loginSchema: yup.SchemaOf<SchemaLogin> = yup.object().shape({
     email: yup.string().required().email(),
-    password: yup.string().required(),
+    password: yup.string().required().min(6),
 });
 
 function Login() {

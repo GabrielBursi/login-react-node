@@ -6,7 +6,6 @@ import RoutesApp from "./routes/Routes";
 import {Header, SideBar} from './components';
 import { ContextProvider } from './context';
 import { Box } from '@mui/material';
-import './TraducoesYup'
 
 function App() {
   return (
