@@ -127,7 +127,8 @@ function getInfoApi(req, res){
         "Rotas da API": {
             "/users":{
                 method: "GET",
-                description: "Retorna todos os usuarios"
+                description: "Retorna todos os usuarios",
+                url: "https://myapi-node.cyclic.app/users"
             },
             "/create": {
                 method: "POST",

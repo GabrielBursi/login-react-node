@@ -54,14 +54,14 @@ function HomePage() {
                 <Title text='URL da API:'/>
                 <Typography         
                         component={Link}
-                        href="http://localhost:3333/users" 
+                        href="https://myapi-node.cyclic.app" 
                         target="_blank" 
                         rel="noreferrer"
                         underline="hover"
                         variant={smDown ? 'h6' : mdDown ? 'h4' : 'h3'}
                         color='black'
                     >
-                        http://localhost:3333/users
+                        https://myapi-node.cyclic.app
                 </Typography>
                 <TableContainer component={Paper} variant="outlined" sx={{ m: 2, width: 'auto' }}>
                     <Table stickyHeader aria-label="sticky table">
