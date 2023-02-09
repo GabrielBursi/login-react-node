@@ -1,9 +1,9 @@
 import express from 'express'
-import {getAll, createUser, deleteUser, editUser, login} from '../controllers/ApiController.js'
+import {getAll, createUser, deleteUser, editUser, login, getInfoApi} from '../controllers/ApiController.js'
 
 const router = express.Router()
 
-router.get('/', (req,res) => {res.send('Ola')})
+router.get('/', getInfoApi)
 router.get('/users', getAll)
 router.post('/create', createUser)
 router.post('/login', login)

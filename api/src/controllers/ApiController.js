@@ -122,10 +122,40 @@ function deleteUser(req, res){
     }
 }
 
+function getInfoApi(req, res){
+    const routes = {
+        "Rotas da API": {
+            "/users":{
+                method: "GET",
+                description: "Retorna todos os usuarios"
+            },
+            "/create": {
+                method: "POST",
+                description: "Cria um novo usuario"
+            },
+            "/login": {
+                method: "POST",
+                description: "Realiza login de usuario"
+            },
+            "/users/:id": {
+                method: "PUT",
+                    description: "Edita um usuario pelo ID"
+            },
+            "/users/id": {
+                method: "DELETE",
+                description: "Exclui um usuario pelo ID"
+            }
+        }
+    }
+
+    res.json(routes)
+}
+
 export  {
     getAll,
     createUser,
     deleteUser,
     editUser,
-    login
+    login,
+    getInfoApi
 }

@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 
 function connectDB(){
     mongoose.set('strictQuery', true);
-    mongoose.connect(process.env.DATABASE_URI, {
+    mongoose.connect(process.env.DATABASE_URL, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
