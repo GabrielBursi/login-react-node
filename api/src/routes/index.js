@@ -3,6 +3,7 @@ import {getAll, createUser, deleteUser, editUser, login} from '../controllers/Ap
 
 const router = express.Router()
 
+router.get('/', (req,res) => {res.send('Ola')})
 router.get('/users', getAll)
 router.post('/create', createUser)
 router.post('/login', login)
